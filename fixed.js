@@ -6,7 +6,8 @@ document.getElementsByTagName('head')[0].appendChild(script);
 var isInput = false;//暂时未用到，看聚焦的需求
 var questionId;
 var that;
-var arrText = ['Saint Laurent','Piaget'];//字符数组
+var arrText = ["Saint Laurent", "Fila", "Christian Dior", "pinKo", "Clavin Klein", "Piaget", "Xtecher", "CliniQue", "Povos", "YoutuBe", "Das Auto", "Moussy", "CocaCola", "McDonald", 
+			   "Rado", "Jaguar", "Michael Kors", "ViVo", "Guerlain", "Zegna", "Kate Spade", "Puma", "Swatch", "Hugo Boss", "Paul Frank", "Vans", "Land Rover", "Diesel"];//字符数组
 var text;//当前字符
 var textArr = [];//当前字符删除空格的有效数组存储
 var count = 0;//当前字符计数
@@ -196,7 +197,7 @@ function inputValue($inputFocus,inputIndex,e){
 				if(e.ctrlKey){
 					$("#span" + idNum +" div span").html("+5");
 					$("#span" + idNum +" img").show();
-					timeInput.value += idNum +":shift-right;";
+					timeInput.value += idNum +":right;";
 					totalReward += 5;
 				}else{
 					$("#span" + idNum +" div span").html("+0");

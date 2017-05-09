@@ -6,7 +6,8 @@ document.getElementsByTagName('head')[0].appendChild(script);
 var isInput = false;//暂时未用到，看聚焦的需求
 var questionId;
 var that;
-var arrText = ['Saint Laurent','Piaget'];//字符数组
+var arrText = ["Philips", "Porsche", "Estee Lauder", "Audi", "Reebok", "Colgate", "Honda", "Ford", "Jimmy Choo", "Midea", "Uniqlo", "Pizza Hut", "Disney","Green Earth", 
+			   "RoseOnly", "BeLLe", "MaxMara", "Aupres", "Shiseido", "Les Coq", "Panasonic", "Red Cross", "Mr Juice", "Evergrand", "Dell", "Louis Vuitton", "Bottega Veneta", "Ji Sander"];//字符数组
 var text;//当前字符
 var textArr = [];//当前字符删除空格的有效数组存储
 var count = 0;//当前字符计数
@@ -194,13 +195,13 @@ function inputValue($inputFocus,inputIndex,e){
 			if($inputFocus.val() == textArr[inputIndex]){//是否输入正确
 				$inputFocus.attr("disabled",true);//设置不可编辑
 				if(e.ctrlKey){
-					$("#span" + idNum +" div span").html("+5");
-					$("#span" + idNum +" img").show();
-					timeInput.value += idNum +":shift-right;";
+					// $("#span" + idNum +" div span").html("+5");
+					// $("#span" + idNum +" img").show();
+					timeInput.value += idNum +":right;";
 					totalReward += 5;
 				}else{
-					$("#span" + idNum +" div span").html("+0");
-					$("#span" + idNum +" img").show();
+					// $("#span" + idNum +" div span").html("+0");
+					// $("#span" + idNum +" img").show();
 					timeInput.value += idNum +":capslk-right;";
 				}
 			}else{
@@ -228,7 +229,7 @@ function inputValue($inputFocus,inputIndex,e){
 
 function nextTurn() {
 	if (count >= arrText.length) {
-			timeInput.value += "总积分："+ totalReward;
+			//timeInput.value += "总积分："+ totalReward;
 			console.log(timeInput.value);			
 			$("#"+questionId+" .QuestionBody").empty();
 			$("#"+questionId+" .QuestionBody").append("<div>请点击右下角按钮进入下一部分</div>");
