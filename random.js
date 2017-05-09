@@ -20,9 +20,12 @@ var rewardPoints = 30;//常量，每组总积分30
 var surplusPoints = rewardPoints;
 var rewardNum = 6;//常量，6个一组
 var surplusNum = rewardNum;
-var img = '<img class="Graphic" src="Graphic.php?IM=IM_eniPxTvMe3e1BVX" style="display:none;width: 50px;position: absolute;left:0px;z-index: 0;"/>';
+var img = '<img class="Graphic" src="https://fdsm.az1.qualtrics.com/WRQualtricsControlPanel/Graphic.php?IM=IM_eniPxTvMe3e1BVX" style="display:none;width: 50px;position: absolute;left:0px;z-index: 0;"/>';
 var keyCodeAll = {65:"A",66:"B",67:"C",68:"D",69:"E",70:"F",71:"G",72:"H",73:"I",74:"J",75:"K",76:"L",77:"M",78:"N",79:"O",80:"P",81:"Q",82:"R",83:"S",84:"T",85:"U",86:"V",87:"W",88:"X",89:"Y",90:"Z",
 				  97:"a",98:"b",99:"c",100:"d",101:"e",102:"f",103:"g",104:"h",105:"i",106:"j",107:"k",108:"l",109:"m",110:"n",111:"o",112:"p",113:"q",114:"r",115:"s",116:"t",117:"u",118:"v",119:"w",120:"x",121:"y",122:"z"};
+var fontAnima = 300;//单次动画时间（从最小到最大算一次），单位ms
+var fontWait = 100;//在字体最大时等待时间，单位ms
+var maxFont = 50;//最大时字体大小
 Qualtrics.SurveyEngine.addOnload(function()
 {
 	var script=document.createElement("script");  
@@ -55,7 +58,7 @@ function loadPromptMsg() {
     	}else if(text[i] >= "A" && text[i] <= "Z"){//大写字母
     		upperCount++;
     		thisUpper[upperCount] = false;
-			showScore += "<div id='span"+upperCount+"' style='display:inline-block;width:50px;height:65px;position:relative;'>"+img+"<div style='position: absolute;z-index: 1;left:0px;top:24px;width:50px;'><span></span></div></div>";
+			showScore += "<div id='span"+upperCount+"' style='display:inline-block;width:50px;height:65px;position:relative;'>"+img+"<div style='position: absolute;z-index: 1;left:0px;bottom:13px;width:50px;'><span style='-webkit-transition: all "+fontAnima+"ms linear;-moz-transition: all "+fontAnima+"ms linear;-o-transition: all "+fontAnima+"ms linear;-ms-transition: all "+fontAnima+"ms linear;transition: all "+fontAnima+"ms linear;'></span></div></div>";
     		showInput += "<input id='input"+upperCount+"' style='width:36px;margin:0px 5px;font-size:30px;'></input>";
     		textArr.push(text[i]);
     	}else if(text[i] == " "){ 
@@ -66,13 +69,13 @@ function loadPromptMsg() {
     	}
     }
     showScore += "<div style='clear:both;'></div>";
-	questionBody += "<div>" + text + "</div>"+"<div style='color:#ffd700;font-size:22px;height:65px;margin-top:50px;'>" + showScore + "</div>"+"<div class='input-div'>"+ showInput + "</div>";
+	questionBody += "<div>" + text + "</div>"+"<div style='color:#ffd700;font-size:24px;font-weight:bold;height:65px;margin-top:50px;'>" + showScore + "</div>"+"<div class='input-div'>"+ showInput + "</div>";
 	$("#"+questionId+" .QuestionBody").append(questionBody);	
 	setTimeout(function(){
 		inputArr = $(".input-div input"); 
 		inputArr[0].focus();
 	},10);
-	textCountdown();
+	//textCountdown();
 }	
 
 window.onkeydown = function (e) {
@@ -188,6 +191,12 @@ function inputValue($inputFocus,inputIndex,e){
 				if(e.ctrlKey){
 					$("#span" + idNum +" div span").html("+"+reward);
 					$("#span" + idNum +" img").show();
+					//字体动画
+					$("#span" + idNum +" div span").css('font-size',maxFont+"px");
+					setTimeout(function(){
+						$("#span" + idNum +" div span").css('font-size',"24px");
+					},fontAnima+fontWait);
+					
 					timeInput.value += idNum +":right+"+reward+";";
 					totalReward += 5;
 				}else{
@@ -210,7 +219,7 @@ function inputValue($inputFocus,inputIndex,e){
 			}
 		}
 		if(success){
-			clearTimeout(timeLimit);
+			//clearTimeout(timeLimit);
 			setTimeout(function(){
 				nextTurn();	
 			},10);			
@@ -232,26 +241,26 @@ function nextTurn() {
 }
 
 //文本输入倒计时
-function textCountdown() {
-	timeLimit = setTimeout(function () {
-		$.each(thisUpper,function(key,val){
-			if(val === false){
-				//随机积分
-				var reward;				
-				reward = getRandomMoney(surplusNum, surplusPoints);
-				surplusNum--;
-				surplusPoints =  surplusPoints - reward;
-				if(surplusNum === 0){
-					surplusNum = rewardNum;
-					surplusPoints = rewardPoints;
-				}								
-				console.log(key+":"+reward);
-			}
-		});
-		console.log(count + ":timeout");
-		nextTurn();
-	}, 20000);
-}
+// function textCountdown() {
+// 	timeLimit = setTimeout(function () {
+// 		$.each(thisUpper,function(key,val){
+// 			if(val === false){
+// 				//随机积分
+// 				var reward;				
+// 				reward = getRandomMoney(surplusNum, surplusPoints);
+// 				surplusNum--;
+// 				surplusPoints =  surplusPoints - reward;
+// 				if(surplusNum === 0){
+// 					surplusNum = rewardNum;
+// 					surplusPoints = rewardPoints;
+// 				}								
+// 				console.log(key+":"+reward);
+// 			}
+// 		});
+// 		console.log(count + ":timeout");
+// 		nextTurn();
+// 	}, 20000);
+// }
 
 function getRandomMoney(remainSize, remainMoney){
 	if(remainSize == 1){

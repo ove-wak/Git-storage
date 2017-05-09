@@ -15,7 +15,7 @@ var upperCount = 0;//大写字母计数
 var countdown;//计时
 var totalReward = 0;//总积分
 var inputArr;//输入框数组，其长度与textArry应该相等
-var img = '<img class="Graphic" src="Graphic.php?IM=IM_eniPxTvMe3e1BVX" style="display:none;width: 50px;position: absolute;left:0px;z-index: 0;"/>';
+var img = '<img class="Graphic" src="https://fdsm.az1.qualtrics.com/WRQualtricsControlPanel/Graphic.php?IM=IM_eniPxTvMe3e1BVX" style="display:none;width: 50px;position: absolute;left:0px;z-index: 0;"/>';
 var keyCodeAll = {65:"A",66:"B",67:"C",68:"D",69:"E",70:"F",71:"G",72:"H",73:"I",74:"J",75:"K",76:"L",77:"M",78:"N",79:"O",80:"P",81:"Q",82:"R",83:"S",84:"T",85:"U",86:"V",87:"W",88:"X",89:"Y",90:"Z",
 				  97:"a",98:"b",99:"c",100:"d",101:"e",102:"f",103:"g",104:"h",105:"i",106:"j",107:"k",108:"l",109:"m",110:"n",111:"o",112:"p",113:"q",114:"r",115:"s",116:"t",117:"u",118:"v",119:"w",120:"x",121:"y",122:"z"};
 Qualtrics.SurveyEngine.addOnload(function()
@@ -60,42 +60,14 @@ function loadPromptMsg() {
     	}
     }
     showScore += "<div style='clear:both;'></div>";
-	questionBody += "<div>" + text + "</div>"+"<div style='color:#ffd700;font-size:22px;height:65px;margin-top:50px;'>" + showScore + "</div>"+"<div class='input-div'>"+ showInput + "</div>";
+	questionBody += "<div>" + text + "</div>"+"<div style='color:#ffd700;font-size:24px;font-weight:bold;height:65px;margin-top:50px;'>" + showScore + "</div>"+"<div class='input-div'>"+ showInput + "</div>";
 	$("#"+questionId+" .QuestionBody").append(questionBody);	
 	setTimeout(function(){
 		inputArr = $(".input-div input"); 
 		inputArr[0].focus();
 	},10);
-	textCountdown();
+	//textCountdown();
 }	
-// document.onkeypress = function(e){
-// 	var $inputFocus = $(".input-div input:focus");
-// 	if($inputFocus.length !== 0){
-// 		var inputIndex = $inputFocus.index(".input-div input");//当前input的位置
-// 		var value = $inputFocus.val();
-// 		if(value.length === 0){
-// 			// var keyCode  =  e.keyCode||e.which; // 按键的keyCode
-// 			// var isShift  =  e.shiftKey ||(keyCode  ==   16 ) || false ; // shift键是否按住
-// 			// var isCtrl  =  e.ctrlKey ||(keyCode  ==   17 ) || false ; // ctrl键是否按住
-    		
-   			 
-//    // 			 	if(isCtrl && ((keyCode>=65&&keyCode<=90)||(keyCode >=97&&keyCode<=122))){
-//    // 			 	if(keyCode>=65&&keyCode<=90){
-//    // 			 		keyCode += 32;
-//    // 			 	}else{
-//    // 			 		keyCode -= 32;
-//    // 			 	}
-   			 	
-   			 	
-   			 	 
-//    // 			 }
-// 			inputValue($inputFocus,inputIndex,e);
-// 		}else{//限制一个input最多只有一个字母
-// 			return false;
-// 		}
-// 	}
-	
-// };
 
 window.onkeydown = function (e) {
 	var $inputFocus = $(".input-div input:focus");
@@ -219,7 +191,7 @@ function inputValue($inputFocus,inputIndex,e){
 			}
 		}
 		if(success){
-			clearTimeout(timeLimit);
+			//clearTimeout(timeLimit);
 			setTimeout(function(){
 				nextTurn();	
 			},10);			
@@ -240,9 +212,9 @@ function nextTurn() {
 }
 
 //文本输入倒计时
-function textCountdown() {
-	timeLimit = setTimeout(function () {
-		console.log(count + ":timeout");
-		nextTurn();
-	}, 20000);
-}
+// function textCountdown() {
+// 	timeLimit = setTimeout(function () {
+// 		console.log(count + ":timeout");
+// 		nextTurn();
+// 	}, 20000);
+// }
