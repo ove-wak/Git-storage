@@ -1,3 +1,3 @@
-Git is a distributed version control system.
-Git is free software.
-LICENSE
+用于问卷调查网站：https://az1.qualtrics.com
+demo-shift.js 用于检测"shift+字母"产生的大写字母
+demo-ctrl.js 用于改键为"ctrl+字母"产生大写字母
