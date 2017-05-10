@@ -198,10 +198,9 @@ function inputValue($inputFocus,inputIndex,e){
 					},fontAnima+fontWait);
 					
 					timeInput.value += idNum +":right+"+reward+";";
-					totalReward += 5;
+					totalReward += reward;
 				}else{
 					$("#span" + idNum +" div span").html("+0");
-					$("#span" + idNum +" img").show();
 					timeInput.value += idNum +":capslk-right;";
 				}
 			}else{

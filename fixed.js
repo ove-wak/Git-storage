@@ -210,7 +210,6 @@ function inputValue($inputFocus,inputIndex,e){
 					totalReward += 5;
 				}else{
 					$("#span" + idNum +" div span").html("+0");
-					$("#span" + idNum +" img").show();
 					timeInput.value += idNum +":capslk-right;";
 				}
 			}else{
