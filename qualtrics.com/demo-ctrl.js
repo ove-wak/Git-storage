@@ -32,7 +32,6 @@ Qualtrics.SurveyEngine.addOnload(function()
 	console.log(questionId);
 	loadPromptMsg();
 });
-
 function loadPromptMsg() {
 	$("#"+questionId+" .QuestionBody").html("");
 	var questionBody = "";
