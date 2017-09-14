@@ -1,2 +1,0 @@
-②. 记录被试按键的反应时 被试从上一个动作到按 capslock/ctrl的时间，假设Apple 那就是从单词出现到第一次按下capslock/ctrl的时间。
-④. 记录反应时的block（一个练习block，还有两个有奖励的block），以及还有需要被试输入编号的框（block名字叫做 ID numberⅠ， ID numberⅡ， ID numberⅢ，ID number Ⅳ ）。因为在这几个block被试输完大写之后字母不会被锁定，所以被试有可能按完capslock输入后再删掉用ctrl输入（或者反过来），这种情况下需要记录的就是：（capslock-capslock-ctrl）从上一个操作到第一次按capslock的时间，从第一次按capslock到第二次按capslock的时间，从第二次按capslock到最后按ctrl的时间；（ctrl-capslock）从上一个操作到按ctrl的时间，按完ctrl到按capslock的时间）。我的编号规则是01A，02A这样子，所以进行大写前的操作应该是按完数字。
