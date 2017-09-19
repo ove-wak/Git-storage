@@ -12,7 +12,7 @@ var COUNTDOWNTIME = 4;//倒计时,单位s
 var countdownTime = COUNTDOWNTIME;
 var flag = 0;//标记无大写为0,clrl为1,capslk为2;
 var uppercaseLetter = false;//当前有无大写字母
-var arrText = [ "Guess","Diesel"];//字符数组
+var arrText = [ "Guess","Diesel","Ball"];//字符数组
 var text;//当前字符
 var textArr = [];//当前字符删除空格的有效数组存储
 var count = 0;//当前字符计数
@@ -36,10 +36,7 @@ head.insertBefore( script, head.firstChild );
     divBody.setAttribute("style","font-size:30px;");
     divBody.setAttribute("align","center");
     console.log(questionId);
-//var dh = $(document.body).height();
-    //var sh = $(".SkinInner").height();
-     //$(".SkinInner").css("margin-top",(dh-sh)/2);
-    setTimeout(function(){
+    setTimeout(function(){  
      $("#Questions").css("position","relative");
         loadHtml();
         countdown(-1);
@@ -50,7 +47,7 @@ head.insertBefore( script, head.firstChild );
 function loadPromptMsg() {
     uppercaseLetter = false;
     $("#"+questionId+" .QuestionBody").html("");
-     $("#"+questionId+" .QuestionBody").css("font-size","32px");
+         $("#"+questionId+" .QuestionBody").css("font-size","32px");
     var questionBody = "";
     var showInput = "";
     var text = arrText[count];
@@ -73,7 +70,7 @@ function loadPromptMsg() {
         }
     }
     questionBody += "<div>" + text + "</div>"+"<div style='margin-top:30px;' class='input-div'>"+ showInput + "</div>";
-    $("#"+questionId+" .QuestionBody").append(questionBody);   
+    $("#"+questionId+" .QuestionBody").append(questionBody);    
     thisKeyTime = new Date().getTime();//*
     lastKeyTime = thisKeyTime;//*
     setTimeout(function(){
@@ -106,6 +103,7 @@ window.onkeydown = function (e) {
         case 16:return false;break;
         case 17:return false;break;
         case 20:timeInput.value += (thisKeyTime - lastKeyTime)/1000 +"s-capslock  ";break;//*
+
         default:
         {
             if (isShift && (keyCode>=65&&keyCode<=90)){
@@ -131,6 +129,7 @@ window.onkeydown = function (e) {
         }
     }
     lastKeyTime = thisKeyTime;//*
+
 };
 function left(inputIndex){
     if(inputIndex > 0){
@@ -186,7 +185,7 @@ function inputValue($inputFocus,inputIndex,e){
                 $inputFocus.attr("disabled",true);//设置不可编辑
                 if(e.ctrlKey){
                     flag  = 1;                 
-                    timeInput.value += "[right]  ";//*
+                   timeInput.value += "[right]  ";//*
                 }else{
                     flag = 2;
                     timeInput.value += "[capslk-right]  ";//*
