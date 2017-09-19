@@ -43,8 +43,7 @@ Qualtrics.SurveyEngine.addOnload(function()
     }
 });
 window.onkeydown = function (e) {
-    thisKeyTime = new Date().getTime();//*   
-    console.log(timeInput.value)//*
+    thisKeyTime = new Date().getTime(); 
     if(isInput){    
     var keyCode  =  e.keyCode||e.which; // 按键的keyCode
     var isShift  =  e.shiftKey ||(keyCode  ==   16 ) || false ; // shift键是否按住
@@ -66,9 +65,13 @@ window.onkeydown = function (e) {
                 console.log(timeInput.value);
             },10);
             e.preventDefault();//屏蔽ctrl+字母复合键的默认事件
+        lastKeyTime = thisKeyTime;
+    }
+    if(!(isCtrl || isShift)){
+        lastKeyTime = thisKeyTime;
     }
     }
-    lastKeyTime = thisKeyTime;//*
+    console.log(timeInput.value);
 };
 
 
