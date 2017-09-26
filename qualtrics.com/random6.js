@@ -54,7 +54,7 @@ head.insertBefore( script, head.firstChild );
 function loadPromptMsg() {
     uppercaseLetter = false;
     $("#"+questionId+" .QuestionBody").html("");
-     $("#"+questionId+" .QuestionBody").css("font-size","32px");
+    $("#"+questionId+" .QuestionBody").css("font-size","32px");
     var questionBody = "";
     var showInput = "";
     var text = arrText[count];
