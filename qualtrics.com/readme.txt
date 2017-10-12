@@ -1,10 +1,9 @@
-用于问卷调查网站：https://az1.qualtrics.com
+用于问卷调查网站：https://rucsb.au1.qualtrics.com
 
-demo-shift.js 用于检测"shift+字母"产生的大写字母.
-demo-ctrl.js 用于改键为"ctrl+字母"产生大写字母.
-fixed.js,random.js,post.js为实际的三个问卷模块,均以 demo-ctrl.js 为基础.
-fixed-a.js 为测试版本的检测'a'模块.
-id-before.js 为未添加检测按键时间的 id 模块.
-id-now.js 为添加了检测按键时间的 id 模块.
-practice-before.js 为未添加检测按键时间的 practice 模块.
-practice-now.js 为添加了检测按键时间的 practice 模块.
+2017-09-19:之前的版本记录过于混乱,就让他们迷失在时间线中吧.
+
+id.js,practice.js,fixed10.js,random6.js均为september文件夹下最新版,所实现的基本功能均包括:1.屏蔽shift+字母产生的大写字母;2.屏蔽ctrl+字母的默认事件,并使ctrl+字母产生大写字母;3.记录上一个操作到ctrl/shift/capslock的时间.文件名称均对应相应block的时间
+
+'a'project:
+id-a.js为id的block,主要检测按完数字到错误字母的时间以及按完数字到字母'a'的时间
+fixed-a.js为fixed的block,用于检测上一个按键到'a'的时间,并记录是首次输入正确还是修改正确
