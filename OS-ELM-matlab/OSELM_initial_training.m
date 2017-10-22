@@ -1,6 +1,7 @@
 function [IW, Bias, M, beta, TrainingTime] = OSELM_initial_training(Data_File, nHiddenNeurons, ActivationFunction)
 % 2017-09-16
 % ove-wak
+% OSELM_initial_training
 % oselm之初次训练#单AP
 % 输入:
 % Data_File:初次训练的训练数据所在的文件

@@ -103,7 +103,7 @@ window.onkeydown = function (e) {
             right(inputIndex);
             break;
         case 8://删除键
-            if(value.length === 0){
+            if(value.length === 0){ 
                 deleteA(inputIndex);
             }   
             break;

@@ -1,6 +1,7 @@
 function [TestingTime,TestingAccuracy] = OSELM_test(Data_File,IW, Bias, beta, ActivationFunction)
 % 2017-09-16
 % ove-wak
+% OSELM_test
 % oselm之测试#单AP
 % 输入:
 % Data_File:测试数据所在的文件

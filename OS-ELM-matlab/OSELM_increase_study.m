@@ -1,6 +1,7 @@
 function [IW, Bias, M, beta] = OSELM_increase_study(Data_File,IW, Bias, M, beta, ActivationFunction, times)
 % 2017-09-16
 % ove-wak
+% OSELM_increase_study
 % oselm之增量学习#单AP
 % 输入:
 % Data_File:增量学习的训练数据所在的文件
@@ -19,7 +20,8 @@ function [IW, Bias, M, beta] = OSELM_increase_study(Data_File,IW, Bias, M, beta,
 % 2017-09-17
 % 1.可通过输入时效性w的倍数来减除衰减模型的影响,但波动会不会太大?
 % 解决方法:将w设置为1-2之间的数.
-% 2.目前对于模型衰减采用的方式是直接随机输入晚上的一部分数据,因为输出的是变化系数,也就是使其变化系数越来越趋近一个稳定值
+% 2.目前对于模型衰减采用的方式是直接随机输入晚上的一部分数据,因为输出的是变化系数,也就是
+% 使其变化系数越来越趋近一个稳定值
 
 if nargin == 6
     times = 1;
