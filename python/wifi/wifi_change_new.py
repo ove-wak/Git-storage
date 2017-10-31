@@ -58,8 +58,8 @@ for y in range(0,len(wifi_change),2):
     else:
         wifi_change_new.append([])
         for x in range(len(wifi_change[y])):
-            if abs(wifi_change[y][x] - wifi_change[y+1][x]) > 5:
-                if wifi_change[y][x] > -80 or wifi_change[y+1][x] > -80:
+            if abs(wifi_change[y][x] - wifi_change[y+1][x]) > 15:
+                if wifi_change[y][x] > -70 or wifi_change[y+1][x] > -70:
                     wifi_change_new[int(y/2)].append([wifi_change[y][x],wifi_change[y+1][x]])
   
 wifi_change_new_sort = []
