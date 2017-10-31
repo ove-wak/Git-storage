@@ -1,7 +1,7 @@
 ## This is Readme
-* elm-project是python下elm的相关代码
-* wifi是对定位数据的wifi进行分析的相关代码
-* readExcelAndNetwork.py是跨域网络连接的测试
-* test.py是测试python页面
+* 四个文件夹下分别为四个手机的wifi原始数据和分析获得的时间段数据
+* B*tampn.csv为时间分段点
+* wifi_change_new.py为新的代码
+* wifi_change.py为旧的代码
 ***
 __本文件下所有python代码均基于python3.*__

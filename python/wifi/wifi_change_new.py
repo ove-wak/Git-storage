@@ -4,7 +4,8 @@ time = []#时间戳列表
 wifi_content = []#wifi列表
 time_diff = []#时间差列表
 time_diff_add = []#时间差位置列表
-filename = "2"
+filename = "4"
+filefolder = "Samsung/"
 with open('B'+filename+'tampn.csv') as f: 
     f_csv = csv.reader(f)
     headers = next(f_csv)
@@ -12,7 +13,7 @@ with open('B'+filename+'tampn.csv') as f:
         time_diff.append(int(row[0]))
         time_diff.append(int(row[1]))
 
-with open(filename+'.csv') as f:
+with open(filefolder + filename+'.csv') as f:
     f_csv = csv.reader(f)
     headers = next(f_csv)
     for row in f_csv:
@@ -58,8 +59,8 @@ for y in range(0,len(wifi_change),2):
     else:
         wifi_change_new.append([])
         for x in range(len(wifi_change[y])):
-            if abs(wifi_change[y][x] - wifi_change[y+1][x]) > 15:
-                if wifi_change[y][x] > -70 or wifi_change[y+1][x] > -70:
+            if abs(wifi_change[y][x] - wifi_change[y+1][x]) > 10:
+                if wifi_change[y][x] > -75 or wifi_change[y+1][x] > -75:
                     wifi_change_new[int(y/2)].append([wifi_change[y][x],wifi_change[y+1][x]])
   
 wifi_change_new_sort = []
@@ -74,16 +75,19 @@ for x in wifi_change_new:
         for y in x:
             wifi_change_new_sort[len(wifi_change_new_sort)-2].append(y[0])
             wifi_change_new_sort[len(wifi_change_new_sort)-1].append(y[1])
-print(wifi_change_new_sort)
+# print(wifi_change_new_sort)
 
-with open('wifi_'+filename+'_new_content.csv','w', newline='') as f:##如果不加newline,存的文件里每隔一行会多一个空行
+with open(filefolder + 'wifi_'+filename+'.csv','w', newline='') as f:##如果不加newline,存的文件里每隔一行会多一个空行
     f_csv = csv.writer(f)
     f_csv.writerow([['time'],['wifi_change']])#如果直接传入字符串的话,该方法会把每个字符作为单个列表元素来处理
+    num = 1
     for x in range(len(time_diff)):
+        if x%2 == 0:
+            f_csv.writerow([num])
+            num = num + 1
         if wifi_change_new_sort[x] == -1:
             f_csv.writerow([str(time_diff[x])] + [str(wifi_change_new_sort[x])])
         else:
             f_csv.writerow([str(time_diff[x])] + wifi_change_new_sort[x])
-        if x%2 == 1:
-            f_csv.writerow('\n')
-    f_csv.writerow(['注释:-1表示无法判断;-95的值是对空值的标准化;每两行为一组数据,同一组内去除了相差不大于5的值,去除了信号一直微弱的值,并对剩下的值排序'])
+
+    f_csv.writerow(['注释:-1表示无法判断;-95的值是对空值的标准化;每两行为一组数据,同一组内去除了相差不大于10的值,去除了信号一直微弱(-75为标准)的值,并对剩下的值排序'])
