@@ -23,6 +23,10 @@ var upperCount = 0;//'a'字母计数
 var countdown;//计时
 var totalReward = 0;//总积分
 var inputArr;//输入框数组，其长度与textArry应该相等
+var rewardPoints = 30;//常量，每组总积分
+var surplusPoints = rewardPoints;
+var rewardNum = 3;//常量，n个一组
+var surplusNum = rewardNum;
 var fontAnima = 200;//单次动画时间（从最小到最大算一次），单位ms
 var fontWait = 400;//在字体最大时等待时间，单位ms
 var maxFont = 70;//最大时字体大小
@@ -257,7 +261,13 @@ function countdown(flag,isLast){
             var text = "";
         console.log(flag);
         if(flag == 1){
-            var reward = 10;
+            var reward = getRandomMoney(surplusNum, surplusPoints);
+            surplusNum--;
+            surplusPoints =  surplusPoints - reward;
+            if(surplusNum === 0){
+                surplusNum = rewardNum;
+                surplusPoints = rewardPoints;
+            }
             totalReward += reward;
             divAlert.innerHTML = "<div style='width:100%;text-align:center;height:120px;position:relative;'><p  style='position:absolute;width:100%;bottom:0px;line-height:60px;font-size:24px'>恭喜你！本次获得<span id='reward-show' style='transition: all "+fontAnima+"ms linear;color:red;font-size:36px;font-weight:bold;'>"+reward+"</span>积分"+text+"</p></div>";
             setTimeout(function(){
@@ -287,6 +297,17 @@ function countdown(flag,isLast){
             countdown(flag,isLast);
         },1000);
     }   
+}
+
+function getRandomMoney(remainSize, remainMoney){
+    if(remainSize == 1){
+        return remainMoney;
+    }
+    var min = 1;
+    var max = remainMoney/remainSize*2;
+    var money = max*Math.random();
+    money = money <=min?1:Math.round(money);
+    return money;
 }
 
 //单词排序
