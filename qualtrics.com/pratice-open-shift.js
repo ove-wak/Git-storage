@@ -8,11 +8,11 @@ var thisKeyTime = 0;//当前按键时间*
 var isInput = false;//暂时未用到，看聚焦的需求
 var questionId;
 var that;
-var COUNTDOWNTIME = 4;//倒计时,单位s
+var COUNTDOWNTIME = 3;//倒计时,单位s
 var countdownTime = COUNTDOWNTIME;
 var flag = 0;//标记无大写为0,clrl为1,capslk为2;
 var uppercaseLetter = false;//当前有无大写字母
-var arrText = [ "Guess","Diesel"];//字符数组
+var arrText = [ "Guess","Diesel","Ball"];//字符数组
 var text;//当前字符
 var textArr = [];//当前字符删除空格的有效数组存储
 var count = 0;//当前字符计数
@@ -37,16 +37,17 @@ head.insertBefore( script, head.firstChild );
     divBody.setAttribute("align","center");
     console.log(questionId);
     setTimeout(function(){
+     $("#Questions").css("position","relative");
         loadHtml();
         countdown(-1);
-    },100);
+    },500);
     
 });
 
 function loadPromptMsg() {
     uppercaseLetter = false;
     $("#"+questionId+" .QuestionBody").html("");
-     $("#"+questionId+" .QuestionBody").css("font-size","32px");
+    $("#"+questionId+" .QuestionBody").css("font-size","32px");
     var questionBody = "";
     var showInput = "";
     var text = arrText[count];
@@ -69,7 +70,7 @@ function loadPromptMsg() {
         }
     }
     questionBody += "<div>" + text + "</div>"+"<div style='margin-top:30px;' class='input-div'>"+ showInput + "</div>";
-    $("#"+questionId+" .QuestionBody").append(questionBody);   
+    $("#"+questionId+" .QuestionBody").append(questionBody);    
     thisKeyTime = new Date().getTime();//*
     lastKeyTime = thisKeyTime;//*
     setTimeout(function(){
@@ -101,15 +102,17 @@ window.onkeydown = function (e) {
             break;
         case 16:return false;break;
         case 17:return false;break;
+        case 20:if($inputFocus.attr("id")) timeInput.value += (thisKeyTime - lastKeyTime)/1000 +"s-capslock  ";break;//*
 
-        case 20:timeInput.value += (thisKeyTime - lastKeyTime)/1000 +"s-capslock  ";break;//*
         default:
         {
             if (isShift && (keyCode>=65&&keyCode<=90)){
+                if($inputFocus.attr("id"))//大写位置
                 timeInput.value += (thisKeyTime - lastKeyTime)/1000 +"s-shift  ";//*
                 lastKeyTime = thisKeyTime;//*
             }
             if(isCtrl && (keyCode>=65&&keyCode<=90)){
+                if($inputFocus.attr("id"))//大写位置
                 timeInput.value += (thisKeyTime - lastKeyTime)/1000 +"s-ctrl  ";//*
                 setTimeout(function(){
                     $inputFocus.val(keyCodeAll[keyCode]);//用ctrl+字母来生成大写字母
@@ -127,7 +130,6 @@ window.onkeydown = function (e) {
         }
     }
     lastKeyTime = thisKeyTime;//*
-
 
 };
 function left(inputIndex){
@@ -229,15 +231,13 @@ function nextTurn(flag) {
 }
 
 function loadHtml() {
-    $("#Questions").css("position","relative");
-    var body = document.getElementById('Questions');;
+    var body = document.getElementById('Questions');
     var div = document.createElement('div');
     div.setAttribute("id","alert");
     div.style.position = 'absolute';
     div.style.height = "100%";
     div.style.width = "100%";
     div.style.display = "none";
-
     div.style.top = '0';
     div.style.zIndex = '99';
     div.style.backgroundColor = "#fff";
@@ -267,9 +267,9 @@ function countdown(flag,isLast){
         else
             var text = "";
         if(flag == 1){
-            divAlert.innerHTML = "<div style='width:100%;text-align:center;height:120px;position:relative;'><p  style='position:absolute;width:100%;bottom:0px;line-height:60px;font-size:24px'>正确使用ctrl键输入"+text+"</p></div>";
+            divAlert.innerHTML = "<div style='width:100%;text-align:center;height:120px;position:relative;'><p  style='position:absolute;width:100%;bottom:0px;line-height:60px;font-size:24px'>使用ctrl输入正确"+text+"</p></div>";
         }else if(flag == 2){
-            divAlert.innerHTML = "<div style='width:100%;text-align:center;height:120px;position:relative;'><p style='position:absolute;width:100%;bottom:0px;line-height:60px;font-size:24px'>未使用ctrl键输入"+text+"</p></div>";
+            divAlert.innerHTML = "<div style='width:100%;text-align:center;height:120px;position:relative;'><p style='position:absolute;width:100%;bottom:0px;line-height:60px;font-size:24px'>未使用ctrl输入正确"+text+"</p></div>";
         }else{
             divAlert.innerHTML = "<div style='width:100%;text-align:center;height:120px;position:relative;'><p style='position:absolute;width:100%;bottom:0px;line-height:60px;font-size:24px'>加载中(倒计时:<span id='countdown-span'>" + countdownTime + "</span>)</p></div>";
         }

@@ -12,7 +12,12 @@ var COUNTDOWNTIME = 3;//倒计时,单位s
 var countdownTime = COUNTDOWNTIME;
 var flag = 0;//标记无大写为0,clrl为1,capslk为2;
 var uppercaseLetter = false;//当前有无大写字母
-var arrText = [ "iPod","Lan","ear","Bag","Friends","Victor","Gap","Das"];//字符数组
+var arr1 = [1,2,3];//大写字母不在首位的单词位置
+var arr2 = [5,7,9];//大写字母在首位的单词位置
+var arr3 = ["the Band", "pink Floyed", "iPhone"];
+var arr4 = ["Apple", "Uber", "Jeep"];
+var arr5 = ["star", "mazda", "fresh"];//小写字母
+var arrText = [];
 var text;//当前字符
 var textArr = [];//当前字符删除空格的有效数组存储
 var count = 0;//当前字符计数
@@ -39,11 +44,12 @@ head.insertBefore( script, head.firstChild );
     divBody.setAttribute("style","font-size:30px;");
     divBody.setAttribute("align","center");
     console.log(questionId);
+    wordSort();//单词排序
     setTimeout(function(){
      $("#Questions").css("position","relative");
         loadHtml();
         countdown(-1);
-    },100);
+    },500);
     
 });
 
@@ -299,3 +305,19 @@ function countdown(flag,isLast){
         },1000);
     }   
 }
+
+//单词排序
+function wordSort(){
+    arrText = arr5;
+    arr3 = arr3.sort(randomSort);
+    arr4 = arr4.sort(randomSort);
+    for(var x = 0;x < arr1.length;x++){
+       arrText.splice(arr1[x] - 1, 0, arr3.pop());
+    }
+    for(var x = 0;x < arr2.length;x++){
+       arrText.splice(arr2[x] - 1, 0, arr4.pop());
+    }
+    console.log(arrText);
+}
+
+function randomSort(a, b) { return Math.random() - 0.5; }
