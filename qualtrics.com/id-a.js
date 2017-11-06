@@ -184,7 +184,6 @@ function inputValue($inputFocus,inputIndex,e,keyTimeGap){
         if(success){
              if(!uppercaseLetter){
                 flag = 0;
-                timeInput.value += "no-a;  ";
             }
             console.log(flag);
             setTimeout(function(){

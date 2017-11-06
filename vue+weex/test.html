@@ -18,6 +18,14 @@
             Now you don't
           </div>
         </div>
+        <div id="example-1">
+          <input
+            type="checkbox"
+            v-model="toggle"
+            v-bind:true-value="a"
+            v-bind:false-value="b"
+          >
+        </div>
     </body>
     <script type="text/javascript">
         var app = new Vue({
@@ -38,6 +46,14 @@
           data:{
             ok:true
           }
-        })
+        });
+        var example1 = new Vue({
+          el: '#example-1',
+          data:{
+            toggle:"",
+            a:"1",
+            b:"2"
+          }
+        });
     </script>
 </html>
