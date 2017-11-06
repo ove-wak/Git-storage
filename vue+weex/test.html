@@ -5,11 +5,7 @@
     <title>vue</title>
     <script type="text/javascript" src="vue.js"></script>
     </head>
-    <body>
-        <div id="app" v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }">
-          <p>{{ message }}</p>
-          <p>{{ reversedMessage }}</p>
-        </div>
+    <body>        
         <div id="app1">
           <div v-if="Math.random() > 0.5">
             Now you see me
@@ -17,43 +13,15 @@
           <div v-else>
             Now you don't
           </div>
-        </div>
-        <div id="example-1">
-          <input
-            type="checkbox"
-            v-model="toggle"
-            v-bind:true-value="a"
-            v-bind:false-value="b"
-          >
+          <my-component></my-component>
         </div>
     </body>
-    <script type="text/javascript">
-        var app = new Vue({
-          el: '#app',
-          data:{
-            message: 'wak',
-            activeColor: 'red',
-            fontSize: 30,
-          },
-          computed:{
-            reversedMessage: function(){
-              return this.message.split('').reverse().join('')
-            }
-          }
-        });
+    <script type="text/javascript">  
+        Vue.component('my-component',{
+          template:'<div>A custom component!</div>'
+        })     
         var app1 = new Vue({
-          el: '#app1',
-          data:{
-            ok:true
-          }
-        });
-        var example1 = new Vue({
-          el: '#example-1',
-          data:{
-            toggle:"",
-            a:"1",
-            b:"2"
-          }
+          el: '#app1'
         });
     </script>
 </html>
