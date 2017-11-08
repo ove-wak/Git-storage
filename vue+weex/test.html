@@ -3,25 +3,40 @@
     <head>
     <meta charset="utf-8">
     <title>vue</title>
-    <script type="text/javascript" src="vue.js"></script>
+    <link href="test.css" rel="stylesheet" type="text/css"/>
     </head>
-    <body>        
-        <div id="app1">
-          <div v-if="Math.random() > 0.5">
-            Now you see me
+    <body> 
+        <!-- item template -->
+      <script type="text/x-template" id="item-template">
+        <li>
+          <div
+            :class="{bold: isFolder}"
+            @click="toggle"
+            @dblclick="changeType">
+            {{model.name}}
+            <span v-if="isFolder">[{{open ? '-' : '+'}}]</span>
           </div>
-          <div v-else>
-            Now you don't
-          </div>
-          <my-component></my-component>
-        </div>
+          <ul v-show="open" v-if="isFolder">
+            <item
+              class="item"
+              v-for="model in model.children"
+              :model="model">
+            </item>
+            <li class="add" @click="addChild">+</li>
+          </ul>
+        </li>
+      </script>
+
+      <p>(You can double click on an item to turn it into a folder.)</p>
+
+      <!-- the demo root element -->
+      <ul id="demo">
+        <item
+          class="item"
+          :model="treeData">
+        </item>
+      </ul>
     </body>
-    <script type="text/javascript">  
-        Vue.component('my-component',{
-          template:'<div>A custom component!</div>'
-        })     
-        var app1 = new Vue({
-          el: '#app1'
-        });
-    </script>
+    <script type="text/javascript" src="vue.js"></script>
+    <script type="text/javascript" src="test.js"></script>
 </html>
