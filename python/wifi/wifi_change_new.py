@@ -5,14 +5,14 @@ wifi_content = []#wifi列表
 time_diff = []#时间差列表
 time_diff_add = []#时间差位置列表
 filename = "4"
-filefolder = "LG/"
+filefolder = "Samsung/"
 wifi_mac = []
-with open('B'+filename+'tampn.csv') as f: 
+with open('raw_data/b'+filename+'_t.csv') as f: 
     f_csv = csv.reader(f)
-    headers = next(f_csv)
+    #headers = next(f_csv) #新数据从第一行开始 
     for row in f_csv:
-        time_diff.append(int(row[0]))
-        time_diff.append(int(row[1]))
+        time_diff.append(int(row[0]) - 2000)#前后延长两秒
+        time_diff.append(int(row[1]) + 2000)
 
 with open(filefolder + filename+'.csv') as f:
     f_csv = csv.reader(f)
@@ -96,4 +96,4 @@ with open(filefolder + 'wifi_'+filename+'.csv','w', newline='') as f:##如果不
             f_csv.writerow([str(time_diff[2*x])] + wifi_change_new_sort[3*x+1])
             f_csv.writerow([str(time_diff[2*x+1])] + wifi_change_new_sort[3*x+2])
 
-    f_csv.writerow(['注释:-1表示无法判断;-95的值是对空值的标准化;每两行为一组数据,同一组内去除了相差不大于10的值,去除了信号一直微弱(-75为标准)的值,并对剩下的值排序'])
+    f_csv.writerow(['注释:-1表示无法判断;-95的值是对空值的标准化;每两行为一组数据,同一组内去除了相差不大于10的值,去除了信号一直微弱(-75为标准)的值,并对剩下的值排序.时间前后延长两秒'])
