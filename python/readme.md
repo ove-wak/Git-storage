@@ -1,7 +1,9 @@
 ## This is Readme
-* 四个文件夹下分别为四个手机的wifi原始数据和分析获得的时间段数据
-* B*tampn.csv为时间分段点
-* wifi_change_new.py为新的代码
-* wifi_change.py为旧的代码
+* elm-project 为 python 下的 elm 代码
+* wifi 为室内定位比赛 wifi 部分分析的代码和数据
+* clint.py 为简单的客户端代码
+* server.py 为简单的 http 服务器代码
+* readExcelAndNetwork.py 为读取excel并连接网络的代码
+* test.py 为 python 的测试代码
 ***
-__本文件下所有python代码均基于python3.*__
+__本文件夹下所有 python 代码均基于 python3.*__
