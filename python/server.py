@@ -1,12 +1,12 @@
 from http.server import HTTPServer,BaseHTTPRequestHandler     
-import io,shutil,urllib,json
+import io,shutil,json
 
 class MyHttpHandler(BaseHTTPRequestHandler):
     def do_POST(self):
         length = int(self.headers['Content-Length'])
         readdata = self.rfile.read(length).decode('utf-8')
         post_data = json.loads(readdata)
-        # You now have a dictionary of the post data
+        # 服务器操作处理
         print(post_data)
         data = json.dumps({'name':'wak'})
         enc="UTF-8"  
