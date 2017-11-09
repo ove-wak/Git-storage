@@ -36,7 +36,8 @@ Vue.component('item', {
   },
   data: function () {
     return {
-      open: false
+      open: false,
+      hover:false
     }
   },
   computed: {
@@ -57,6 +58,16 @@ Vue.component('item', {
         this.addChild()
         this.open = true
       }
+    },
+    overShow:function(){
+      this.hover = true
+    },
+    outHide:function(){
+      this.hover = false
+    },
+    deleteModel:function(){
+       this.model.children = null
+       this.model.name = null
     },
     addChild: function () {
       this.model.children.push({

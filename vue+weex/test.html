@@ -12,9 +12,12 @@
           <div
             :class="{bold: isFolder}"
             @click="toggle"
-            @dblclick="changeType">
+            @dblclick="changeType"
+            @mouseover="overShow" 
+            @mouseout="outHide">
             {{model.name}}
             <span v-if="isFolder">[{{open ? '-' : '+'}}]</span>
+            <span v-show="hover" @click="deleteModel" class="red">x</span>
           </div>
           <ul v-show="open" v-if="isFolder">
             <item
