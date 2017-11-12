@@ -1,0 +1,44 @@
+body {
+  font-family: Menlo, Consolas, monospace;
+  color: #444;
+}
+.item {
+  cursor: pointer;
+}
+.bold {
+  font-weight: bold;
+}
+.red{
+    color:red;
+    font-weight: bold;
+    border:1px solid #DCDCDC;
+    display: inline-block;
+    margin: 0px;
+    padding: 0px 2px 3px 2px;
+    line-height: 0.6em;
+    border-radius: 3px;
+}
+.red:hover{
+    border-color:  #FF4500;
+}
+.rename{
+    border:1px solid #DCDCDC;
+    display: inline-block;
+    font-weight: bold;
+    margin: 0px;
+    padding: 0px 2px 3px 2px;
+    line-height: 0.6em;
+    border-radius: 3px;
+}
+.rename:hover{
+    border-color:#696969;
+}
+ul {
+  padding-left: 1em;
+  line-height: 1.5em;
+  list-style-type: dot;
+}
+input {
+  padding:1px 3px;
+  width:108px;
+  }

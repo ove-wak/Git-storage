@@ -37,13 +37,26 @@ Vue.component('item', {
   data: function () {
     return {
       open: false,
-      hover:false
+      hover:false,
+      isInput:false
     }
   },
   computed: {
     isFolder: function () {
       return this.model.children &&
         this.model.children.length
+    },
+    isDelete: function(){
+      return !(this.model.name == null)
+    }
+  },
+  directives: {//自定义指令
+    focus: {
+        update: function (el, {value}) {
+            if (value) {
+                el.focus();
+            }
+        }
     }
   },
   methods: {
@@ -66,8 +79,14 @@ Vue.component('item', {
       this.hover = false
     },
     deleteModel:function(){
-       this.model.children = null
-       this.model.name = null
+      Vue.delete(this.model,'name')
+      Vue.delete(this.model,'children')
+    },
+    rename:function(){
+      this.isInput = true
+    },
+    done: function(){
+      this.isInput = false
     },
     addChild: function () {
       this.model.children.push({
