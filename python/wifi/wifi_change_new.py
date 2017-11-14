@@ -11,8 +11,8 @@ with open(filefolder+'b'+filename+'/'+filename+'.csv') as f:
     f_csv = csv.reader(f)
     #headers = next(f_csv) #新数据从第一行开始 
     for row in f_csv:
-        time_diff.append(int(row[0]) - 5000)#前后延长五秒
-        time_diff.append(int(row[1]) + 5000)
+        time_diff.append(int(row[0]) - 10000)#前后延长五秒
+        time_diff.append(int(row[1]) + 10000)
 
 with open(filefolder + filename+'.csv') as f:
     f_csv = csv.reader(f)
