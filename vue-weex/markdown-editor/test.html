@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>markdown editor</title>
+    <link rel="icon" href="../vue-logo.png" type="image/png">
+    <style type="text/css">
+        html, body, #editor {
+          margin: 0;
+          height: 100%;
+          font-family: 'Helvetica Neue', Arial, sans-serif;
+          color: #333;
+        }
+
+        textarea, #editor div {
+          display: inline-block;
+          width: 49%;
+          height: 100%;
+          vertical-align: top;
+          box-sizing: border-box;
+          padding: 0 20px;
+        }
+
+        textarea {
+          border: none;
+          border-right: 1px solid #ccc;
+          resize: none;
+          outline: none;
+          background-color: #f6f6f6;
+          font-size: 14px;
+          font-family: 'Monaco', courier, monospace;
+          padding: 20px;
+        }
+
+        code {
+          color: #f66;
+        }
+    </style>
+</head>
+<body>
+    <div id="editor">
+      <textarea :value="input" @input="update"></textarea>
+      <!-- v-bind 和 v-on 联合起来用其实就相当于 v-model 的双向数据绑定,但是这里在下面的js代码中给其加了一个防抖动效果 -->
+      <div v-html="compiledMarkdown"></div>
+    </div>
+</body>
+<script type="text/javascript" src="../vue.js"></script>
+<script type="text/javascript" src="../lodash4.16.0.js"></script>
+<script type="text/javascript" src="marked0.3.6.js"></script>
+<script type="text/javascript">
+    new Vue({
+      el: '#editor',
+      data: {
+        input: '# hello'
+      },
+      computed: {
+        compiledMarkdown: function () {
+          return marked(this.input, { sanitize: true })
+          //sanitize:区别在于是否对识别出的html代码(即<></>)也格式化,false为处理后输出,true为不处理直接输出
+        }
+      },
+      methods: {
+        update: _.debounce(function (e) {
+          this.input = e.target.value
+        }, 300) // 防抖动 
+      }
+    })
+</script>
+</html>
