@@ -2,10 +2,15 @@ from http.server import HTTPServer,BaseHTTPRequestHandler
 import io,shutil,json
 
 class MyHttpHandler(BaseHTTPRequestHandler):
+    a_test = ""
+    def test(self):
+        self.a_test = "ceshi"
     def do_POST(self):
         length = int(self.headers['Content-Length'])
         readdata = self.rfile.read(length).decode('utf-8')
         post_data = json.loads(readdata)
+        self.test()
+        print(self.a_test)
         # 服务器操作处理
         print(post_data)
         data = json.dumps({'name':'wak'})
