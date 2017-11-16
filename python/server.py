@@ -1,16 +1,13 @@
 from http.server import HTTPServer,BaseHTTPRequestHandler     
-import io,shutil,json
-
+import io,shutil,json,time,socketserver
+class MyThreadingHTTPServer(socketserver.ThreadingMixIn, HTTPServer):  
+    pass 
 class MyHttpHandler(BaseHTTPRequestHandler):
-    a_test = ""
-    def test(self):
-        self.a_test = "ceshi"
     def do_POST(self):
         length = int(self.headers['Content-Length'])
         readdata = self.rfile.read(length).decode('utf-8')
         post_data = json.loads(readdata)
-        self.test()
-        print(self.a_test)
+        time.sleep(5)
         # 服务器操作处理
         print(post_data)
         data = json.dumps({'name':'wak'})
@@ -25,6 +22,6 @@ class MyHttpHandler(BaseHTTPRequestHandler):
         self.end_headers()  
         shutil.copyfileobj(f,self.wfile)
     
-httpd=HTTPServer(('',9601),MyHttpHandler)     
+httpd=MyThreadingHTTPServer(('',9601),MyHttpHandler)     
 print("Server started on 127.0.0.1,port 9601......")     
 httpd.serve_forever() 

@@ -5,169 +5,131 @@
     <title>github</title>
     <link rel="icon" href="vue-logo.png" type="image/png">
     <style type="text/css">
-        body {
-            font-family: Helvetica Neue, Arial, sans-serif;
+        .modal-mask {
+          position: fixed;
+          z-index: 9998;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, .5);
+          display: table;
+          transition: opacity .3s ease;
         }
 
-        polygon {
-            fill: #42b983;
-            opacity: .75;
+        .modal-wrapper {
+          display: table-cell;
+          vertical-align: middle;
         }
 
-        circle {
-            fill: transparent;
-            stroke: #999;
+        .modal-container {
+          width: 300px;
+          margin: 0px auto;
+          padding: 20px 30px;
+          background-color: #fff;
+          border-radius: 2px;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
+          transition: all .3s ease;
+          font-family: Helvetica, Arial, sans-serif;
         }
 
-        text {
-            font-family: Helvetica Neue, Arial, sans-serif;
-            font-size: 10px;
-            fill: #666;
+        .modal-header h3 {
+          margin-top: 0;
+          color: #42b983;
         }
 
-        label {
-            display: inline-block;
-            margin-left: 10px;
-            width: 20px;
+        .modal-body {
+          margin: 20px 0;
         }
 
-        #raw {
-            position: absolute;
-            top: 0;
-            left: 300px;
+        .modal-default-button {
+          float: right;
+        }
+
+        /*
+         * The following styles are auto-applied to elements with
+         * transition="modal" when their visibility is toggled
+         * by Vue.js.
+         *
+         * You can easily play with the modal transition by editing
+         * these styles.
+         */
+
+        .modal-enter {
+          opacity: 0;
+        }
+
+        .modal-leave-active {
+          opacity: 0;
+        }
+
+        .modal-enter .modal-container,
+        .modal-leave-active .modal-container {
+          -webkit-transform: scale(1.1);
+          transform: scale(1.1);
         }
     </style>
 </head>
 <body>
-    <!-- template for the polygraph component. -->
-<script type="text/x-template" id="polygraph-template">
-  <g>
-    <polygon :points="points"></polygon>
-    <circle cx="100" cy="100" r="80"></circle>
-    <axis-label
-      v-for="(stat, index) in stats"
-      :stat="stat"
-      :index="index"
-      :total="stats.length">
-    </axis-label>
-  </g>
-</script>
+  <!-- template for the modal component -->
+  <script type="text/x-template" id="modal-template">
+    <transition name="modal">
+      <div class="modal-mask">
+        <div class="modal-wrapper">
+          <div class="modal-container">
 
-<!-- template for the axis label component. -->
-<script type="text/x-template" id="axis-label-template">
-  <text :x="point.x" :y="point.y">{{stat.label}}</text>
-</script>
+            <div class="modal-header">
+              <slot name="header">
+                default header
+              </slot>
+            </div>
 
-<!-- demo root element -->
-<div id="demo">
-  <!-- Use the component -->
-  <svg width="200" height="200">
-    <polygraph :stats="stats"></polygraph>
-  </svg>
-  <!-- controls -->
-  <div v-for="stat in stats">
-    <label>{{stat.label}}</label>
-    <input type="range" v-model="stat.value" min="0" max="100">
-    <span>{{stat.value}}</span>
-    <button @click="remove(stat)" class="remove">X</button>
+            <div class="modal-body">
+              <slot name="body">
+                default body
+              </slot>
+            </div>
+
+            <div class="modal-footer">
+              <slot name="footer">
+                default footer
+                <button class="modal-default-button" @click="$emit('close')">
+                  OK
+                </button>
+              </slot>
+            </div>
+          </div>
+        </div>
+      </div>
+    </transition>
+  </script>
+
+  <!-- app -->
+  <div id="app">
+    <button id="show-modal" @click="showModal = true">Show Modal</button>
+    <!-- use the modal component, pass in the prop -->
+    <modal v-if="showModal" @close="showModal = false">
+      <!--
+        you can use custom content here to overwrite
+        default content
+      -->
+      <h3 slot="header">custom header</h3>
+    </modal>
   </div>
-  <form id="add">
-    <input name="newlabel" v-model="newLabel">
-    <button @click="add">Add a Stat</button>
-  </form>
-  <pre id="raw">{{ stats }}</pre>
-</div>
-
-<p style="font-size:12px">* input[type="range"] requires IE10 or above.</p>
 </body>
 <script type="text/javascript" src="vue.js"></script>
 <script type="text/javascript">
-    // The raw data to observe
-    var stats = [
-      { label: 'A', value: 100 },
-      { label: 'B', value: 100 },
-      { label: 'C', value: 100 },
-      { label: 'D', value: 100 },
-      { label: 'E', value: 100 },
-      { label: 'F', value: 100 }
-    ]
+    // register modal component
+  Vue.component('modal', {
+    template: '#modal-template'
+  })
 
-    // A resusable polygon graph component
-    Vue.component('polygraph', {
-      props: ['stats'],
-      template: '#polygraph-template',
-      computed: {
-        // a computed property for the polygon's points
-        points: function () {
-          var total = this.stats.length
-          return this.stats.map(function (stat, i) {
-            var point = valueToPoint(stat.value, i, total)
-            return point.x + ',' + point.y
-          }).join(' ')
-        }
-      },
-      components: {
-        // a sub component for the labels
-        'axis-label': {
-          props: {
-            stat: Object,
-            index: Number,
-            total: Number
-          },
-          template: '#axis-label-template',
-          computed: {
-            point: function () {
-              return valueToPoint(
-                +this.stat.value + 10,
-                this.index,
-                this.total
-              )
-            }
-          }
-        }
-      }
-    })
-
-    // math helper...
-    function valueToPoint (value, index, total) {
-      var x     = 0
-      var y     = -value * 0.8
-      var angle = Math.PI * 2 / total * index
-      var cos   = Math.cos(angle)
-      var sin   = Math.sin(angle)
-      var tx    = x * cos - y * sin + 100
-      var ty    = x * sin + y * cos + 100
-      return {
-        x: tx,
-        y: ty
-      }
+  // start app
+  new Vue({
+    el: '#app',
+    data: {
+      showModal: false
     }
-
-    // bootstrap the demo
-    new Vue({
-      el: '#demo',
-      data: {
-        newLabel: '',
-        stats: stats
-      },
-      methods: {
-        add: function (e) {
-          e.preventDefault()
-          if (!this.newLabel) return
-          this.stats.push({
-            label: this.newLabel,
-            value: 100
-          })
-          this.newLabel = ''
-        },
-        remove: function (stat) {
-          if (this.stats.length > 3) {
-            this.stats.splice(this.stats.indexOf(stat), 1)
-          } else {
-            alert('Can\'t delete more!')
-          }
-        }
-      }
-    })
+  })
 </script>
 </html>
