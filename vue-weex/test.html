@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>github</title>
+    <title>Elastic Header</title>
     <link rel="icon" href="vue-logo.png" type="image/png">
     <style type="text/css">
         .modal-mask {
@@ -74,9 +74,9 @@
   <!-- template for the modal component -->
   <script type="text/x-template" id="modal-template">
     <transition name="modal">
-      <div class="modal-mask">
+      <div class="modal-mask" @click="$emit('close')">
         <div class="modal-wrapper">
-          <div class="modal-container">
+          <div class="modal-container" @click.stop>
 
             <div class="modal-header">
               <slot name="header">

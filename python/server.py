@@ -1,7 +1,10 @@
 from http.server import HTTPServer,BaseHTTPRequestHandler     
 import io,shutil,json,time,socketserver
+
+# 并行server
 class MyThreadingHTTPServer(socketserver.ThreadingMixIn, HTTPServer):  
     pass 
+
 class MyHttpHandler(BaseHTTPRequestHandler):
     def do_POST(self):
         length = int(self.headers['Content-Length'])
