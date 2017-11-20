@@ -1,4 +1,3 @@
-with open('test.txt', 'rt') as f:
+with open('../OS-ELM-matlab/wifiinfo/632-2-10.txt', 'rt') as f:
     data = f.read()
-    print(data)
-print("outtttt")
+    print(data[2])
