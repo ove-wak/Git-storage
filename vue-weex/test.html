@@ -5,131 +5,144 @@
     <title>Elastic Header</title>
     <link rel="icon" href="vue-logo.png" type="image/png">
     <style type="text/css">
-        .modal-mask {
-          position: fixed;
-          z-index: 9998;
+        h1 {
+          font-weight: 300;
+          font-size: 1.8em;
+          margin-top: 0;
+        }
+        a {
+          color: #fff;
+        }
+        .draggable-header-view {
+          background-color: #fff;
+          box-shadow: 0 4px 16px rgba(0,0,0,.15);
+          width: 320px;
+          height: 560px;
+          overflow: hidden;
+          margin: 30px auto;
+          position: relative;
+          font-family: 'Roboto', Helvetica, Arial, sans-serif;
+          color: #fff;
+          font-size: 14px;
+          font-weight: 300;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+        }
+        .draggable-header-view .bg {
+          position: absolute;
           top: 0;
           left: 0;
-          width: 100%;
-          height: 100%;
-          background-color: rgba(0, 0, 0, .5);
-          display: table;
-          transition: opacity .3s ease;
+          z-index: 0;
         }
-
-        .modal-wrapper {
-          display: table-cell;
-          vertical-align: middle;
+        .draggable-header-view .header, .draggable-header-view .content {
+          position: relative;
+          z-index: 1;
+          padding: 30px;
+          box-sizing: border-box;
         }
-
-        .modal-container {
-          width: 300px;
-          margin: 0px auto;
-          padding: 20px 30px;
-          background-color: #fff;
-          border-radius: 2px;
-          box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
-          transition: all .3s ease;
-          font-family: Helvetica, Arial, sans-serif;
+        .draggable-header-view .header {
+          height: 160px;
         }
-
-        .modal-header h3 {
-          margin-top: 0;
-          color: #42b983;
-        }
-
-        .modal-body {
-          margin: 20px 0;
-        }
-
-        .modal-default-button {
-          float: right;
-        }
-
-        /*
-         * The following styles are auto-applied to elements with
-         * transition="modal" when their visibility is toggled
-         * by Vue.js.
-         *
-         * You can easily play with the modal transition by editing
-         * these styles.
-         */
-
-        .modal-enter {
-          opacity: 0;
-        }
-
-        .modal-leave-active {
-          opacity: 0;
-        }
-
-        .modal-enter .modal-container,
-        .modal-leave-active .modal-container {
-          -webkit-transform: scale(1.1);
-          transform: scale(1.1);
+        .draggable-header-view .content {
+          color: #333;
+          line-height: 1.5em;
         }
     </style>
 </head>
 <body>
-  <!-- template for the modal component -->
-  <script type="text/x-template" id="modal-template">
-    <transition name="modal">
-      <div class="modal-mask" @click="$emit('close')">
-        <div class="modal-wrapper">
-          <div class="modal-container" @click.stop>
-
-            <div class="modal-header">
-              <slot name="header">
-                default header
-              </slot>
-            </div>
-
-            <div class="modal-body">
-              <slot name="body">
-                default body
-              </slot>
-            </div>
-
-            <div class="modal-footer">
-              <slot name="footer">
-                default footer
-                <button class="modal-default-button" @click="$emit('close')">
-                  OK
-                </button>
-              </slot>
-            </div>
-          </div>
-        </div>
+  <!-- template for the component -->
+  <script type="text/x-template" id="header-view-template">
+    <div class="draggable-header-view"
+      @mousedown="startDrag" @touchstart="startDrag"
+      @mousemove="onDrag" @touchmove="onDrag"
+      @mouseup="stopDrag" @touchend="stopDrag" @mouseleave="stopDrag">
+      <svg class="bg" width="320" height="560">
+        <path :d="headerPath" fill="#3F51B5"></path>
+      </svg>
+      <div class="header">
+        <slot name="header"></slot>
       </div>
-    </transition>
+      <div class="content" :style="contentPosition">
+        <slot name="content"></slot>
+      </div>
+    </div>
   </script>
 
-  <!-- app -->
-  <div id="app">
-    <button id="show-modal" @click="showModal = true">Show Modal</button>
-    <!-- use the modal component, pass in the prop -->
-    <modal v-if="showModal" @close="showModal = false">
-      <!--
-        you can use custom content here to overwrite
-        default content
-      -->
-      <h3 slot="header">custom header</h3>
-    </modal>
+  <div id="app" @touchmove.prevent>
+    <draggable-header-view>
+      <template slot="header">
+        <h1>Elastic Draggable SVG Header</h1>
+        <p>with <a href="http://vuejs.org">Vue.js</a> + <a href="http://dynamicsjs.com">dynamics.js</a></p>
+      </template>
+      <template slot="content">
+        <p>Note this is just an effect demo - there are of course many additional details if you want to use this in production, e.g. handling responsive sizes, reload threshold and content scrolling. Those are out of scope for this quick little hack. However, the idea is that you can hide them as internal details of a Vue.js component and expose a simple Web-Component-like interface.</p>
+      </template>
+    </draggable-header-view>
   </div>
 </body>
 <script type="text/javascript" src="vue.js"></script>
+<script type="text/javascript" src="dynamics.js"></script>
 <script type="text/javascript">
-    // register modal component
-  Vue.component('modal', {
-    template: '#modal-template'
-  })
-
-  // start app
-  new Vue({
-    el: '#app',
-    data: {
-      showModal: false
+  Vue.component('draggable-header-view', {
+    template: '#header-view-template',
+    data: function () {
+      return {
+        dragging: false,
+        // quadratic bezier control point
+        c: { x: 160, y: 160 },
+        // record drag start point
+        start: { x: 0, y: 0 }
+      }
+    },
+    computed: {
+      headerPath: function () {
+        return 'M0,0 L320,0 320,160' +
+          'Q' + this.c.x + ',' + this.c.y +
+          ' 0,160'
+      },
+      contentPosition: function () {
+        var dy = this.c.y - 160
+        var dampen = dy > 0 ? 2 : 4
+        return {
+          transform: 'translate3d(0,' + dy / dampen + 'px,0)'
+        }
+      }
+    },
+    methods: {
+      startDrag: function (e) {
+        e = e.changedTouches ? e.changedTouches[0] : e
+        this.dragging = true
+        this.start.x = e.pageX
+        this.start.y = e.pageY
+      },
+      onDrag: function (e) {
+        e = e.changedTouches ? e.changedTouches[0] : e
+        if (this.dragging) {
+          this.c.x = 160 + (e.pageX - this.start.x)
+          // dampen vertical drag by a factor
+          var dy = e.pageY - this.start.y
+          var dampen = dy > 0 ? 1.5 : 4
+          this.c.y = 160 + dy / dampen
+        }
+      },
+      stopDrag: function () {
+        if (this.dragging) {
+          this.dragging = false
+          dynamics.animate(this.c, {
+            x: 160,
+            y: 160
+          }, {
+            type: dynamics.spring,
+            duration: 700,
+            friction: 280
+          })
+        }
+      }
     }
   })
+
+  new Vue({ el: '#app' })
 </script>
 </html>
