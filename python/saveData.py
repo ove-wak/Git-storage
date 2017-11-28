@@ -43,8 +43,9 @@ for file in file_name:
             flag = conn.insert_data(addr,phoneIP,1,strx,stry,line_time,mac,ap)  
             if flag == -1:
                 print("数据库插入数据出错")
+                print(file+lines)
                 break       
-
+    print(file+"已存储完成")    
 
 # 数据库中的数据需要全部清掉,代码好像还有点逻辑上的问题,主键跟外键一直是一样的.
 # 跑的太慢,加个时间的代码
