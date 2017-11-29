@@ -51,20 +51,22 @@ class ConnectMysql:
         try:
             # 执行sql语句
             cursor.execute(sql)
-            # 提交到数据库执行
-            self.db.commit()
             flag = 1
             strRecordID = str(cursor.lastrowid)
-            for i in range(len(mac)):
-                sql ="INSERT INTO signal_record VALUES(NULL, " + strRecordID + ", '" + mac[i] + "', " + str(ap[i]) + ");"  
+            if mac:
+                strsql = []
+                for i in range(len(mac)):
+                    strsql.append("(NULL, " + strRecordID + ", '" + mac[i] + "', " + str(ap[i]) + ")")
+                sql ="INSERT INTO signal_record VALUES" + ",".join(strsql) + ";"  
                 try:
                     cursor.execute(sql)
-                    self.db.commit()
                     flag = 1  
                 except:
                     self.db.rollback()
-                    flag = -1
-                    break
+                    flag = -1 
+
+            # 提交到数据库执行
+            self.db.commit()   
         except:
             # 如果发生错误则回滚
             self.db.rollback()
