@@ -7,7 +7,7 @@ class ConnectMysql:
                              port=3306,
                              user='root',
                              password='123456',
-                             db='test_database')
+                             db='test_1129')
 
     # 关闭连接
     def close_conn(self):

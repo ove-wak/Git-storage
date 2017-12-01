@@ -1,3 +1,10 @@
-with open('../OS-ELM-matlab/wifiinfo/632-2-10.txt', 'rt') as f:
-    data = f.read()
-    print(data[2])
+from tkinter import *
+
+root = Tk()
+
+var = StringVar()
+label = Label( root, textvariable = var, relief = RAISED )
+
+var.set("Hey!? How are you doing?")
+label.pack()
+root.mainloop()
