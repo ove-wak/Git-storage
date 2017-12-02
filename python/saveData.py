@@ -2,14 +2,12 @@ import os,time
 from connectMysql import ConnectMysql
 class SaveData:
     def __init__(self,path):
-        self.path = "C:/Users/ove_wak/Desktop/git-storage/OS-ELM-matlab/wifiinfo/11.17/"
+        self.path = path
         self.file_name = []
         # 连接数据库
         self.conn = ConnectMysql()
-
         # 如果表不存在则创建表
         self.conn.create_table()
-
         # 获取指定目录下所有数据的文件名
         tt = os.walk(self.path)
         for i in tt:
