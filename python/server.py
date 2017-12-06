@@ -1,5 +1,5 @@
 from http.server import HTTPServer,BaseHTTPRequestHandler     
-import io,shutil,json,time,socketserver
+import io,shutil,json,time,socketserver,threading
 
 # 并行server
 class MyThreadingHTTPServer(socketserver.ThreadingMixIn, HTTPServer):  
@@ -10,8 +10,10 @@ class MyHttpHandler(BaseHTTPRequestHandler):
         length = int(self.headers['Content-Length'])
         readdata = self.rfile.read(length).decode('utf-8')
         post_data = json.loads(readdata)
+        cur_thread = threading.current_thread()
         time.sleep(5)
         # 服务器操作处理
+        print(cur_thread.name)
         print(post_data)
         data = json.dumps({'name':'wak'})
         enc="UTF-8"  

@@ -10,6 +10,7 @@ class GuiContent:
         global scr_text
         global b1
         global b2
+        global b3
         fm1 = Frame(master)
         scr_text = ScrolledText(fm1,bg="Gainsboro",padx=5,pady=3)
         scr_text.insert(END, "请点击右侧按钮执行相关操作")
@@ -31,7 +32,12 @@ class GuiContent:
         b2 = Button(fm2,text="底图数据存储", command=lambda:self.thread_it(self.save_data_event,1))
         b2['width'] = 25
         b2['height'] = 1
-        b2.pack(ipady=3,pady=10,padx=30)     
+        b2.pack(ipady=3,pady=10,padx=30)
+
+        b3 = Button(fm2,text="数据读取", command=lambda:self.thread_it(self.read_data_event))
+        b3['width'] = 25
+        b3['height'] = 1
+        b3.pack(ipady=3,pady=10,padx=30)     
         fm2.pack(side=LEFT)
 
     #将函数打包进线程
@@ -59,6 +65,7 @@ class GuiContent:
         #禁用按钮
         b1['state'] = DISABLED
         b2['state'] = DISABLED
+        b3['state'] = DISABLED
         
         # 初始化
         save_data = SaveData()
@@ -103,13 +110,28 @@ class GuiContent:
         #开启按钮
         b1['state'] = NORMAL
         b2['state'] = NORMAL
+        b3['state'] = NORMAL
         return 1
     
-    #文件夹路径选择
+    #文件夹路径选择                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
     def selectPath(self):
         path_ = askdirectory()
         r_path.set(path_)
 
+    #读取数据
+    def read_data_event(self):
+        scr_text.delete(0.0,END) # 清空text
+        #禁用按钮
+        b1['state'] = DISABLED
+        b2['state'] = DISABLED
+        b3['state'] = DISABLED
+        scr_text.insert(END,"读取数据:\n")
+        scr_text.see(END)
+        #开启按钮
+        b1['state'] = NORMAL
+        b2['state'] = NORMAL
+        b3['state'] = NORMAL
+        return 1
 root = Tk()
 r_path = StringVar()
 root.title("指纹更新")
