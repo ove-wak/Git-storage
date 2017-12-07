@@ -12,7 +12,7 @@ class myThread (threading.Thread):
 def connect_clint(x):
     postdata = json.dumps({'number':x})
     print(postdata)
-    r = requests.Session().post("http://127.0.0.1:9601",data=postdata.encode("utf-8"), headers={'Content-Type': 'application/x-www-form-urlencoded'})
+    r = requests.Session().post("http://[fe80::7c0a:2948:d4fa:53ea]:9601",data=postdata.encode("utf-8"), headers={'Content-Type': 'application/x-www-form-urlencoded'})
 thread1 = myThread(1)
 thread2 = myThread(2)
 thread3 = myThread(3)

@@ -1,9 +1,11 @@
 from http.server import HTTPServer,BaseHTTPRequestHandler     
-import io,shutil,json,time,socketserver,threading
+import io,shutil,json,time,socket,socketserver,threading
 
 # 并行server
 class MyThreadingHTTPServer(socketserver.ThreadingMixIn, HTTPServer):  
     pass 
+class HTTPServerV6(MyThreadingHTTPServer):
+  address_family = socket.AF_INET6
 
 class MyHttpHandler(BaseHTTPRequestHandler):
     def do_POST(self):
@@ -11,7 +13,7 @@ class MyHttpHandler(BaseHTTPRequestHandler):
         readdata = self.rfile.read(length).decode('utf-8')
         post_data = json.loads(readdata)
         cur_thread = threading.current_thread()
-        time.sleep(5)
+        #time.sleep(5)
         # 服务器操作处理
         print(cur_thread.name)
         print(post_data)
@@ -27,6 +29,6 @@ class MyHttpHandler(BaseHTTPRequestHandler):
         self.end_headers()  
         shutil.copyfileobj(f,self.wfile)
     
-httpd=MyThreadingHTTPServer(('',9601),MyHttpHandler)     
+httpd=HTTPServerV6(('::',9601),MyHttpHandler)     
 print("Server started on 127.0.0.1,port 9601......")     
 httpd.serve_forever() 
