@@ -113,7 +113,7 @@ class GuiContent:
         b3['state'] = NORMAL
         return 1
     
-    #文件夹路径选择                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+    #文件夹路径选择                                                      
     def selectPath(self):
         path_ = askdirectory()
         r_path.set(path_)
@@ -132,6 +132,7 @@ class GuiContent:
         b2['state'] = NORMAL
         b3['state'] = NORMAL
         return 1
+        
 root = Tk()
 r_path = StringVar()
 root.title("指纹更新")
