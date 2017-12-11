@@ -19,10 +19,9 @@ class GuiContent:
         fm1.pack(side=LEFT, fill=BOTH, expand=YES)
 
         fm2 = Frame(master)
-        Label(root,text = "").pack(pady=40)
-        Label(root,text = "目标路径:").pack()
-        Entry(root, textvariable = r_path).pack(padx=20,fill=X)
-        Button(root, text = "路径选择", command = self.selectPath).pack(pady=10)
+        Label(fm2,text = "目标路径:").pack()
+        Entry(fm2, textvariable = r_path).pack(padx=20,fill=X)
+        Button(fm2, text = "路径选择", command = self.selectPath).pack(pady=10)
 
         b1 = Button(fm2,text="完整数据存储", command=lambda:self.thread_it(self.save_data_event,0))
         b1['width'] = 25
