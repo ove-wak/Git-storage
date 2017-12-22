@@ -1,6 +1,6 @@
 import pymysql
-import xlwt
-
+import xlwt,time
+import matplotlib.pyplot as plt
 class ConnectMysql:
     # 初始化类连接数据库
     def __init__(self):
@@ -77,8 +77,46 @@ class ConnectMysql:
         cursor.close()
         return flag
 
-    # 预处理得到底图
+    # 数据处理
     def select_data(self):
+        begin_time = time.time()
+        num = 0
+        ap_mac = ('d8:15:0d:6c:13:98','00:90:4c:5f:00:2a','ec:17:2f:94:82:fc','70:ba:ef:d5:a6:12')
+        # ap_mac = ['d8:15:0d:6c:13:98']
+        cursor = self.db.cursor()
+        sql = "select id from fingerprint_record where model_num=11 and coordinate_x=8 and coordinate_y=11;"
+        cursor.execute(sql)    
+        results=cursor.fetchall()
+        plt.figure(1)
+        x = []
+        z = []
+        for ap in ap_mac:
+            x = []
+            y = []
+            for result in results:
+                x.append(result[0])
+                sql = "select signal_strength from signal_record where record_id = "+str(result[0])+" and signal_mac_address = '"+ap+"';" 
+                cursor.execute(sql)
+                res=cursor.fetchall()
+                if res != ():
+                    y.append(res[0][0])
+                else:
+                    y.append(-95)
+                # 以后先把数据中间值保存下来,避免读数据库耗费的时间
+                print(result[0])
+            z.append(y)
+        plt.scatter(x,z[0],c = 'r')
+        plt.scatter(x,z[1],c = 'y') 
+        plt.scatter(x,z[2],c = 'g') 
+        plt.scatter(x,z[3],c = 'b')        
+        end_time = time.time()
+        print("time=" + str(end_time-begin_time))
+        plt.show()               
+        cursor.close()
+        return 1
+
+    # 预处理得到底图
+    def select_data_basemap(self):
         num = 0
         ap_mac = ('d8:15:0d:6c:13:98','00:90:4c:5f:00:2a','ec:17:2f:94:82:fc','70:ba:ef:d5:a6:12')
         ditu = [[0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -163,3 +201,10 @@ class ConnectMysql:
         cursor.close()
         return flag
 
+
+# 测试环境下运行
+if __name__ == "__main__":
+    conn = ConnectMysql()
+    conn.select_data()
+
+# 经过测试,操作时间瓶颈还是在数据库读写啊啊啊啊啊啊 啊啊
