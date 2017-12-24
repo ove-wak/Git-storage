@@ -84,7 +84,7 @@ class ConnectMysql:
         ap_mac = ('d8:15:0d:6c:13:98','00:90:4c:5f:00:2a','ec:17:2f:94:82:fc','70:ba:ef:d5:a6:12')
         # ap_mac = ['d8:15:0d:6c:13:98']
         cursor = self.db.cursor()
-        sql = "select id from fingerprint_record where model_num=11 and coordinate_x=8 and coordinate_y=11;"
+        sql = "select id from fingerprint_record where model_num=8 and coordinate_x=3 and coordinate_y=2;"
         cursor.execute(sql)    
         results=cursor.fetchall()
         plt.figure(1)
