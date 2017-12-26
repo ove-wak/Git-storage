@@ -1,6 +1,8 @@
+from dataToExcel import DataToExcel
 import pymysql
 import xlwt,time
 import matplotlib.pyplot as plt
+
 class ConnectMysql:
     # 初始化类连接数据库
     def __init__(self):
@@ -77,8 +79,54 @@ class ConnectMysql:
         cursor.close()
         return flag
 
-    # 数据处理
-    def select_data(self):
+# 预处理得到后续图
+    def select_data(self,model_num):
+        num = 0
+        ap_mac = ('d8:15:0d:6c:13:98','00:90:4c:5f:00:2a','ec:17:2f:94:82:fc','70:ba:ef:d5:a6:12')
+        data = [[0,0,0,0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0,0]]
+
+        cursor = self.db.cursor()
+        sql = "select id,coordinate_x,coordinate_y from fingerprint_record where model_num="+str(model_num)+";"
+        cursor.execute(sql)    
+        results=cursor.fetchall()
+        results = list(results)
+        for result in results:
+            if data[result[1]][result[2]] == 0:
+                data[result[1]][result[2]] = []
+            data[result[1]][result[2]].append(result[0])
+        for x in range(len(data)):
+            for y in range(len(data[0])):
+                if data[x][y] != 0:
+                    temp = data[x][y]
+                    data[x][y] = []
+                    for mac in ap_mac:
+                        sql = "select signal_strength from signal_record where record_id IN "+str(tuple(temp))+" and signal_mac_address='"+mac+"';" 
+                        cursor.execute(sql)
+                        res=cursor.fetchall()
+                        num = 0
+                        for r in res:
+                            num = num + r[0]
+                        if len(res) == 0:
+                            data[x][y].append(-95)
+                        else:
+                            data[x][y].append(int(num/len(res)))
+                    print(data[x][y]) 
+        dte = DataToExcel()
+        dte.dte(model_num,data)
+        cursor.close()
+        return 1
+
+    # 数据处理得到图像查看数据的稳定性//发现人越多越不稳定
+    def img_data(self):
         begin_time = time.time()
         num = 0
         ap_mac = ('d8:15:0d:6c:13:98','00:90:4c:5f:00:2a','ec:17:2f:94:82:fc','70:ba:ef:d5:a6:12')
@@ -205,6 +253,8 @@ class ConnectMysql:
 # 测试环境下运行
 if __name__ == "__main__":
     conn = ConnectMysql()
-    conn.select_data()
+    for x in range(2,20):
+        conn.select_data(x)
+        print(str(x)+" complete")
 
 # 经过测试,操作时间瓶颈还是在数据库读写啊啊啊啊啊啊 啊啊
