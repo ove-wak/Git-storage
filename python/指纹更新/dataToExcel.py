@@ -67,8 +67,7 @@ class DataToExcel:
                 for y in range(len(ap_m[t][0])):
                     if x == 0:
                         ws.write(y+1, 0, y)
-                    else:
-                        ws.write(y+1, x+1, ap_m[t][x][y])
+                    ws.write(y+1, x+1, ap_m[t][x][y])
                     
         wb.save('excel/'+str(num)+'.xls')
         return 1

@@ -1,4 +1,3 @@
-from dataToExcel import DataToExcel
 import pymysql
 import xlwt,time
 import matplotlib.pyplot as plt
@@ -10,7 +9,7 @@ class ConnectMysql:
                              port=3306,
                              user='root',
                              password='123456',
-                             db='wifi_db')
+                             db='wifi_test')
 
     # 关闭连接
     def close_conn(self):
@@ -79,6 +78,19 @@ class ConnectMysql:
         cursor.close()
         return flag
 
+
+    def get_ap(self):
+        ap_mac = []
+        cursor = self.db.cursor()
+        sql = "select signal_mac_address from signal_record;"
+        cursor.execute(sql)
+        res=cursor.fetchall()
+        print(res)
+        for r in res:
+            if r[0] not in ap_mac:
+                ap_mac.append(r[0])
+        print(ap_mac)
+
 # 预处理得到后续图
     def select_data(self,model_num):
         num = 0
@@ -119,6 +131,7 @@ class ConnectMysql:
                             data[x][y].append(-95)
                         else:
                             data[x][y].append(int(num/len(res)))
+                    print(data[x][y]) 
         dte = DataToExcel()
         dte.dte(model_num,data)
         cursor.close()
@@ -128,10 +141,10 @@ class ConnectMysql:
     def img_data(self):
         begin_time = time.time()
         num = 0
-        ap_mac = ('d8:15:0d:6c:13:98','00:90:4c:5f:00:2a','ec:17:2f:94:82:fc','70:ba:ef:d5:a6:12')
+        ap_mac = ('00:24:6c:c4:ee:40', 'de:ef:ca:2e:59:64', 'ec:26:ca:65:8d:6c', 'ec:26:ca:c0:d3:ec', 'b0:95:8e:0c:11:40', '3e:a3:48:55:60:08', 'cc:81:da:5c:8e:68', '22:ab:37:14:cb:6c')
         # ap_mac = ['d8:15:0d:6c:13:98']
         cursor = self.db.cursor()
-        sql = "select id from fingerprint_record where model_num=111 and coordinate_x=1 and coordinate_y=1;"
+        sql = "select id from fingerprint_record where model_num=111 and coordinate_x=2 and coordinate_y=1;"
         cursor.execute(sql)    
         results=cursor.fetchall()
         plt.figure(1)
@@ -150,12 +163,16 @@ class ConnectMysql:
                 else:
                     y.append(-95)
                 # 以后先把数据中间值保存下来,避免读数据库耗费的时间
-                print(result[0])
+                # print(result[0])
             z.append(y)
         plt.scatter(x,z[0],s=1,c = 'r')
-        plt.scatter(x,z[1],s=1,c = 'y') 
-        plt.scatter(x,z[2],s=1,c = 'g') 
-        plt.scatter(x,z[3],s=1,c = 'b')        
+        plt.scatter(x,z[1],s=1,c = 'g') 
+        plt.scatter(x,z[2],s=1,c = 'b') 
+        plt.scatter(x,z[3],s=1,c = 'c')
+        plt.scatter(x,z[4],s=1,c = 'm') 
+        plt.scatter(x,z[5],s=1,c = 'y') 
+        plt.scatter(x,z[6],s=1,c = 'k') 
+        plt.scatter(x,z[7],s=1,c = '#EEE8AA')         
         end_time = time.time()
         print("time=" + str(end_time-begin_time))
         plt.show()               
@@ -204,10 +221,56 @@ class ConnectMysql:
         cursor.close()
         return 1
 
+    # 更新数据
+    # *暂不需要
+    def update_data(self):
+        cursor = self.db.cursor()
+        #
+        #
+        #
+        sql = ""
+        flag = 0 # 是否执行成功标记
+        try:
+            # 执行sql语句
+            cursor.execute(sql)
+            # 提交到数据库执行
+            self.db.commit()
+            flag = 1
+        except:
+            # 如果发生错误则回滚
+            self.db.rollback()
+            flag = -1
+        cursor.close()
+        return flag
+
+    # 删除数据
+    # *暂不需要
+    def delete_data(self):
+        cursor = self.db.cursor()
+        #
+        #
+        #
+        sql = ""
+        flag = 0 # 是否执行成功标记
+        try:
+            # 执行sql语句
+            cursor.execute(sql)
+            # 提交到数据库执行
+            self.db.commit()
+            flag = 1
+        except:
+            # 如果发生错误则回滚
+            self.db.rollback()
+            flag = -1
+        cursor.close()
+        return flag
+
+
 # 测试环境下运行
 if __name__ == "__main__":
     conn = ConnectMysql()
-    for x in range(1,20):
-        conn.select_data(x)
-        print(str(x)+" complete")
+    # for x in range(2,20):
+    #     conn.select_data(x)
+    #     print(str(x)+" complete")
+    conn.drop_table()
 

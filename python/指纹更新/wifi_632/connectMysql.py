@@ -1,4 +1,6 @@
 import pymysql
+import xlwt,time
+import matplotlib.pyplot as plt
 
 class ConnectMysql:
     # 初始化类连接数据库
@@ -7,7 +9,7 @@ class ConnectMysql:
                              port=3306,
                              user='root',
                              password='123456',
-                             db='test_1129')
+                             db='wifi_test')
 
     # 关闭连接
     def close_conn(self):
@@ -139,3 +141,45 @@ class ConnectMysql:
         cursor.close()
         return flag
 
+    # 数据处理得到图像查看数据的稳定性//发现人越多越不稳定
+    def img_data(self):
+        begin_time = time.time()
+        num = 0
+        ap_mac = ('a6:44:d1:3f:4f:97','00:24:6c:c4:ec:80','00:24:6c:c4:ee:40','00:24:6c:c4:ec:90')
+        # ap_mac = ['d8:15:0d:6c:13:98']
+        cursor = self.db.cursor()
+        sql = "select id from fingerprint_record where coordinate_x=2 and coordinate_y=3;"
+        cursor.execute(sql)    
+        results=cursor.fetchall()
+        plt.figure(1)
+        x = []
+        z = []
+        for ap in ap_mac:
+            x = []
+            y = []
+            for result in results:
+                x.append(result[0])
+                sql = "select signal_strength from signal_record where record_id = "+str(result[0])+" and signal_mac_address = '"+ap+"';" 
+                cursor.execute(sql)
+                res=cursor.fetchall()
+                if res != ():
+                    y.append(res[0][0])
+                else:
+                    y.append(-95)
+            z.append(y)
+        plt.scatter(x,z[0],s=1,c = 'r')
+        plt.scatter(x,z[1],s=1,c = 'y') 
+        plt.scatter(x,z[2],s=1,c = 'g') 
+        plt.scatter(x,z[3],s=1,c = 'b')        
+        end_time = time.time()
+        print("time=" + str(end_time-begin_time))
+        plt.show()               
+        cursor.close()
+        return 1
+# 测试环境下运行
+if __name__ == "__main__":
+    conn = ConnectMysql()
+    # for x in range(2,20):
+    #     conn.select_data(x)
+    #     print(str(x)+" complete")
+    conn.img_data()
