@@ -131,7 +131,7 @@ class ConnectMysql:
         ap_mac = ('d8:15:0d:6c:13:98','00:90:4c:5f:00:2a','ec:17:2f:94:82:fc','70:ba:ef:d5:a6:12')
         # ap_mac = ['d8:15:0d:6c:13:98']
         cursor = self.db.cursor()
-        sql = "select id from fingerprint_record where model_num=111 and coordinate_x=1 and coordinate_y=1;"
+        sql = "select id from fingerprint_record where model_num=0 and coordinate_x=2 and coordinate_y=7;"
         cursor.execute(sql)    
         results=cursor.fetchall()
         plt.figure(1)
@@ -152,10 +152,10 @@ class ConnectMysql:
                 # 以后先把数据中间值保存下来,避免读数据库耗费的时间
                 print(result[0])
             z.append(y)
-        plt.scatter(x,z[0],s=1,c = 'r')
-        plt.scatter(x,z[1],s=1,c = 'y') 
-        plt.scatter(x,z[2],s=1,c = 'g') 
-        plt.scatter(x,z[3],s=1,c = 'b')        
+        plt.scatter(x,z[0],c = 'r')
+        plt.scatter(x,z[1],c = 'y') 
+        plt.scatter(x,z[2],c = 'g') 
+        plt.scatter(x,z[3],c = 'b')        
         end_time = time.time()
         print("time=" + str(end_time-begin_time))
         plt.show()               
@@ -207,7 +207,8 @@ class ConnectMysql:
 # 测试环境下运行
 if __name__ == "__main__":
     conn = ConnectMysql()
-    for x in range(1,20):
-        conn.select_data(x)
-        print(str(x)+" complete")
+    conn.img_data()
+    # for x in range(1,20):
+    #     conn.select_data(x)
+    #     print(str(x)+" complete")
 
