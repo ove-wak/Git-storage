@@ -1,37 +1,4 @@
 function TY = OSELM_get_value(TrainingData_File, TestingData_File, nHiddenNeurons, ActivationFunction, N0, Block)
-% Usage: OSELM(TrainingData_File, TestingData_File, Elm_Type, NumberofHiddenNeurons, ActivationFunction, N0, Block)
-% OR:    [TrainingTime, TestingTime, TrainingAccuracy, TestingAccuracy] = OSELM(TrainingData_File, TestingData_File, Elm_Type, NumberofHiddenNeurons, ActivationFunction, N0, Block)
-%
-% Input:
-% TrainingData_File     - Filename of training data set
-% TestingData_File      - Filename of testing data set
-% Elm_Type              - 0 for regression; 1 for (both binary and multi-classes) classification
-% nHiddenNeurons        - Number of hidden neurons assigned to the OSELM
-% ActivationFunction    - Type of activation function:
-%                           'rbf' for radial basis function, G(a,b,x) = exp(-b||x-a||^2)
-%                           'sig' for sigmoidal function, G(a,b,x) = 1/(1+exp(-(ax+b)))
-%                           'sin' for sine function, G(a,b,x) = sin(ax+b)
-%                           'hardlim' for hardlim function, G(a,b,x) = hardlim(ax+b)
-% N0                    - Number of initial training data used in the initial phase of OSLEM, which is not less than the number of hidden neurons
-% Block                 - Size of block of data learned by OSELM in each step
-%
-% Output: 
-% TrainingTime          - Time (seconds) spent on training OSELM
-% TestingTime           - Time (seconds) spent on predicting all testing data
-% TrainingAccuracy      - Training accuracy: 
-%                           RMSE for regression or correct classification rate for classifcation
-% TestingAccuracy       - Testing accuracy: 
-%                           RMSE for regression or correct classification rate for classifcation
-%
-% MULTI-CLASSE CLASSIFICATION: NUMBER OF OUTPUT NEURONS WILL BE AUTOMATICALLY SET EQUAL TO NUMBER OF CLASSES
-% FOR EXAMPLE, if there are 7 classes in all, there will have 7 output
-% neurons; neuron 5 has the highest output means input belongs to 5-th class
-%
-% Sample1 regression: OSELM('mpg_train', 'mpg_test', 0, 25, 'rbf', 75, 1);
-% Sample2 classification: OSELM('segment_train', 'segment_test', 1, 180, 'sig', 280, 20);
-
-
-%%%%%%%%%%% Load dataset
 rand('state',sum(100*clock));
 train_data=load(TrainingData_File); test_data=load(TestingData_File);
 T=train_data(:,1); P=train_data(:,2:size(train_data,2));
@@ -89,8 +56,7 @@ for n = N0 : Block : nTrainingData
             H = HardlimActFun(Pn,IW,Bias);
     end    
     M = M - M * H' * (eye(Block) + H * M * H')^(-1) * H * M; 
-    beta = beta + M * H' * (Tn - H * beta);  %%%%时效性参数可加在该部分
-    %beta = beta + w * M * H' * (Tn - H * beta); %%%%使用该语句时要给w初始化
+    beta = beta + M * H' * (Tn - H * beta); 
 end   
 clear Pn Tn H M;
 

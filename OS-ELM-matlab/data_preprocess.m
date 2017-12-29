@@ -1,1 +1,0 @@
-data = load('wifiinfo/632-2-10.txt')

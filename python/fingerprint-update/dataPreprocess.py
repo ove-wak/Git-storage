@@ -29,7 +29,7 @@ class DataPreprocess:
                             f.write(str(data[y][x]/self.ditu[y][x] - 1)+" "+str(x)+" "+str(y)+"\n")
 
     def get_none(self):
-        with open('中间数据/none.txt','wt') as f:
+        with open('middata/none.txt','wt') as f:
             for y in range(13):
                 for x in range(10):
                     f.write(str(0)+" "+str(x)+" "+str(y)+"\n")
@@ -38,29 +38,31 @@ class DataPreprocess:
         
         mlab = Matlab()
         mlab.start()
-        #res = mlab.run_func('C:/Users/ovewa/Desktop/git-storage/OS-ELM-matlab/OSELM_initial_training.m', '中间数据/1.txt',10,'sin',nargout=5)
-        # IW, Bias, M, beta, TrainingTime = res['result']
-        res = mlab.run_func('C:/Users/ovewa/Desktop/git-storage/OS-ELM-matlab/OSELM_get_value.m','中间数据/all.txt','中间数据/none.txt',10,'sin',19,18)
-        result = res['result']
-        # print(result)
-        y = 0
-        data = [[0,0,0,0,0,0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0,0,0,0,0,0]]
+        res = mlab.run_code('a=1')
+        print(res)
+        res = mlab.run_func('C:/Users/ovewa/Desktop/git-storage/OS-ELM-matlab/jk.m')
+        print(res)
+        # #res = mlab.run_func('C:/Users/ovewa/Desktop/git-storage/OS-ELM-matlab/OSELM_get_value.m','middata/all.txt','middata/none.txt',10,'sin',19,18)
+        # result = res['result']
+        # # print(result)
+        # y = 0
+        # data = [[0,0,0,0,0,0,0,0,0,0,0,0,0],
+        #         [0,0,0,0,0,0,0,0,0,0,0,0,0],
+        #         [0,0,0,0,0,0,0,0,0,0,0,0,0],
+        #         [0,0,0,0,0,0,0,0,0,0,0,0,0],
+        #         [0,0,0,0,0,0,0,0,0,0,0,0,0],
+        #         [0,0,0,0,0,0,0,0,0,0,0,0,0],
+        #         [0,0,0,0,0,0,0,0,0,0,0,0,0],
+        #         [0,0,0,0,0,0,0,0,0,0,0,0,0],
+        #         [0,0,0,0,0,0,0,0,0,0,0,0,0],
+        #         [0,0,0,0,0,0,0,0,0,0,0,0,0]]
 
-        for x in range(len(result)): 
-            data[x%10][y] = int(self.ditu[y][x%10]*(result[x]+1))
-            print(data[x%10][y],end=" ")
-            if (x+1)%10 == 0:
-                print() 
-                y=y+1
+        # for x in range(len(result)): 
+        #     data[x%10][y] = int(self.ditu[y][x%10]*(result[x]+1))
+        #     print(data[x%10][y],end=" ")
+        #     if (x+1)%10 == 0:
+        #         print() 
+        #         y=y+1
         mlab.stop()
 
 # 测试环境下运行
