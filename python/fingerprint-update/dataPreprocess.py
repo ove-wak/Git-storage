@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-import xlrd,os,time
+import xlrd,os,time,numpy
 from pymatbridge import Matlab
 
 sheet = 0 # 单ap训练,定义ap序号
@@ -38,31 +38,41 @@ class DataPreprocess:
         
         mlab = Matlab()
         mlab.start()
-        res = mlab.run_code('a=1')
-        print(res)
-        res = mlab.run_func('C:/Users/ovewa/Desktop/git-storage/OS-ELM-matlab/jk.m')
-        print(res)
-        # #res = mlab.run_func('C:/Users/ovewa/Desktop/git-storage/OS-ELM-matlab/OSELM_get_value.m','middata/all.txt','middata/none.txt',10,'sin',19,18)
-        # result = res['result']
-        # # print(result)
-        # y = 0
-        # data = [[0,0,0,0,0,0,0,0,0,0,0,0,0],
-        #         [0,0,0,0,0,0,0,0,0,0,0,0,0],
-        #         [0,0,0,0,0,0,0,0,0,0,0,0,0],
-        #         [0,0,0,0,0,0,0,0,0,0,0,0,0],
-        #         [0,0,0,0,0,0,0,0,0,0,0,0,0],
-        #         [0,0,0,0,0,0,0,0,0,0,0,0,0],
-        #         [0,0,0,0,0,0,0,0,0,0,0,0,0],
-        #         [0,0,0,0,0,0,0,0,0,0,0,0,0],
-        #         [0,0,0,0,0,0,0,0,0,0,0,0,0],
-        #         [0,0,0,0,0,0,0,0,0,0,0,0,0]]
+        res = mlab.run_func('C:/Users/ovewa/Desktop/git-storage/OS-ELM-matlab/OSELM_initial_training.m','middata/1.txt',10,'sin',nargout=5)
+        IW = res['result'][0]
+        Bias = res['result'][1]
+        M = res['result'][2]
+        beta =res['result'][3]
+        for x in range(2,11):
+            res = mlab.run_func('OSELM_increase_study.m','middata/'+str(x)+'.txt',IW,Bias,M,beta,'sin',1,nargout=4)
+            IW = res['result'][0]
+            Bias = res['result'][1]
+            M = res['result'][2]
+            beta =res['result'][3]
 
-        # for x in range(len(result)): 
-        #     data[x%10][y] = int(self.ditu[y][x%10]*(result[x]+1))
-        #     print(data[x%10][y],end=" ")
-        #     if (x+1)%10 == 0:
-        #         print() 
-        #         y=y+1
+        res = mlab.run_func('OSELM_test_value.m','middata/none.txt',IW,Bias,beta,'sin')
+        
+        #一次性初始化加增量
+        #res = mlab.run_func('C:/Users/ovewa/Desktop/git-storage/OS-ELM-matlab/OSELM_get_value.m','middata/all.txt','middata/none.txt',10,'sin',19,18)
+        result = res['result']
+        y = 0
+        data = [[0,0,0,0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0,0]]
+
+        for x in range(len(result)): 
+            data[x%10][y] = int(self.ditu[y][x%10]*(result[x]+1))
+            print(data[x%10][y],end=" ")
+            if (x+1)%10 == 0:
+                print() 
+                y=y+1
         mlab.stop()
 
 # 测试环境下运行

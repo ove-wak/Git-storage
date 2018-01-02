@@ -2,17 +2,17 @@ function [TestingTime,TestingAccuracy] = OSELM_test(Data_File,IW, Bias, beta, Ac
 % 2017-09-16
 % ove-wak
 % OSELM_test
-% oselmÖ®²âÊÔ#µ¥AP
-% ÊäÈë:
-% Data_File:²âÊÔÊı¾İËùÔÚµÄÎÄ¼ş
-% IW:Ëæ»úÉú³ÉÊäÈë²ãµ½Òş²Ø²ãÖ®¼äµÄÈ¨Öµ,´ÓÖ®Ç°µÄÊä³öÖĞ»ñÈ¡
-% Bias:Ëæ»úÉú³ÉÒş²ã½ÚµãµÄÆ«ÖÃ²ÎÊı,´ÓÖ®Ç°µÄÊä³öÖĞ»ñÈ¡
-% beta:Á¬½ÓÒş²ã½ÚµãºÍÊä³ö½ÚµãµÄÈ¨Öµ,´ÓÖ®Ç°µÄÊä³öÖĞ»ñÈ¡
-% ActivationFunction:Òş²Ø²ã¼¤»îº¯ÊıÀàĞÍ
+% oselmä¹‹æµ‹è¯•#å•AP
+% è¾“å…¥:
+% Data_File:æµ‹è¯•æ•°æ®æ‰€åœ¨çš„æ–‡ä»¶
+% IW:éšæœºç”Ÿæˆè¾“å…¥å±‚åˆ°éšè—å±‚ä¹‹é—´çš„æƒå€¼,ä»ä¹‹å‰çš„è¾“å‡ºä¸­è·å–
+% Bias:éšæœºç”Ÿæˆéšå±‚èŠ‚ç‚¹çš„åç½®å‚æ•°,ä»ä¹‹å‰çš„è¾“å‡ºä¸­è·å–
+% beta:è¿æ¥éšå±‚èŠ‚ç‚¹å’Œè¾“å‡ºèŠ‚ç‚¹çš„æƒå€¼,ä»ä¹‹å‰çš„è¾“å‡ºä¸­è·å–
+% ActivationFunction:éšè—å±‚æ¿€æ´»å‡½æ•°ç±»å‹
 %
-% Êä³ö:
-% TestingTime:ÑµÁ·Ê±¼ä
-% TestingAccuracy:ÑµÁ·Ğ§¹û 
+% è¾“å‡º:
+% TestingTime:è®­ç»ƒæ—¶é—´
+% TestingAccuracy:è®­ç»ƒæ•ˆæœ 
 
 test_data=load(Data_File);
 TV.T=test_data(:,1); TV.P=test_data(:,2:size(test_data,2));
@@ -32,4 +32,4 @@ TY=HTest * beta;
 clear HTest;
 end_time_test=cputime;
 TestingTime=end_time_test-start_time_test
-TestingAccuracy=sqrt(mse(TV.T - TY)) % ½á¹ûµÄº¬Òå:¾ù·½¸ùÎó²î,¼´rmse=sqrt(sum((TV.T - TY).^2)/n)=sqrt(mse(TV.T - TY))  
+TestingAccuracy=sqrt(mse(TV.T - TY)) % ç»“æœçš„å«ä¹‰:å‡æ–¹æ ¹è¯¯å·®,å³rmse=sqrt(sum((TV.T - TY).^2)/n)=sqrt(mse(TV.T - TY))  

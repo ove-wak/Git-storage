@@ -1,6 +1,6 @@
 function [IW, Bias, M_less, beta_less] = OSELM_increase_study_nodata(Data_File,IW, Bias, M, beta, ActivationFunction)
-% Ä¿Ç°nodataÊ±Ö±½ÓËæ»úÊäÈëÍíÉÏµÄÊı¾İ
-% Òò´Ë¸Ã·½·¨ÓëOSELM_increase_studyÔİÊ±Ò»Ñù
+% ç›®å‰nodataæ—¶ç›´æ¥éšæœºè¾“å…¥æ™šä¸Šçš„æ•°æ®
+% å› æ­¤è¯¥æ–¹æ³•ä¸OSELM_increase_studyæš‚æ—¶ä¸€æ ·
 train_data=load(Data_File);
 T=train_data(:,1); P=train_data(:,2:size(train_data,2));
 nTrainingData=size(P,1); 
@@ -17,7 +17,7 @@ switch lower(ActivationFunction)
 end    
 M_less = M - M * H' * (eye(nTrainingData) + H * M * H')^(-1) * H * M; %%?
 beta_less = beta + M_less * H' * (T - H * beta);
-%betaless = beta + w * M * H' * (T - H * beta); %%%%Ê¹ÓÃ¸ÃÓï¾äÊ±Òª¸øw³õÊ¼»¯
+%betaless = beta + w * M * H' * (T - H * beta); %%%%ä½¿ç”¨è¯¥è¯­å¥æ—¶è¦ç»™wåˆå§‹åŒ–
 clear T P nTrainingData H;
-%%Èç¹ûÊäÈëÎª¿Õ,Ä£ĞÍË¥¼õ,Ë¥¼õÕâÁ½¸ö×Ö²»ºÃÀí½â°¡,M¸úbetaµÄ×Ô¶¯¼õ¸ÄÈçºÎ¼õ
-%%Ö±½ÓÊäÈëÍíÉÏµÄÊı¾İ¿É²»¿ÉÒÔ??
+%%å¦‚æœè¾“å…¥ä¸ºç©º,æ¨¡å‹è¡°å‡,è¡°å‡è¿™ä¸¤ä¸ªå­—ä¸å¥½ç†è§£å•Š,Mè·Ÿbetaçš„è‡ªåŠ¨å‡æ”¹å¦‚ä½•å‡
+%%ç›´æ¥è¾“å…¥æ™šä¸Šçš„æ•°æ®å¯ä¸å¯ä»¥??

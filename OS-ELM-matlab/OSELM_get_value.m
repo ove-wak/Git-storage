@@ -1,4 +1,6 @@
 function TY = OSELM_get_value(TrainingData_File, TestingData_File, nHiddenNeurons, ActivationFunction, N0, Block)
+% 一次性初始并增量直接输出最终结果
+% 参数介绍参考 OSELM.m
 rand('state',sum(100*clock));
 train_data=load(TrainingData_File); test_data=load(TestingData_File);
 T=train_data(:,1); P=train_data(:,2:size(train_data,2));

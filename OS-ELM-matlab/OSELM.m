@@ -140,8 +140,8 @@ for n = N0 : Block : nTrainingData
             H = HardlimActFun(Pn,IW,Bias);
     end    
     M = M - M * H' * (eye(Block) + H * M * H')^(-1) * H * M; 
-    beta = beta + M * H' * (Tn - H * beta);  %%%%Ê±Ğ§ĞÔ²ÎÊı¿É¼ÓÔÚ¸Ã²¿·Ö
-    %beta = beta + w * M * H' * (Tn - H * beta); %%%%Ê¹ÓÃ¸ÃÓï¾äÊ±Òª¸øw³õÊ¼»¯
+    beta = beta + M * H' * (Tn - H * beta);  %%%%æ—¶æ•ˆæ€§å‚æ•°å¯åŠ åœ¨è¯¥éƒ¨åˆ†
+    %beta = beta + w * M * H' * (Tn - H * beta); %%%%ä½¿ç”¨è¯¥è¯­å¥æ—¶è¦ç»™wåˆå§‹åŒ–
 end
 end_time_train=cputime;
 TrainingTime=end_time_train-start_time_train        
