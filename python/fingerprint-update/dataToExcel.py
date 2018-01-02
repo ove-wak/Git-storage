@@ -2,6 +2,7 @@
 import xlwt
 
 class DataToExcel:
+    # sql来的数据到excel
     def dte(self,num,data):
         ap_mac = ('d8:15:0d:6c:13:98','00:90:4c:5f:00:2a','ec:17:2f:94:82:fc','70:ba:ef:d5:a6:12')
         ap_m = [[[0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -70,4 +71,24 @@ class DataToExcel:
                     ws.write(y+1, x+1, ap_m[t][x][y])
                     
         wb.save('excel/'+str(num)+'.xls')
+        return 1
+
+    # 训练完的结果保存到excel
+    def odte(self,intro,data):
+        ap_mac = ('d8:15:0d:6c:13:98','00:90:4c:5f:00:2a','ec:17:2f:94:82:fc','70:ba:ef:d5:a6:12')
+        ap_m = data
+
+        wb = xlwt.Workbook(encoding='utf-8')
+
+        for t in range(4):
+            ws = wb.add_sheet("ap"+str(t))
+            ws.write(0, 0, "y\\x")
+            for x in range(len(ap_m[t])):
+                ws.write(0, x+1, x)
+                for y in range(len(ap_m[t][0])):
+                    if x == 0:
+                        ws.write(y+1, 0, y)
+                    ws.write(y+1, x+1, ap_m[t][x][y])
+                    
+        wb.save('excel/'+str(intro)+'.xls')
         return 1

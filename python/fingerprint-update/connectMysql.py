@@ -79,7 +79,7 @@ class ConnectMysql:
         cursor.close()
         return flag
 
-# 预处理得到后续图
+# 预处理得到后续数据excel文件
     def select_data(self,model_num):
         num = 0
         ap_mac = ('d8:15:0d:6c:13:98','00:90:4c:5f:00:2a','ec:17:2f:94:82:fc','70:ba:ef:d5:a6:12')
@@ -118,7 +118,7 @@ class ConnectMysql:
                         if len(res) == 0:
                             data[x][y].append(-95)
                         else:
-                            data[x][y].append(int(num/len(res)))
+                            data[x][y].append(int(num/len(res)))####重点,目前取得是平均值,可优化
         dte = DataToExcel()
         dte.dte(model_num,data)
         cursor.close()
@@ -149,7 +149,6 @@ class ConnectMysql:
                     y.append(res[0][0])
                 else:
                     y.append(-95)
-                # 以后先把数据中间值保存下来,避免读数据库耗费的时间
                 print(result[0])
             z.append(y)
         plt.scatter(x,z[0],c = 'r')
