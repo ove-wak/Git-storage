@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+    <link rel="stylesheet" type="text/css" href="../static/style.css?rand=123"/>
+</head>
+<body>
+<div id="content">
+{% if error %}
+    <h1>{{ error }}!</h1>
+{% else %}
+    <form id="login" method="post" action="/login" >
+                <div id="login_header">header</div>
+                
+                <div id="login_content">
+                    <span>
+                        <label for="username">用户名</label>
+                        <input class="tip" name="username" type="text">
+                    </span>
+                    <br/>
+                    <span>
+                        <label for="password">密码</label>
+                        <input class="tip" name="password" type="password">
+                    </span>
+                    
+                </div><!-- / #login_content -->
+
+                <div id="login_footer">
+                    <button id="login_btn" type="submit">登录</button>
+                </div>
+    </form>
+{% endif %} 
+</div>
+</body>
+</html>

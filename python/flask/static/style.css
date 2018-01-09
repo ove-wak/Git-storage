@@ -1,0 +1,32 @@
+body{
+    color: #555;
+    font-family: "PingFang SC", Tahoma, Helvetica, Arial, "Hiragino Sans GB", "Microsoft YaHei", "Heiti SC", "WenQuanYi Micro Hei", sans-serif
+;
+}
+#content {
+    margin: 40px auto;
+    padding:5px auto;
+    text-align:center;
+    width: 400px;
+    height: 200px;
+    padding-top: 1px;
+    background-color: #eee;
+}
+#login_header{
+    font-size: 20px;
+    color: red;
+    margin: 20px 0;
+}
+#login_content span{
+    display: inline-block;
+    margin-bottom: 10px;
+}
+button{
+    padding: 6px 20px;
+    margin: 0;
+    cursor: pointer;
+    border: 1px solid #bbb;
+    overflow: visible;
+    color: #555;
+    background-color: #ddd;
+}
