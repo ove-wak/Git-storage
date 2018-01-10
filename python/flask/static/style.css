@@ -1,32 +1,75 @@
-body{
+body{ 
     color: #555;
-    font-family: "PingFang SC", Tahoma, Helvetica, Arial, "Hiragino Sans GB", "Microsoft YaHei", "Heiti SC", "WenQuanYi Micro Hei", sans-serif
-;
+    font-family: "PingFang SC", Tahoma, Helvetica, Arial, "Hiragino Sans GB", "Microsoft YaHei", "Heiti SC", "WenQuanYi Micro Hei", sans-serif; 
 }
-#content {
-    margin: 40px auto;
-    padding:5px auto;
-    text-align:center;
-    width: 400px;
-    height: 200px;
-    padding-top: 1px;
+a, h1, h2{
+    color: #377BA8;
+}
+h1, h2{ 
+    font-family: 'Georgia', serif; 
+    margin: 0; 
+}
+h1{ 
+    border-bottom: 2px solid #fff; 
+}
+h2{ 
+    font-size: 1.2em; 
+}
+a{
+
+}
+input,textarea{
+    border-radius: 2px;
+    border: 0px;
+}
+.page{ 
+    margin: 2em auto; 
+    width: 35em; 
+    padding: 0.8em;
     background-color: #eee;
+    box-shadow: 5px 5px 5px #efefef;
+    border-radius: 5px;
 }
-#login_header{
-    font-size: 20px;
-    color: red;
-    margin: 20px 0;
-}
-#login_content span{
+.button{
     display: inline-block;
-    margin-bottom: 10px;
-}
-button{
-    padding: 6px 20px;
-    margin: 0;
+    margin-top: 10px;
+    padding: 4px 10px;
     cursor: pointer;
-    border: 1px solid #bbb;
-    overflow: visible;
-    color: #555;
-    background-color: #ddd;
+}
+.button:hover{
+    background-color: #377BA8;
+    color: #eee;
+}
+.entries{ 
+    list-style: none; 
+    margin: 0; 
+    padding: 0; 
+}
+.entries li{ 
+    margin: 0.8em 1.2em; 
+}
+.entries li h2{ 
+    margin-left: -1em; 
+}
+.add-entry{ 
+    font-size: 0.9em; 
+    border-bottom: 1px solid #ccc; 
+}
+.add-entry dl{ 
+    font-weight: bold; 
+}
+.metanav{ 
+    text-align: right; 
+    font-size: 0.8em; 
+    padding: 0.3em;
+    margin-bottom: 1em;
+}
+/* 动画待添加 */
+.flash{ 
+    background: #CEE5F5; 
+    padding: 0.5em;
+}
+.error{ 
+    background: #F0D6D6; 
+    padding: 0.5em; 
 }
