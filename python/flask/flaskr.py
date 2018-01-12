@@ -53,6 +53,10 @@ def index():
 @app.route('/show')
 def show():
     entries = query_db('select userid, text, time from entries order by time')
+    for entry in entries:
+        username = query_db('select username from users where id = ?',[entry['userid']])
+        entry['username'] = username[0]['username']
+        
     return render_template('show_entries.html', entries=entries)
 
 @app.route('/add', methods=['POST'])
@@ -61,7 +65,7 @@ def add_entry():
         abort(401)
     g.db.execute('insert into entries (userid, text, time) values (?, ?, ?)',[session['userid'], request.form['text'],time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())])
     g.db.commit()
-    flash('New entry was successfully posted') #?
+    #flash('New entry was successfully posted') #?
     return redirect(url_for('show'))
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -76,7 +80,7 @@ def login():
             session['logged_in'] = True
             session['username'] = user['username']
             session['userid'] = user['id']
-            flash('You were logged in')
+            #flash('You were logged in')
             return redirect(url_for('show'))
     return render_template('login.html', error=error)
 
@@ -88,7 +92,7 @@ def logout():
 
 if __name__ == '__main__': 
     # 初始化数据库
-    ##init_db()
+    #init_db()
     # run 启动服务器
     # host='0.0.0.0' 设置为公网可访问(校园网内就是局域网)
     # debug 设置为调试模式:服务器会在代码修改后自动重新载入

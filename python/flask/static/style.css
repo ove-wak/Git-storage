@@ -1,3 +1,5 @@
+html{
+}
 body{ 
     color: #555;
     font-family: "PingFang SC", Tahoma, Helvetica, Arial, "Hiragino Sans GB", "Microsoft YaHei", "Heiti SC", "WenQuanYi Micro Hei", sans-serif; 
@@ -26,14 +28,16 @@ input,textarea{
     margin: 2em auto; 
     width: 35em; 
     padding: 0.8em;
-    background-color: #eee;
+    background-color: #ddd;
     box-shadow: 5px 5px 5px #efefef;
     border-radius: 5px;
+    position: relative;
+    height: 55em;
 }
 .button{
     display: inline-block;
-    margin-top: 10px;
     padding: 4px 10px;
+    background-color: #ccc;
     cursor: pointer;
 }
 .button:hover{
@@ -43,20 +47,38 @@ input,textarea{
 .entries{ 
     list-style: none; 
     margin: 0; 
-    padding: 0; 
+    padding: 0.5em; 
+    height: 42em;
+    overflow: auto;
+    background-color: #eee;
 }
 .entries li{ 
     margin: 0.8em 1.2em; 
 }
 .entries li h2{ 
+    display: inline-block;
     margin-left: -1em; 
+}
+.entries li span{
+    display: inline-block;
+    font-size: 0.6em;
+    margin-left: 1em;
 }
 .add-entry{ 
     font-size: 0.9em; 
-    border-bottom: 1px solid #ccc; 
+    border-top: 1px solid #ccc; 
+    position: absolute;
+    bottom: 0em;
+    padding: 1em 0em;
+    height: 5.9em;
 }
-.add-entry dl{ 
-    font-weight: bold; 
+.add-entry textarea{ 
+    display: inline-block;
+    padding:0.5em; 
+}
+.add-entry input{ 
+     display: inline-block;
+     margin-left: 2em;
 }
 .metanav{ 
     text-align: right; 
