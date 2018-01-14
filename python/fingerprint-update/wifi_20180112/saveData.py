@@ -12,12 +12,11 @@ class SaveData:
         with open(path + file, 'r') as file_read:
             file_a = file.split('.')
             file_b = file_a[0].split('-')
-            addr = "C204"
+            addr = "two"
             phoneIP = phone_model
-            model = file_b[0]
-            coordinate = file_b[1] # 注意x,y的先后
-            strx = coordinate[len(coordinate) - 1]
-            stry = coordinate[0:(len(coordinate) - 1)]
+            model = "99"
+            strx = file_b[0]
+            stry = file_b[1]
             direction = file_b[2]
             line_datas = []
             while True:

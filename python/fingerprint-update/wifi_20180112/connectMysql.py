@@ -1,4 +1,3 @@
-from dataToExcel import DataToExcel
 import pymysql
 import xlwt,time
 import matplotlib.pyplot as plt
@@ -10,7 +9,7 @@ class ConnectMysql:
                              port=3306,
                              user='root',
                              password='123456',
-                             db='wifi_db')
+                             db='wifi_test')
 
     # 关闭连接
     def close_conn(self):
@@ -128,10 +127,10 @@ class ConnectMysql:
     def img_data(self):
         begin_time = time.time()
         num = 0
-        ap_mac = ('d8:15:0d:6c:13:98','00:90:4c:5f:00:2a','ec:17:2f:94:82:fc','70:ba:ef:d5:a6:12')
+        ap_mac = ('74:7d:24:eb:f5:a2','50:64:2b:30:90:cb','76:7d:24:eb:f5:a2','50:bd:5f:16:9f:76')
         # ap_mac = ['d8:15:0d:6c:13:98']
         cursor = self.db.cursor()
-        sql = "select id from fingerprint_record where model_num=0 and coordinate_x=2 and coordinate_y=7;"
+        sql = "select id from fingerprint_record where model_num=99 and coordinate_x=000 and coordinate_y=001;"
         cursor.execute(sql)    
         results=cursor.fetchall()
         plt.figure(1)
@@ -148,7 +147,7 @@ class ConnectMysql:
                 if res != ():
                     y.append(res[0][0])
                 else:
-                    y.append(-95)
+                    y.append(-50)
                 print(result[0])
             z.append(y)
         plt.scatter(x,z[0],c = 'r')

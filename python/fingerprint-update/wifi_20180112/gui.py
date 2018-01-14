@@ -63,51 +63,47 @@ class GuiContent:
         save_data = SaveData()
         scr_text.insert(END,"开始存储\n")
         scr_text.see(END)
-        # 获取指定文件夹列表
-        dir_names = [name for name in os.listdir(self.path) if 'WIFI+' in name]
+        phone_model = "none" # 获取手机型号
+        dir_path = self.path
+        # 显示进度
+        scr_text.insert(END,"目录" + dir_path + " 下的文件正在存储\n")
+        scr_text.see(END)    
+        # 获取指定目录下所有数据的文件名
+        self.file_name = []
+        tt = os.walk(dir_path)
+        for i in tt:
+            for j in i[2]:
+                if ".txt" in j:
+                    self.file_name.append(j)
+        # 遍历文件夹,存储所有数据
+        file_len = len(self.file_name)
+        for x in range(file_len):
+            file = self.file_name[x]
 
-        for dir_name in dir_names:
-            phone_model = (dir_name.split('+'))[1] # 获取手机型号
-            dir_path = self.path + dir_name + "/"
-            # 显示进度
-            scr_text.insert(END,"目录" + dir_path + " 下的文件正在存储\n")
-            scr_text.see(END)    
-            # 获取指定目录下所有数据的文件名
-            self.file_name = []
-            tt = os.walk(dir_path)
-            for i in tt:
-                for j in i[2]:
-                    if ".txt" in j:
-                        self.file_name.append(j)
-            # 遍历文件夹,存储所有数据
-            file_len = len(self.file_name)
-            for x in range(file_len):
-                file = self.file_name[x]
-
-                begin_time = time.time()
-                scr_text.insert(END,file + " saving...["+str(x+1)+"/"+str(file_len)+"]\n")
-                scr_text.see(END)
-
-                # 存储单文件数据
-                flag = save_data.data_save(dir_path,file,phone_model)
-
-                if flag != 1:# 存储出错
-                    scr_text.insert(END,"数据库插入数据出错\n")
-                    scr_text.see(END)
-                    scr_text.insert(END,"出错位置:" + file+" "+flag)
-                    scr_text.see(END)
-                    save_data.close_connect()
-                    #开启按钮
-                    b1['state'] = NORMAL
-                    b3['state'] = NORMAL
-                    return -1
-
-                end_time = time.time()      
-                scr_text.insert(END,file + " saved,time:"+str(int(end_time-begin_time))+"s\n")
-                scr_text.see(END)
-
-            scr_text.insert(END,"该文件夹存储完成.\n")
+            begin_time = time.time()
+            scr_text.insert(END,file + " saving...["+str(x+1)+"/"+str(file_len)+"]\n")
             scr_text.see(END)
+
+            # 存储单文件数据
+            flag = save_data.data_save(dir_path,file,phone_model)
+
+            if flag != 1:# 存储出错
+                scr_text.insert(END,"数据库插入数据出错\n")
+                scr_text.see(END)
+                scr_text.insert(END,"出错位置:" + file+" "+flag)
+                scr_text.see(END)
+                save_data.close_connect()
+                #开启按钮
+                b1['state'] = NORMAL
+                b3['state'] = NORMAL
+                return -1
+
+            end_time = time.time()      
+            scr_text.insert(END,file + " saved,time:"+str(int(end_time-begin_time))+"s\n")
+            scr_text.see(END)
+
+        scr_text.insert(END,"该文件夹存储完成.\n")
+        scr_text.see(END)
 
         # 全部存储结束断开连接
         save_data.close_connect()
