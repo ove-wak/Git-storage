@@ -127,10 +127,10 @@ class ConnectMysql:
     def img_data(self):
         begin_time = time.time()
         num = 0
-        ap_mac = ('74:7d:24:eb:f5:a2','50:64:2b:30:90:cb','76:7d:24:eb:f5:a2','50:bd:5f:16:9f:76')
+        ap_mac = ('ec:88:8f:b3:4a:d0','d0:c7:c0:0b:d2:88','20:6b:e7:a3:1d:29','0a:69:6c:bc:f7:4d')
         # ap_mac = ['d8:15:0d:6c:13:98']
         cursor = self.db.cursor()
-        sql = "select id from fingerprint_record where model_num=99 and coordinate_x=000 and coordinate_y=001;"
+        sql = "select id from fingerprint_record where model_num=98 and coordinate_x=0000 and coordinate_y=0000;"
         cursor.execute(sql)    
         results=cursor.fetchall()
         plt.figure(1)
@@ -206,6 +206,7 @@ class ConnectMysql:
 if __name__ == "__main__":
     conn = ConnectMysql()
     conn.img_data()
+    #conn.drop_table()
     # for x in range(1,20):
     #     conn.select_data(x)
     #     print(str(x)+" complete")

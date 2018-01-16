@@ -14,7 +14,7 @@ class SaveData:
             file_b = file_a[0].split('-')
             addr = "two"
             phoneIP = phone_model
-            model = "99"
+            model = "98"
             strx = file_b[0]
             stry = file_b[1]
             direction = file_b[2]

@@ -30,7 +30,11 @@ class GuiContent:
         b3 = Button(fm2,text="数据读取", command=lambda:self.thread_it(self.read_data_event))
         b3['width'] = 25
         b3['height'] = 1
-        b3.pack(ipady=3,pady=10,padx=30)     
+        b3.pack(ipady=3,pady=10,padx=30)   
+        b4 = Button(fm2,text="指纹更新", command=lambda:self.thread_it(self.read_data_event))
+        b4['width'] = 25
+        b4['height'] = 1
+        b4.pack(ipady=3,pady=10,padx=30)   
         fm2.pack(side=LEFT)
 
     #将函数打包进线程

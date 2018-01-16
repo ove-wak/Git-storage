@@ -100,5 +100,5 @@ if __name__ == "__main__":
         data.append(d.training())
 
     excel = DataToExcel()
-    excel.odte("前十组增量学习结果",data)
+    excel.odte("第一次增量学习结果",data)
     d.mlab_stop()
