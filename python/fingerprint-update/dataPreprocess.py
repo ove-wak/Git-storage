@@ -57,6 +57,7 @@ class DataPreprocess:
         M = res['result'][2]
         beta =res['result'][3]
         # 增量学习
+        # ####!!!添加将每一次增量学习结果的误差输出出来并可视化
         for x in range(2,11):
             res = self.mlab.run_func('OSELM_increase_study.m','middata'+str(sheet)+'/'+str(x)+'.txt',IW,Bias,M,beta,'sin',1,nargout=4)
             IW = res['result'][0]
@@ -100,5 +101,6 @@ if __name__ == "__main__":
         data.append(d.training())
 
     excel = DataToExcel()
+    ##记得改文件名
     excel.odte("第一次增量学习结果",data)
     d.mlab_stop()
