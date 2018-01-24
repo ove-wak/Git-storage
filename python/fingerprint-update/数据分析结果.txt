@@ -72,3 +72,15 @@ ubuntu系统配置基本完成.
 看通过wifi估算室内密集程度的论文
 #晚上
 跟学霸测试不同手机的数据
+#1.24
+#上午
+财务二科问设备采购
+财务部问招标流程
+招标网站看具体流程发给老师
+#下午
+整理下一步具体工作,优先级排序
+相关论文阅读:
+    有几篇论文是通过接入wifi的设备数目或者发出wifi信号的设备数目来推测局部区域内人数的,这也是一个思路,但与我们的方向不符,且在现实情况下可行度低.
+Estimating the number of people using existing WiFi access point
+Indoor Human Localization with Orientation using WiFi Fingerprinting
+这两篇需要深入分析一下其算法过程.
