@@ -47,11 +47,11 @@ class DataToExcel:
                 [0,0,0,0,0,0,0,0,0,0,0,0,0]]]
         for x in range(len(data)):
             for y in range(len(data[0])):
-                if data[x][y] == 0:
-                    ap_m[0][x][y] = 0
-                    ap_m[1][x][y] = 0
-                    ap_m[2][x][y] = 0
-                    ap_m[3][x][y] = 0
+                if data[x][y] == -1:
+                    ap_m[0][x][y] = -1
+                    ap_m[1][x][y] = -1
+                    ap_m[2][x][y] = -1
+                    ap_m[3][x][y] = -1
                 else:
                     ap_m[0][x][y] = data[x][y][0]
                     ap_m[1][x][y] = data[x][y][1]
@@ -70,7 +70,7 @@ class DataToExcel:
                         ws.write(y+1, 0, y)
                     ws.write(y+1, x+1, ap_m[t][x][y])
                     
-        wb.save('excel/'+str(num)+'.xls')
+        wb.save('excel_std/'+str(num)+'.xls')
         return 1
 
     # 训练完的结果保存到excel
