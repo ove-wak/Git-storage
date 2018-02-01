@@ -1,4 +1,4 @@
-from dataToExcel import DataToExcel
+# 核心数据库模块
 import pymysql
 import xlwt,time,numpy
 import matplotlib.pyplot as plt
@@ -10,7 +10,7 @@ class ConnectMysql:
                              port=3306,
                              user='root',
                              password='123456',
-                             db='wifi_test')
+                             db='wifi_db')
 
     # 关闭连接
     def close_conn(self):
@@ -39,6 +39,18 @@ class ConnectMysql:
                  signal_mac_address VARCHAR(20),\
                  signal_strength INT NOT NULL);"
         cursor.execute(sql)
+        # 创建指纹库表
+        sql = "CREATE TABLE IF NOT EXISTS fingerprint_lib(\
+                 id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,\
+                 model_num INT NOT NULL,\
+                 update_num INT NOT NULL,\
+                 address VARCHAR(20) NOT NULL,\
+                 signal_type INT NOT NULL,\
+                 coordinate_x INT NOT NULL,\
+                 coordinate_y INT NOT NULL,\
+                 signal_mac_address VARCHAR(20),\
+                 signal_strength INT NOT NULL);"
+        cursor.execute(sql)
         cursor.close()
 
     # 删除表
@@ -48,7 +60,7 @@ class ConnectMysql:
         cursor.execute("DROP TABLE IF EXISTS signal_record")
         cursor.close()
 
-    # 插入数据
+    # 插入指纹信号数据
     def insert_data(self,model,addr,phoneIP,strtype,x,y,direction,time,mac,ap):
         cursor = self.db.cursor()
         sql = "INSERT INTO fingerprint_record VALUES(NULL, '" + str(model) + "', '" + addr + "', '" + phoneIP + "', " + str(strtype) + ", " + str(x) + ", " + str(y) + ", '" + direction + "', '" + time + "');"
@@ -79,19 +91,21 @@ class ConnectMysql:
         cursor.close()
         return flag
 
-# 预处理得到后续数据excel文件
-    def select_data(self,model_num):
-        ap_mac = ('d8:15:0d:6c:13:98','00:90:4c:5f:00:2a','ec:17:2f:94:82:fc','70:ba:ef:d5:a6:12')
-        data = [[-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
-                [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
-                [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
-                [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
-                [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
-                [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
-                [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
-                [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
-                [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
-                [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]]
+    # 读取原始指纹库
+    def select_data(self,ap_mac,model_num,c_x,c_y):
+        #初始化数组
+        ap_m = []
+        for i in range(len(ap_mac)):
+            ap_m.append([])
+            for j in range(c_x):
+                ap_m[i].append([])
+                for k in range(c_y):
+                    ap_m[i][j].append(-1)
+        mid_data = []
+        for i in range(c_x):
+            mid_data.append([])
+            for j in range(c_y):
+                mid_data[i].append(-1)
 
         cursor = self.db.cursor()
         sql = "select id,coordinate_x,coordinate_y from fingerprint_record where model_num="+str(model_num)+";"
@@ -99,78 +113,63 @@ class ConnectMysql:
         results=cursor.fetchall()
         results = list(results)
         for result in results:
-            if data[result[1]][result[2]] == -1:
-                data[result[1]][result[2]] = []
-            data[result[1]][result[2]].append(result[0])
-        for x in range(len(data)):
-            for y in range(len(data[0])):
-                if data[x][y] != -1:
-                    temp = data[x][y]
-                    data[x][y] = []
-                    for mac in ap_mac:
-                        sql = "select signal_strength from signal_record where record_id IN "+str(tuple(temp))+" and signal_mac_address='"+mac+"';" 
-                        cursor.execute(sql)
-                        res=cursor.fetchall()
-                        num = []
-                        for r in res:
-                            num.append(r[0])
-                        if len(res) == 0:
-                            data[x][y].append(-100)
-                        else:
-                            data[x][y].append(numpy.std(num))####计算标准差
-        dte = DataToExcel()
-        dte.dte(model_num,data)
-        cursor.close()
-        return 1
-
-    # 预处理得到底图
-    def select_data_basemap(self):
-        num = 0
-        ap_mac = ('d8:15:0d:6c:13:98','00:90:4c:5f:00:2a','ec:17:2f:94:82:fc','70:ba:ef:d5:a6:12')
-        ditu = [[0,0,0,0,0,0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0,0,0,0,0,0]]
-
-        cursor = self.db.cursor()
-        sql = "select id,coordinate_x,coordinate_y from fingerprint_record where model_num=0;"
-        cursor.execute(sql)    
-        results=cursor.fetchall()
-        results = list(results)
-        for result in results:
-            if ditu[result[1]][result[2]] == 0:
-                ditu[result[1]][result[2]] = []
-            ditu[result[1]][result[2]].append(result[0])
-        for x in range(len(ditu)):
-            for y in range(len(ditu[0])):
-                if ditu[x][y] != 0:
-                    temp = ditu[x][y]
-                    ditu[x][y] = []
-                    for mac in ap_mac:
-                        sql = "select signal_strength from signal_record where record_id IN "+str(tuple(temp))+" and signal_mac_address='"+mac+"';" 
+            if mid_data[result[1]][result[2]] == -1:
+                mid_data[result[1]][result[2]] = []
+            mid_data[result[1]][result[2]].append(result[0])
+        for x in range(c_x):
+            for y in range(c_y):
+                if mid_data[x][y] != -1:
+                    for ap in range(len(ap_mac)):
+                        sql = "select signal_strength from signal_record where record_id IN "+str(tuple(mid_data[x][y]))+" and signal_mac_address='"+ap_mac[ap]+"';" 
                         cursor.execute(sql)
                         res=cursor.fetchall()
                         num = 0
                         for r in res:
                             num = num + r[0]
-                        ditu[x][y].append(int(num/len(res)))
-                    print(ditu[x][y]) 
-        print(ditu)# 处理得到底图原始数据,在 底图.py 文件里进行插值并保存为excel得到完整底图
+                        if len(res) == 0:
+                           ap_m[ap][x][y] = -95
+                        else: 
+                            ap_m[ap][x][y] = int(num/len(res))###目前直接取均值
+                        ####计算标准差
+                        # num = []
+                        # for r in res:
+                        #     num.append(r[0])
+                        # if len(res) == 0:
+                        #     ap_m[ap][x][y] = -100
+                        # else:
+                        #     ap_m[ap][x][y] = numpy.std(num)
         cursor.close()
-        return 1
+        return ap_m
 
-# 测试环境下运行
-if __name__ == "__main__":
-    conn = ConnectMysql()
-    # conn.select_data(0)
-    # conn.img_data()
-    for x in range(0,20):
-        conn.select_data(x)
-        print(str(x)+" complete")
+    # 插入指纹库数据
+    def insert_fingerprint_data(self,model_num,update_num,addr,signal_type,ap_mac,ap_m):
+        cursor = self.db.cursor()
+        flag = 0 # 是否执行成功标记
+        for t in range(len(ap_mac)):  
+            for x in range(len(ap_m[0])):
+                for y in range(len(ap_m[0][0])):
+                    sql = "INSERT INTO fingerprint_lib VALUES(NULL, " + str(model_num) + ", " + str(update_num) + ", '" + addr + "', " + str(signal_type) + ", " + str(x) + ", " + str(y) + ", '" + ap_mac[t] + "', " + str(ap_m[t][x][y]) + ");"    
+                    try:
+                        # 执行sql语句
+                        cursor.execute(sql)
+                        # 提交到数据库执行
+                        self.db.commit() 
+                        flag = 1
+                    except:
+                        # 如果发生错误则回滚
+                        self.db.rollback()
+                        flag = -1
+                        return flag      
+        cursor.close()
+        return flag
 
+    # 读取指纹库数据
+    def select_fingerprint_data(self,model_num,update_num,signal_mac_address):
+        cursor = self.db.cursor()
+        sql = "select coordinate_x,coordinate_y,signal_strength from fingerprint_lib where model_num="+str(model_num)+" and update_num="+str(update_num)+" and signal_mac_address='"+signal_mac_address+"';"
+        cursor.execute(sql)    
+        results=cursor.fetchall()
+        results = list(results)
+        return results
+
+        

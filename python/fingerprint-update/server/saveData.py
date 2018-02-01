@@ -1,3 +1,4 @@
+# 数据输入方式1:本地txt文件存储
 import os,time
 from connectMysql import ConnectMysql
 class SaveData:
