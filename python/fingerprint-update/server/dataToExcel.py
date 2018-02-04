@@ -20,7 +20,6 @@ class DataToExcel:
         return 1
 
     # 训练完的结果保存到excel
-    # ?
     def odte(self,intro,ap_m,ap_mac):
         wb = xlwt.Workbook(encoding='utf-8')
         for t in range(len(ap_mac)):

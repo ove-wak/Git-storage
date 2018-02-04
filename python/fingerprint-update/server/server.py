@@ -31,6 +31,4 @@ httpd=MyThreadingHTTPServer(('',9601),MyHttpHandler)
 print("Server started on 127.0.0.1,port 9601......")     
 httpd.serve_forever() 
 
-#1.数据输入模块暂有两部分,读取文件的已完成,server的待补充和测试
-#2.数据输出部分添加数据库表,两种输出方式
-#3.整体整合成完整的程序
+

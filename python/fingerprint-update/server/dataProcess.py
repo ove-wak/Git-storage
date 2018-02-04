@@ -29,6 +29,7 @@ class DataProcess:
         return ap_m
 
     # 指纹库保存到数据库中
+    # update_num:更新次数,原数据更新次数为0,每次更新后更新次数加一并保存
     def save_data(self,model_num,update_num,ap_mac,ap_m):
         addr = "c204"
         signal_type = 1

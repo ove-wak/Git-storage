@@ -148,6 +148,8 @@ class ConnectMysql:
         for t in range(len(ap_mac)):  
             for x in range(len(ap_m[0])):
                 for y in range(len(ap_m[0][0])):
+                    if ap_m[t][x][y] == -1:
+                        ap_m[t][x][y] = 0
                     sql = "INSERT INTO fingerprint_lib VALUES(NULL, " + str(model_num) + ", " + str(update_num) + ", '" + addr + "', " + str(signal_type) + ", " + str(x) + ", " + str(y) + ", '" + ap_mac[t] + "', " + str(ap_m[t][x][y]) + ");"    
                     try:
                         # 执行sql语句
