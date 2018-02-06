@@ -108,6 +108,7 @@ class GuiContent:
             ap_m.append(f_update.training(model_num,ditu,x))
 
         # 增量更新结果保存到数据库中
+        # update_num应根据实际情况成为一个动态变量
         update_num = 1
         flag = d_process.save_data(model_num,update_num,ap_mac,ap_m)
         if flag == 1:
@@ -124,7 +125,7 @@ class GuiContent:
         # 全部操作结束断开连接
         d_process.close_connect()
         f_update.mlab_stop(ap_mac)
-        return 1
+        return ap_m
     
 g = GuiContent()
 # g.save_data_event()
