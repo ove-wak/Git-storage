@@ -1,11 +1,8 @@
 # -*- coding: utf-8-*-
 import xlwt
 import random   
-from tkinter import *
 
-def get_excel():
-    a = var1.get()
-    b = var2.get()
+def get_excel(a,b,file_name):
     wb = xlwt.Workbook(encoding='utf-8')
     ws = wb.add_sheet('Sheet1')
 
@@ -24,30 +21,9 @@ def get_excel():
                     ws.write((x-1)*b+z, 2*y, short_num)
                     ws.write((x-1)*b+z, 2*y+1, long_num)
 
-    wb.save(var3.get()+'.xls')
+    wb.save(file_name+'.xls')
 
-root = Tk()
-root.title("数据生成器")
-root.geometry("200x300")    # 设置窗口大小 注意：是x 不是*
-root.resizable(width=True, height=False)
-
-l1 = Label(root, text="组数", bg="pink", font=("Arial",12), width=10, height=2)
-l1.pack()
-var1 = IntVar()
-e1 = Entry(root, textvariable=var1)
-var1.set("4") # 设置文本框中的值
-e1.pack()
-l2 = Label(root, text="每组个数", bg="pink", font=("Arial",12), width=10, height=2)
-l2.pack()
-var2 = IntVar()
-e2 = Entry(root, textvariable=var2)
-var2.set("6") # 设置文本框中的值
-e2.pack()
-l3 = Label(root, text="文件名称", bg="pink", font=("Arial",12), width=10, height=2)
-l3.pack()
-var3 = StringVar()
-e3 = Entry(root, textvariable=var3)
-var3.set("默认文件名") # 设置文本框中的值
-e3.pack()
-Button(root, text="生成", command=get_excel).pack()
-root.mainloop() # 进入消息循环
+a = input('输入组数:\n')
+b = input('输入每组个数:\n')
+file = input('输入文件名称:\n')
+get_excel(int(a),int(b),file)
