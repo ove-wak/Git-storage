@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试按键</title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+    <script type="text/javascript">
+        window.onkeydown = function (e) {  
+            var keyCodeAll = {65:"A",66:"B",67:"C",68:"D",69:"E",70:"F",71:"G",72:"H",73:"I",74:"J",75:"K",76:"L",77:"M",78:"N",79:"O",80:"P",81:"Q",82:"R",83:"S",84:"T",85:"U",86:"V",87:"W",88:"X",89:"Y",90:"Z",
+                  97:"a",98:"b",99:"c",100:"d",101:"e",102:"f",103:"g",104:"h",105:"i",106:"j",107:"k",108:"l",109:"m",110:"n",111:"o",112:"p",113:"q",114:"r",115:"QASDXZCVXZFVBs",116:"t",117:"u",118:"v",119:"w",120:"x",121:"y",122:"z"};
+            var inputIndex = $("input[name='test']");//当前input的位置
+            var value = inputIndex.val();
+            var keyCode  =  e.keyCode||e.which; // 按键的keyCode
+            var isShift  =  e.shiftKey ||(keyCode  ==   16 ) || false ; // shift键是否按住
+            var isCtrl  =  e.ctrlKey ||(keyCode  ==   17 ) || false ; // ctrl键是否按住
+            var isTab  =  (keyCode  ==   9 ) || false ;
+            var isSpace  = (keyCode  ==   32 ) || false ;
+            var isEnter  =  (keyCode  ==   13 ) || false ;
+            var isH  =  e.altKey ||(keyCode  ==   18 ) || false ;
+            
+            console.log(e);
+            switch(keyCode){
+                case 16:return false;break;
+                case 17:return false;break;
+                case 9:return false;break;
+                case 32:return false;break;
+                case 13:return false;break;
+                case 18:return false;break;
+                default:
+                {
+                    if (isShift && (keyCode>=65&&keyCode<=90)){
+                        return false;//屏蔽shift+字母的复合键
+                    }
+                    if(isCtrl && (keyCode>=65&&keyCode<=90)){
+                        setTimeout(function(){
+                            inputIndex.val(value+keyCodeAll[keyCode]);//用ctrl+字母来生成大写字母
+                        },10);
+                        e.preventDefault();//屏蔽ctrl+字母复合键的默认事件
+                    }
+                    if(isTab && (keyCode>=65&&keyCode<=90)){
+                        setTimeout(function(){
+                            inputIndex.val(value+keyCodeAll[keyCode]);//用ctrl+字母来生成大写字母
+                        },10);
+                        e.preventDefault();//屏蔽ctrl+字母复合键的默认事件
+                    }
+                    if(isSpace && (keyCode>=65&&keyCode<=90)){
+                        setTimeout(function(){
+                            inputIndex.val(value+keyCodeAll[keyCode]);//用ctrl+字母来生成大写字母
+                        },10);
+                        e.preventDefault();//屏蔽ctrl+字母复合键的默认事件
+                    }
+                    if(isEnter && (keyCode>=65&&keyCode<=90)){
+                        setTimeout(function(){
+                            inputIndex.val(value+keyCodeAll[keyCode]);//用ctrl+字母来生成大写字母
+                        },10);
+                        e.preventDefault();//屏蔽ctrl+字母复合键的默认事件
+                    }
+                    if(isH && (keyCode>=65&&keyCode<=90)){
+                        setTimeout(function(){
+                            inputIndex.val(value+keyCodeAll[keyCode]);//用ctrl+字母来生成大写字母
+                        },10);
+                        e.preventDefault();//屏蔽ctrl+字母复合键的默认事件
+                    }                    
+                }
+            }
+        };
+    
+ </script>
+</head>
+<body>
+    <input type="" name="test" size=50/>
+</body>
+</html>
