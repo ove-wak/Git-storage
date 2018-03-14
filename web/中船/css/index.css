@@ -1,0 +1,16 @@
+.content{
+    background: url("../static/index/bg.png") no-repeat;
+    background-size: 100% 100%;
+}
+.head{
+    height: 15.6%;/*218*/
+    width: 100%;
+    margin: 0;
+    padding:  0; 
+    padding-top: 4.1%;
+
+}
+.head .title{
+    height: 21.1%;
+    text-align: center;
+}
