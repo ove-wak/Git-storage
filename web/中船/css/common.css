@@ -15,4 +15,10 @@ html,body{
     height: 100%;
     display: none;
 }
-/* question 设计图具体用哪个 */
+.fl{
+    float: left;
+    display: inline-block;
+}
+.cb{
+    clear: both;
+}
