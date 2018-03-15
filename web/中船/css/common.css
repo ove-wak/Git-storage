@@ -7,7 +7,8 @@ html,body{
     margin:0 auto;
     padding:0;
     background-color: black;
-    font-family: ”Microsoft YaHei”,Arial,Helvetica,sans-serif,”宋体”; 
+    font-family: "MyNewFont";
+    /* font-family:"lucida grande", "lucida sans unicode", lucida, helvetica, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif; */
 }
 .content{
     position: absolute;
@@ -21,4 +22,8 @@ html,body{
 }
 .cb{
     clear: both;
+}
+@font-face {
+  font-family: 'MyNewFont';   /*字体名称*/
+  src: url('../static/思源黑体正常字体.ttf');       /*字体源文件*/
 }

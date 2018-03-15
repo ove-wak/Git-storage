@@ -355,8 +355,8 @@
 
 /* common */
 #pie-doughnut-1{
-    width: 1.55rem;
-    height: 1.55rem;
+    width: 2.55rem;
+    height: 2.55rem;
 }
 .button{
     text-align: center;
@@ -383,7 +383,7 @@
     display: inline-block;
     line-height: 0.2rem;
     margin-top: 0.05rem;
-    width: 1.26rem;
+    width: 1.22rem;
 }
 .button-blue{
     background: url("../static/index/btn_blue.png") no-repeat;
@@ -403,15 +403,12 @@
 .font-3{
     font-size: 0.2rem;
     color: #ffffff;
-    font-weight: bold;
 }
 .font-4{
     font-size: 0.14rem;
     color: #03004c;
-    font-weight: bold;
 }
 .font-5{
     font-size: 0.14rem;
     color: #ffffff;
-    font-weight: bold;
 }
