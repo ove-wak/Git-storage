@@ -3,14 +3,242 @@
     background-size: 100% 100%;
 }
 .head{
-    height: 15.6%;/*218*/
+    height: 2.18rem;/*218*/
     width: 100%;
     margin: 0;
     padding:  0; 
-    padding-top: 4.1%;
 
 }
 .head .title{
-    height: 21.1%;
+    height: 0.46rem;
+    font-size: 0rem;
     text-align: center;
+}
+.head .time{
+    text-align: center;
+    color: #88abda;
+    font-size: 0.27rem;
+    letter-spacing:0.02rem;
+}
+.middle{
+    height: 11.82rem;
+    width: 100%;
+    margin: 0;
+    padding:  0;
+    position: relative;
+}
+.left{
+    margin-left: 1.12rem;
+    width: 9.35rem;
+    display: inline-block;
+}
+.right{
+    width: 9.35rem;
+    position: absolute;
+    right: 1.12rem;
+    display: inline-block;
+}
+.left .main-content{
+    background: url("../static/index/bg_2_1.png") no-repeat;
+    background-size: 100% 100%;
+}
+.right .main-content{
+    background: url("../static/index/bg_2.png") no-repeat;
+    background-size: 100% 100%;
+}
+.main-content{
+    height: 8.49rem;
+    width: 7.79rem;
+    padding: 0.9rem 0.78rem 0rem 0.78rem;
+    font-size: 0rem;
+}
+
+
+.l-1{
+    background: url("../static/index/bg_left_1.png") no-repeat;
+    background-size: 100% 100%;
+    width: 100%;
+    height: 1.65rem;
+}
+.l-1-1{
+    text-align: center;
+    margin-left: 0.04rem;
+    width: 1.66rem;
+}
+.l-1-1 span.hd{
+    display: inline-block;
+    margin-top: 0.28rem;
+}
+.l-1-1 div{
+    display: inline-block;
+    margin-top: 0.18rem;
+}
+.l-1-2{
+    text-align: center;
+    margin-left: 0.94rem;
+    width: 1.66rem;
+}
+.l-1-3{
+    text-align: center;
+    margin-left: 0.94rem;
+    width: 1.66rem;
+}
+.l-1-3 span.hd{
+    display: inline-block;
+    margin-top: 0.28rem;
+}
+.l-1-3 div{
+    display: inline-block;
+    margin-top: 0.18rem;
+}
+.l-2{
+    background: url("../static/index/bg_left_2.png") no-repeat;
+    background-size: 100% 100%;
+    width: 100%;
+    height: 1.22rem;
+    margin-top: -0.05rem;
+}
+.l-34{
+    width: 100%;
+    height: 3.72rem;
+    clear: both;
+    margin-top: 0.08rem;
+}
+.l-34-1{
+    display: inline-block;
+    float: left;
+    height: 3.72rem;
+    width: 0.64rem;
+    background: url("../static/index/bg_left_34_1.png") no-repeat;
+    background-size: 100% 100%;
+
+}
+.l-34-all{
+    height: 3.72rem;
+    width: 7.08rem;
+    margin-left: 0.07rem;
+    display: inline-block;
+    float: left;
+}
+.l-3{
+    display: inline-block;
+    float: left;
+    margin-top: -0.14rem;
+}
+.l-3 div{
+    background: url("../static/index/bg_left_3_2345.png") no-repeat;
+    background-size: 100% 100%;
+    width: 1.77rem;
+    height: 2.26rem;
+    display: inline-block;
+    float: left;
+}
+.l-4{
+    display: inline-block;
+    float: left;
+    margin-top: -0.1rem;
+}
+.l-4 div{
+    display: inline-block;
+    float: left;
+}
+.l-4-2{
+    background: url("../static/index/bg_left_4_23.png") no-repeat;
+    background-size: 100% 100%;
+    width: 1.77rem;
+    height: 1.72rem;
+}
+.l-4-3{
+    background: url("../static/index/bg_left_4_23.png") no-repeat;
+    background-size: 100% 100%;
+    width: 1.77rem;
+    height: 1.72rem;
+}
+.l-4-4{
+    background: url("../static/index/bg_left_4_4.png") no-repeat;
+    background-size: 100% 100%;
+    width: 3.54rem;
+    height: 1.72rem;
+}
+.l-5{
+    background: url("../static/index/bg_five.png") no-repeat;
+    background-size: 100% 100%;
+    width: 100%;
+    height: 1.29rem;
+    margin-top: -0.05rem;
+}
+
+
+.r-bg-blue{
+    background: url("../static/index/bg_blue.png") no-repeat;
+    background-size: 100% 100%;
+    width: 7.92rem;
+    height: 1.49rem;
+    margin-top: 0.08rem;
+}
+.r-bg-red{
+    background: url("../static/index/bg_red.png") no-repeat;
+    background-size: 100% 100%;
+    width: 7.92rem;
+    height: 1.49rem;
+    margin-top: 0.08rem;
+}
+.r-bg-yellow{
+    background: url("../static/index/bg_yellow.png") no-repeat;
+    background-size: 100% 100%;
+    width: 7.92rem;
+    height: 1.49rem;
+    margin-top: 0.08rem;
+}
+
+
+.button{
+    background-size: 100% 100%;
+    width: 1.66rem;
+    height: 0.47rem;
+    line-height: 0.47rem;
+    text-align: left;  
+}
+.button .q1{
+    margin-left: 0.04rem;
+    margin-right: 0.16rem;
+}
+.button .q2{
+    display: inline-block;
+}
+.button .q3{
+
+}
+.button-blue{
+    background: url("../static/index/btn_blue.png") no-repeat;
+}
+.button-yellow{
+    background: url("../static/index/btn_yellow.png") no-repeat;
+}
+.button-red{
+    background: url("../static/index/btn_red.png") no-repeat;
+}
+.font-2{
+    font-size: 0.2rem;
+    color: #00deff;
+    height: 100%;
+    width: 0.2rem;
+    padding: 0.32rem 0.22rem 0 0.22rem;
+    line-height: 0.24rem;
+}
+.font-3{
+    font-size: 0.2rem;
+    color: #ffffff;
+    font-weight: bold;
+}
+.font-4{
+    font-size: 0.14rem;
+    color: #03004c;
+}
+.fl{
+    float: left;
+    display: inline-block;
+}
+.cb{
+    clear: both;
 }
