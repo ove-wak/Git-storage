@@ -5,7 +5,7 @@
 }
 .head{
     height: 2.18rem;/*218*/
-    width: 100%;
+    width: 21.6rem;
     margin: 0;
     padding:  0; 
 
@@ -23,7 +23,7 @@
 }
 .middle{
     height: 11.82rem;
-    width: 100%;
+    width: 21.6rem;
     margin: 0;
     padding:  0;
     position: relative;
@@ -48,17 +48,27 @@
     background-size: 100% 100%;
 }
 .main-content{
+    cursor:pointer;
     height: 8.49rem;
     width: 7.79rem;
     padding: 0.9rem 0.78rem 0rem 0.78rem;
     font-size: 0rem;
+}
+.main-content:hover{  
+    width: 7.91rem;
+    margin-left: -0.06rem;
+    padding-left: 0.84rem;
+    height: 8.61rem;
+    margin-top: -0.06rem;
+    padding-top: 0.96rem;
+    margin-bottom:-0.32rem; 
 }
 
 /* left begin */
 .l-1{
     background: url("../static/index/bg_left_1.png") no-repeat;
     background-size: 100% 100%;
-    width: 100%;
+    width: 7.79rem;
     height: 1.65rem;
     position: relative;
 }
@@ -118,7 +128,7 @@
 .l-2{
     background: url("../static/index/bg_left_2.png") no-repeat;
     background-size: 100% 100%;
-    width: 100%;
+    width: 7.79rem;
     height: 1.06rem;
     margin-top: -0.05rem;
 }
@@ -166,7 +176,7 @@
     margin-top: 0.05rem;
 }
 .l-34{
-    width: 100%;
+    width: 7.8rem;
     height: 3.72rem;
     clear: both;
     margin-top: 0.08rem;
@@ -241,13 +251,13 @@
 .l-34-all .l-4-4 .button{
     margin-top: 0.08rem;
     margin-left: 0.06rem;
-    display: inline-block;
     float: left;
+    display: inline-block;
 }
 .l-5{
     background: url("../static/index/bg_five.png") no-repeat;
     background-size: 100% 100%;
-    width: 100%;
+    width: 7.79rem;
     height: 1.14rem;
     margin-top: -0.05rem;
     padding-top: 0.15rem;
@@ -356,7 +366,7 @@
 
 /* common */
 .data{
-    width: 100%;
+    width: 9.35rem;
     height: 1.60rem;
     margin-top: -0.2rem;
     clear: both;
@@ -373,8 +383,8 @@
 }
 .d-left div{
     clear: both;
-    width: 100%;
-    height: 25%;
+    width: 1.5rem;
+    height: 0.21rem;
     line-height: 0.18rem;
 }
 .d-left span{
@@ -427,7 +437,7 @@
 }
 .d-right{
     float: left;
-    display: inline-block;
+    display: none;
     font-size: 0.22rem;
     margin-left: 0.2rem;
     margin-top: 0.5rem;
@@ -485,7 +495,7 @@
     position: absolute;
     left: 9.2rem;
     bottom: 0.67rem;
-    background: url("../static/index//logo.png") no-repeat;   
+    background: url("../static/index/logo.png") no-repeat;   
     background-size: 100% 100%;
     width: 3.2rem;
     height: 0.46rem;

@@ -12,7 +12,8 @@ $(document).ready(function(){
 function pie1(){
     var echart = echarts.init(document.getElementById('pie-doughnut-1'));  
     option = {
-        animation: false,
+        // animation: false,
+        animationDuration:1500,
         tooltip: {
             show:true,
             trigger: 'item',
@@ -41,7 +42,6 @@ function pie1(){
             type:'pie',
             radius: ['60%', '90%'],
             center: ["44%", "52%"],
-            silent:true,
             avoidLabelOverlap: false,
             hoverAnimation:false,   //关闭 hover 在扇区上的放大动画效果。
             cursor:'default', //鼠标悬浮时在图形元素上时鼠标的样式是什么。同 CSS 的 cursor。
@@ -83,12 +83,16 @@ function pie1(){
         seriesIndex: 0,
         dataIndex: 0
     });
+    setTimeout(function () { 
+        $(".d-right-1").css('display','inline-block'); 
+    }, 1400);
 }
 
 function pie2(){
     var echart = echarts.init(document.getElementById('pie-doughnut-2'));  
     option = {
-        animation: false,
+        animation: true,
+        animationDuration:1500,
         tooltip: {
             show:true,
             trigger: 'item',
@@ -117,7 +121,7 @@ function pie2(){
             type:'pie',
             radius: ['60%', '90%'],
             center: ["44%", "52%"],
-            silent:true,
+            // silent:true,
             avoidLabelOverlap: false,
             hoverAnimation:false,   //关闭 hover 在扇区上的放大动画效果。
             cursor:'default', //鼠标悬浮时在图形元素上时鼠标的样式是什么。同 CSS 的 cursor。
@@ -159,4 +163,7 @@ function pie2(){
         seriesIndex: 0,
         dataIndex: 0
     });
+    setTimeout(function () { 
+        $(".d-right-2").css('display','inline-block'); 
+    }, 1400);  
 }
