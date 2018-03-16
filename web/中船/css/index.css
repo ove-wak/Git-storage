@@ -1,6 +1,7 @@
 .content{
     background: url("../static/index/bg.png") no-repeat;
     background-size: 100% 100%;
+    position: relative;
 }
 .head{
     height: 2.18rem;/*218*/
@@ -349,18 +350,99 @@
 .right .rb{
     position: absolute;
     right: 0.24rem;
-    bottom: 0.04rem;
+    bottom: 0.01rem;
 }
 /* right end */
 
 /* common */
-#pie-doughnut-1{
-    width: 2.55rem;
-    height: 2.55rem;
+.data{
+    width: 100%;
+    height: 1.60rem;
+    margin-top: -0.2rem;
+    clear: both;
 }
+.d-left{
+    width: 1.5rem;
+    height: 1.24rem;
+    font-size: 0.18rem;
+    font-weight: bold;
+    display: inline-block;
+    float: left;
+    margin-left: 1.86rem;
+    margin-top: 0.3rem;
+}
+.d-left div{
+    clear: both;
+    width: 100%;
+    height: 25%;
+    line-height: 0.18rem;
+}
+.d-left span{
+    display: inline-block;
+}
+.d-left .q{
+    display: inline-block;
+    width: 0.18rem;
+    height: 0.18rem;
+    float: left;
+}
+.d-left .w{
+    float: left;
+    margin-left: 0.12rem;
+}
+.d-left .e{
+    color: #00d2ff;
+    float: right;
+}
+.d-l-1 .w{
+    color: #00d2ff;
+}
+.d-l-1 .q{
+    background-color: #00d2ff;
+}
+.d-l-2 .w{
+    color: #5ae06d;
+}
+.d-l-2 .q{
+    background-color: #5ae06d;
+}
+.d-l-3 .w{
+    color: #fff100;
+}
+.d-l-3 .q{
+    background-color: #fff100;
+}
+.d-l-4 .w{
+    color: #c51b00;
+}
+.d-l-4 .q{
+    background-color: #c51b00;
+}
+#pie-doughnut-1,#pie-doughnut-2{
+    float: left;
+    margin-left: 0.28rem;
+    width: 2.25rem;
+    height: 1.6rem;
+    display: inline-block;
+}
+.d-right{
+    float: left;
+    display: inline-block;
+    font-size: 0.22rem;
+    margin-left: 0.2rem;
+    margin-top: 0.5rem;
+}
+.d-right ul{
+    margin: 0rem;
+    padding: 0rem;
+}
+.d-right span{
+    /* letter-spacing: 0.05rem; */
+    margin-left: 0.06rem;
+}
+
 .button{
     text-align: center;
-    background-size: 100% 100%;
     width: 1.66rem;
     height: 0.47rem;
     text-align: left;  
@@ -386,29 +468,27 @@
     width: 1.22rem;
 }
 .button-blue{
-    background: url("../static/index/btn_blue.png") no-repeat;
+    background: url("../static/index/btn_blue.png") no-repeat;   
+    background-size: 100% 100%;
 }
 .button-yellow{
     background: url("../static/index/btn_yellow.png") no-repeat;
+    background-size: 100% 100%;
 }
 .button-red{
     background: url("../static/index/btn_red.png") no-repeat;
+    background-size: 100% 100%;
 }
-.font-2{
-    font-size: 0.2rem;
-    color: #00deff;
-    width: 0.2rem;
-    line-height: 0.22rem;
-}
-.font-3{
-    font-size: 0.2rem;
-    color: #ffffff;
-}
-.font-4{
-    font-size: 0.14rem;
-    color: #03004c;
-}
-.font-5{
-    font-size: 0.14rem;
-    color: #ffffff;
+
+
+.bottom{
+    position: absolute;
+    left: 9.2rem;
+    bottom: 0.67rem;
+    background: url("../static/index//logo.png") no-repeat;   
+    background-size: 100% 100%;
+    width: 3.2rem;
+    height: 0.46rem;
+
+
 }
