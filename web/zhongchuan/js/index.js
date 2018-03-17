@@ -5,9 +5,32 @@ $(window).resize(function(){
     pie2();
 });
 $(document).ready(function(){ 
+    chImg();
     pie1();
     pie2();
 });
+
+Img1 = new Array();
+Img2 = new Array();
+for(var x=0;x<90;x++){
+    if(x<10){
+        Img1[x] = "static/left_light/light_0000"+ x +".png"
+        Img2[x] = "static/right_light/light_right_0000"+ x +".png"
+    }else{
+        Img1[x] = "static/left_light/light_000"+ x +".png"
+        Img2[x] = "static/right_light/light_right_000"+ x +".png"
+    }
+    
+}
+size = Img1.length;  
+i = 0;  
+function chImg(){  
+    $(".picID1").attr('src',Img1[i]);  
+    $(".picID2").attr('src',Img2[i]); 
+    i++;  
+    if (i>=size) i = 0;  
+    setTimeout("chImg()",33);
+} 
 
 function pie1(){
     var echart = echarts.init(document.getElementById('pie-doughnut-1'));  

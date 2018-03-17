@@ -1,10 +1,12 @@
-/* 适配:chrome的字号限制12px问题未解决;360浏览器极速模式未解决; */
+/* 适配:chrome的字号限制12px问题未解决;360浏览器极速模式未解决;
+        js强制解决了一下,仍不能完全兼容,但一般笔记本屏幕可以.
+ */
 html,body{
     width:100%;
     height: 100%;
     /* min-width: 1852px;
     min-height: 1200px; */
-    /* overflow:hidden; */
+    -webkit-text-size-adjust:none;
     margin:0 auto;
     padding:0;
     background-color: black;
@@ -38,7 +40,9 @@ html,body{
 .font-4{
     font-size: 0.14rem;
     color: #03004c;
-    font-weight: bold;
+    font-weight: bold;/* 
+    -webkit-transform: scale(0.8);
+    transform: scale(0.8); */
 }
 .font-5{
     font-size: 0.14rem;
