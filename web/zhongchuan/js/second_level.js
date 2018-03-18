@@ -5,15 +5,49 @@ $(window).resize(function(){
     pie2();
 });
 $(document).ready(function(){ 
+    // 目标管控和公司治理页面进入
+    var myid=GetQueryString("id");
+    if(myid !=null && myid.toString().length>1)
+    {
+       if(myid == "mbgk"){
+            $(".left").css('display','inline-block'); 
+       }else{
+            $(".right").css('display','inline-block'); 
+       }
+    }
+
+    $(".back").hover(function(){
+        $(".back-img").css("background","url(static/second/backbutton_selected.png) no-repeat");
+        $(".back-img").css("background-size","100% 100%");
+        $(".back-img").css("margin","-0.13rem -0.13rem -0.13rem -0.13rem");
+        $(".back-img").css("padding","0.13rem 0.13rem 0.13rem 0.13rem");
+        },function(){
+            $(".back-img").css("background","url(static/second/backbutton_normal.png) no-repeat");
+            $(".back-img").css("background-size","100% 100%");
+            $(".back-img").css("margin","");
+            $(".back-img").css("padding","");
+      });
+    $(".close").hover(function(){
+        $(".close-img").css("background","url(static/second/closebutton_selected.png) no-repeat");
+        $(".close-img").css("background-size","100% 100%");
+        $(".close-img").css("margin","-0.13rem -0.13rem -0.13rem -0.13rem");
+        $(".close-img").css("padding","0.13rem 0.13rem 0.13rem 0.13rem");
+        },function(){
+            $(".close-img").css("background","url(static/second/closebutton_normal.png) no-repeat");
+            $(".close-img").css("background-size","100% 100%");
+            $(".close-img").css("margin","");
+            $(".close-img").css("padding","");
+      });
+    $(".second .back").click(function() {
+            window.location.href="index.html";
+    });
+    $(".second .close").click(function() {
+            window.location.href="index.html";
+    });
+
     chImg();
     pie1();
     pie2();
-    $(".left .main-content").click(function() {
-            window.location.href="second_level.html?id=mbgk";
-    });
-    $(".right .main-content").click(function() {
-            window.location.href="second_level.html?id=gszl";
-    });
 });
 
 Img1 = new Array();
@@ -30,12 +64,14 @@ for(var x=0;x<90;x++){
 }
 size = Img1.length;  
 i = 0;  
-function chImg(){  
-    $(".picID1").attr('src',Img1[i]);  
-    $(".picID2").attr('src',Img2[i]); 
-    i++;  
-    if (i>=size) i = 0;  
-    setTimeout("chImg()",33);
+function chImg(){
+    $(".picID1").attr('src',Img1[44]);
+    $(".picID2").attr('src',Img2[44]);   
+    // $(".picID1").attr('src',Img1[i]);  
+    // $(".picID2").attr('src',Img2[i]); 
+    // i++;  
+    // if (i>=size) i = 0;  
+    // setTimeout("chImg()",33);
 } 
 
 function pie1(){
@@ -195,4 +231,12 @@ function pie2(){
     setTimeout(function () { 
         $(".d-right-2").css('display','inline-block'); 
     }, 1400);  
+}
+
+
+function GetQueryString(name)
+{
+     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+     var r = window.location.search.substr(1).match(reg);
+     if(r!=null)return  unescape(r[2]); return null;
 }

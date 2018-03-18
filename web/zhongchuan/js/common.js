@@ -1,4 +1,5 @@
 $(window).resize(function () {      //当浏览器大小变化时页面自适应大小
+    var Btype = BrowserType();
     var whdef = 100/2160;// 表示2160的设计图,使用100PX的默认值
     var hwdef = 100/1400;
     body_height = $(document.body).height();
@@ -9,16 +10,29 @@ $(window).resize(function () {      //当浏览器大小变化时页面自适应
         $(".content").height(body_height);
         $(".content").width((body_height/1400)*2160);
         $(".content").offset({top:0,left:(body_width-(body_height/1400)*2160)/2});
-        if(body_height <1200){
-           $(".font-4").css({
-            '-webkit-transform': 'scale(0.7)',
-            '-o-transform': 'scale(1)'
-           });
-            $(".button .q1").css({width:'0.07rem'});
-            $(".button .q3").css({
-                width: '1.5rem'
-            }); 
-            $(".button").css({'line-height':'0.6rem'});
+        // 首页字体溢出的问题进行适配
+        if(!!!Btype['edge'] && !!!Btype['safari'] && !!!Btype['ie'] && !!!Btype['opera']){
+            if(body_height <914){
+               $(".index .font-4").css({
+                '-webkit-transform': 'scale(0.75)',
+                '-o-transform': 'scale(1)'
+               });
+                $(".index .button .q1").css({width:'0.07rem'});
+                $(".index .button .q3").css({
+                    width: '1.5rem'
+                }); 
+                $(".index .button").css({'line-height':'0.6rem'});
+            }else{
+                $(".index .font-4").css({
+                '-webkit-transform': '',
+                '-o-transform': ''
+               });
+                $(".index .button .q1").css({width:''});
+                $(".index .button .q3").css({
+                    width: '1.22rem'
+                }); 
+                $(".index .button").css({'line-height':'0.47rem'});
+            }  
         }
         $(".content").css('display','block');        
     }else{
@@ -27,16 +41,29 @@ $(window).resize(function () {      //当浏览器大小变化时页面自适应
         $(".content").height((body_width/2160)*1400);
         $(".content").width(body_width);
         $(".content").offset({top:(body_height-(body_width/2160)*1400)/2,left:0});
-        if(body_width <1852){
-           $(".font-4").css({
-            '-webkit-transform': 'scale(0.7)',
-            '-o-transform': 'scale(1)'
-           });
-            $(".button .q1").css({width:'0.07rem'});
-            $(".button .q3").css({
-                width: '1.5rem'
-            }); 
-            $(".button").css({'line-height':'0.6rem'});
+        if(!!!Btype['edge'] && !!!Btype['safari'] && !!!Btype['ie'] && !!!Btype['opera']){
+            if(body_width <1410){
+               $(".index .font-4").css({
+                '-webkit-transform': 'scale(0.75)',
+                '-o-transform': 'scale(1)'
+               });
+                $(".index .button .q1").css({width:'0.07rem'});
+                $(".index .button .q3").css({
+                    width: '1.5rem'
+                }); 
+                $(".index .button").css({'line-height':'0.6rem'});
+            }else{
+                $(".index .font-4").css({
+                '-webkit-transform': '',
+                '-o-transform': ''
+               });
+                $(".index .button .q1").css({width:''});
+                $(".index .button .q3").css({
+                    width: '1.22rem'
+                }); 
+                $(".index .button").css({'line-height':'0.47rem'});
+            }
+        
         }
         $(".content").css('display','block');
     }
@@ -44,7 +71,8 @@ $(window).resize(function () {      //当浏览器大小变化时页面自适应
 });
 
 $(document).ready(function(){
-    // 页面自适应大小 
+    // 页面自适应大小
+    var Btype = BrowserType(); 
     var whdef = 100/2160;// 表示2160的设计图,使用100PX的默认值
     var hwdef = 100/1400;
     body_height = $(document.body).height();
@@ -55,16 +83,20 @@ $(document).ready(function(){
         $(".content").height(body_height);
         $(".content").width((body_height/1400)*2160);
         $(".content").offset({top:0,left:(body_width-(body_height/1400)*2160)/2});
-        if(body_height <1200){
-           $(".font-4").css({
-            '-webkit-transform': 'scale(0.75)',
-            '-o-transform': 'scale(1)'
-           });
-            $(".button .q1").css({width:'0.07rem'});
-            $(".button .q3").css({
-                width: '1.5rem'
-            }); 
-            $(".button").css({'line-height':'0.6rem'});
+        // 首页字体溢出的问题进行适配
+        if(!!!Btype['edge'] && !!!Btype['safari'] && !!!Btype['ie'] && !!!Btype['opera']){
+            if(body_height <914){
+               $(".index .font-4").css({
+                '-webkit-transform': 'scale(0.75)',
+                '-o-transform': 'scale(1)'
+               });
+                $(".index .button .q1").css({width:'0.07rem'});
+                $(".index .button .q3").css({
+                    width: '1.5rem'
+                }); 
+                $(".index .button").css({'line-height':'0.6rem'});
+            }
+        
         }
         $(".content").css('display','block');
     }else{
@@ -73,19 +105,37 @@ $(document).ready(function(){
         $(".content").height((body_width/2160)*1400);
         $(".content").width(body_width);
         $(".content").offset({top:(body_height-(body_width/2160)*1400)/2,left:0});
-        if(body_width <1852){
-           $(".font-4").css({
-            '-webkit-transform': 'scale(0.75)',
-            '-o-transform': 'scale(1)'
-           });
-            $(".button .q1").css({width:'0.07rem'});
-            $(".button .q3").css({
-                width: '1.5rem'
-            }); 
-            $(".button").css({'line-height':'0.6rem'});
+        // 首页字体溢出的问题进行适配
+        if(!!!Btype['edge'] && !!!Btype['safari'] && !!!Btype['ie'] && !!!Btype['opera']){
+            if(body_width <1410){
+               $(".index .font-4").css({
+                '-webkit-transform': 'scale(0.75)',
+                '-o-transform': 'scale(1)'
+               });
+                $(".index .button .q1").css({width:'0.07rem'});
+                $(".index .button .q3").css({
+                    width: '1.5rem'
+                }); 
+                $(".index .button").css({'line-height':'0.6rem'});
+            }
+
         }
         $(".content").css('display','block');
     }
     
 
 });
+
+function BrowserType()
+{
+    var Sys = {};
+    var ua = navigator.userAgent.toLowerCase();
+    var s;
+    (s = ua.indexOf('edge') !== - 1 ? Sys.edge = 'edge' : ua.match(/rv:([\d.]+)\) like gecko/)) ? Sys.ie = s[1]:
+        (s = ua.match(/msie ([\d.]+)/)) ? Sys.ie = s[1] :
+        (s = ua.match(/firefox\/([\d.]+)/)) ? Sys.firefox = s[1] :
+        (s = ua.match(/chrome\/([\d.]+)/)) ? Sys.chrome = s[1] :
+        (s = ua.match(/opera.([\d.]+)/)) ? Sys.opera = s[1] :
+        (s = ua.match(/version\/([\d.]+).*safari/)) ? Sys.safari = s[1] : 0;
+    return Sys;
+}

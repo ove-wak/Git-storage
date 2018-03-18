@@ -491,6 +491,29 @@
     background: url("../static/index/btn_red.png") no-repeat;
     background-size: 100% 100%;
 }
+.font-2{
+    font-size: 0.2rem;
+    color: #00deff;
+    width: 0.2rem;
+    line-height: 0.22rem;
+}
+.font-3{
+    font-size: 0.2rem;
+    color: #ffffff;
+    font-weight: bold;
+}
+.font-4{
+    font-size: 0.14rem;
+    color: #03004c;
+    font-weight: bold;/* 
+    -webkit-transform: scale(0.8);
+    transform: scale(0.8); */
+}
+.font-5{
+    font-size: 0.14rem;
+    color: #ffffff;
+    font-weight: bold;
+}
 
 
 .bottom{
