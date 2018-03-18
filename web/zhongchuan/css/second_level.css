@@ -465,7 +465,36 @@
     background: url("../static/second/attainmentrate_1.png") no-repeat;   
     background-size: 100% 100%;
     width: 5.21rem;
-    height: 3.09rem;
+    height: 3.29rem;
+    position: relative;
+    margin-top: -0.15rem;
+}
+.left .data .dcl .text{
+    position: absolute;
+    top: 0.22rem;
+    left: 0.8rem;
+    letter-spacing:0.2rem;
+}
+#pie-doughnut-1{
+    width: 1.94rem;
+    height: 1.94rem;
+    position: absolute;
+    left: 2.87rem;
+}
+.left .data .dcl .num{
+    font-size: 0.24rem;
+    position: absolute;
+    top: 0.6rem;
+    left: 0rem;
+}
+.left .data .dcl .num span{
+    margin-left: 0.06rem;
+}
+.left .data .dcl .list{
+    font-size: 0.21rem;
+    position: absolute;
+    top: 2.2rem;
+    left: 0rem;
 }
 .left .data .ldgz{
     background: url("../static/second/Brightspot_1.png") no-repeat;   
@@ -473,6 +502,14 @@
     width: 5.21rem;
     height: 4.16rem;
     margin-top: 0.1rem;
+    position: relative;
+}
+.left .data .ldgz .text{
+    position: absolute;
+    display: inline-block;
+    top: 0.06rem;
+    left: 0.8rem;
+    letter-spacing: 0.04rem;
 }
 .left .data .bhqk{
     background: url("../static/second/changes_1.png") no-repeat;   
@@ -480,12 +517,50 @@
     width: 5.21rem;
     height: 3.01rem;
     margin-top: 0.1rem;
+    position: relative;
+}
+.left .data .bhqk .text{
+    position: absolute;
+    display: inline-block;
+    top: 0.06rem;
+    left: 0.8rem;
+    letter-spacing: 0.04rem;
 }
 .right .data .dcl{
     background: url("../static/second/attainmentrate_2.png") no-repeat;   
     background-size: 100% 100%;
-    width: 5.21rem;
-    height: 3.09rem;
+     width: 5.21rem;
+    height: 3.29rem;
+    position: relative;
+    margin-top: -0.15rem;
+}
+.right .data .dcl .text{
+    position: absolute;
+    top: 0.22rem;
+    right: 0.6rem;
+    letter-spacing:0.2rem;
+}
+#pie-doughnut-2{
+    width: 1.94rem;
+    height: 1.94rem;
+    position: absolute;
+    right: 2.87rem;
+    top: 0rem;
+}
+.right .data .dcl .num{
+    font-size: 0.24rem;
+    position: absolute;
+    top: 0.6rem;
+    right: 0.5rem;
+}
+.right .data .dcl .num span{
+    margin-left: 0.06rem;
+}
+.right .data .dcl .list{
+    font-size: 0.21rem;
+    position: absolute;
+    top: 2.2rem;
+    right: 0rem;
 }
 .right .data .ldgz{
     background: url("../static/second/Brightspot_2.png") no-repeat;   
@@ -493,6 +568,14 @@
     width: 5.21rem;
     height: 4.16rem;
     margin-top: 0.1rem;
+    position: relative;
+}
+.right .data .ldgz .text{
+    position: absolute;
+    display: inline-block;
+    top: 0.06rem;
+    right: 0.8rem;
+    letter-spacing: 0.04rem;
 }
 .right .data .bhqk{
     background: url("../static/second/changes_2.png") no-repeat;   
@@ -500,86 +583,95 @@
     width: 5.21rem;
     height: 3.01rem;
     margin-top: 0.1rem;
+    position: relative;
 }
-/* .d-left{
-    width: 1.5rem;
-    height: 1.24rem;
-    font-size: 0.18rem;
-    font-weight: bold;
+.right .data .bhqk .text{
+    position: absolute;
     display: inline-block;
-    float: left;
-    margin-left: 1.86rem;
-    margin-top: 0.43rem;
+    top: 0.06rem;
+    right: 0.8rem;
+    letter-spacing: 0.04rem;
 }
-.d-left div{
-    clear: both;
-    width: 1.5rem;
+.dcl .list{
+    width: 100%;
+}
+.dcl .list div{
+    width: 33%;
+    display: inline-block;
     height: 0.21rem;
-    line-height: 0.18rem;
+    line-height: 0.21rem;
+    margin: 0.06rem 0.4rem;
 }
-.d-left span{
+.dcl .list span{
     display: inline-block;
 }
-.d-left .q{
+.dcl .list .q{
     display: inline-block;
-    width: 0.18rem;
-    height: 0.18rem;
+    width: 0.21rem;
+    height: 0.21rem;
     float: left;
 }
-.d-left .w{
+.dcl .list .w{
     float: left;
     margin-left: 0.12rem;
 }
-.d-left .e{
+.dcl .list .e{
     color: #00d2ff;
     float: right;
 }
-.d-l-1 .w{
+.dcl .list .d-l-1 .w{
     color: #00d2ff;
 }
-.d-l-1 .q{
+.dcl .list .d-l-1 .q{
     background-color: #00d2ff;
 }
-.d-l-2 .w{
+.dcl .list .d-l-2 .w{
     color: #5ae06d;
 }
-.d-l-2 .q{
+.dcl .list .d-l-2 .q{
     background-color: #5ae06d;
 }
-.d-l-3 .w{
+.dcl .list .d-l-3 .w{
     color: #fff100;
 }
-.d-l-3 .q{
+.dcl .list .d-l-3 .q{
     background-color: #fff100;
 }
-.d-l-4 .w{
+.dcl .list .d-l-4 .w{
     color: #c51b00;
 }
-.d-l-4 .q{
+.dcl .list .d-l-4 .q{
     background-color: #c51b00;
 }
-#pie-doughnut-1,#pie-doughnut-2{
-    float: left;
-    margin-left: 0.28rem;
-    width: 2.25rem;
-    height: 1.6rem;
-    display: inline-block;
+.ldgz .back-line{
+    background: url("../static/second/Strip2.png") no-repeat;   
+    background-size: 100% 100%;
+    height: 3.1rem;
+    width: 0.03rem;
+    top: 0.7rem;
+    right: 0.15rem;
+    position: absolute;
 }
-.d-right{
-    float: left;
-    display: none;
-    font-size: 0.22rem;
-    margin-left: 0.2rem;
-    margin-top: 0.5rem;
+.ldgz #scoll-1{
+    cursor: pointer;
+    background: url("../static/second/Strip1.png") no-repeat;   
+    background-size: 100% 100%;
+    height: 0.26rem;
+    width: 0.05rem;
+    top: 0.7rem;
+    right: 0.15rem;
+    position: absolute;
 }
-.d-right ul{
-    margin: 0rem;
-    padding: 0rem;
+.ldgz .text-content{
+    cursor: pointer;
+    height: 3rem;
+    width: 4.4rem;
+    left: 0.33rem;
+    position: absolute;
+    top: 0.9rem;
+    overflow: hidden;
 }
-.d-right span{
-    margin-left: 0.06rem;
-}
- */
+
 .button{
     cursor:pointer;
     text-align: center;
@@ -595,10 +687,10 @@
     line-height: 0.58rem;
 }
 .button .q3{
-        text-align: center;
+    text-align: center;
     display: inline-block;
     line-height: 0.28rem;
-    margin-top: 0.01rem;
+    margin-top: 0.04rem;
     width: 1.9rem;
 }
 .button-blue{

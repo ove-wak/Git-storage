@@ -12,7 +12,7 @@ $(window).resize(function () {      //当浏览器大小变化时页面自适应
         $(".content").offset({top:0,left:(body_width-(body_height/1400)*2160)/2});
         // 首页字体溢出的问题进行适配
         if(!!!Btype['edge'] && !!!Btype['safari'] && !!!Btype['ie'] && !!!Btype['opera']){
-            if(body_height <914){
+            if(body_height < 960){
                $(".index .font-4").css({
                 '-webkit-transform': 'scale(0.75)',
                 '-o-transform': 'scale(1)'
@@ -42,7 +42,7 @@ $(window).resize(function () {      //当浏览器大小变化时页面自适应
         $(".content").width(body_width);
         $(".content").offset({top:(body_height-(body_width/2160)*1400)/2,left:0});
         if(!!!Btype['edge'] && !!!Btype['safari'] && !!!Btype['ie'] && !!!Btype['opera']){
-            if(body_width <1410){
+            if(body_width <1481){
                $(".index .font-4").css({
                 '-webkit-transform': 'scale(0.75)',
                 '-o-transform': 'scale(1)'
@@ -85,7 +85,7 @@ $(document).ready(function(){
         $(".content").offset({top:0,left:(body_width-(body_height/1400)*2160)/2});
         // 首页字体溢出的问题进行适配
         if(!!!Btype['edge'] && !!!Btype['safari'] && !!!Btype['ie'] && !!!Btype['opera']){
-            if(body_height <914){
+            if(body_height <960){
                $(".index .font-4").css({
                 '-webkit-transform': 'scale(0.75)',
                 '-o-transform': 'scale(1)'
@@ -107,7 +107,7 @@ $(document).ready(function(){
         $(".content").offset({top:(body_height-(body_width/2160)*1400)/2,left:0});
         // 首页字体溢出的问题进行适配
         if(!!!Btype['edge'] && !!!Btype['safari'] && !!!Btype['ie'] && !!!Btype['opera']){
-            if(body_width <1410){
+            if(body_width <1481){
                $(".index .font-4").css({
                 '-webkit-transform': 'scale(0.75)',
                 '-o-transform': 'scale(1)'
