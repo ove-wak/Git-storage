@@ -154,9 +154,9 @@
     display: inline-block;
     margin-top: 0.33rem;
 }
-/* .l-1-1 div .button:hover{
-    margin-top: 0.29rem;
-} */
+.l-1-1 div .button:hover{
+    margin-top: 0.32rem;
+}
 .l-1-2{
     text-align: center;
     margin-left: 1.74rem;
@@ -166,7 +166,7 @@
     margin-top: 0.14rem;
 }
 .l-1-2 .button:last-child:hover{
-    margin-top: 0.1rem;
+    margin-top: 0.13rem;
 }
 .l-1-3{
     text-align: center;
@@ -182,7 +182,7 @@
     margin-top: 0.33rem;
 }
 .l-1-3 div .button:hover{
-    margin-top: 0.29rem;
+    margin-top: 0.32rem;
 }
 .l-2{
     width: 12.96rem;
@@ -256,8 +256,8 @@
     float: left;
 }
 .l-34-all .button:hover{
-    margin-top: 0.06rem;
-    margin-left: 0.18rem;
+    margin-top: 0.09rem;
+    margin-left: 0.20rem;
 }
 .l-3{
     display: inline-block;
@@ -306,17 +306,18 @@
     margin-left: 0.32rem;
 }
 .l-34-all .l-4-4 .button:nth-child(2):hover{
-    margin-left: 0.14rem;
+    margin-left: 0.16rem;
     margin-bottom: -0.09rem;
 }
 .l-34-all .l-4-4 .button:nth-child(3):hover{
-    margin-left: 0.28rem;
+    margin-left: 0.3rem;
+    margin-bottom: -0.069rem;
 }
 .l-34-all .l-4-4 .button:nth-child(4):hover{
-    margin-left: 0.14rem;
+    margin-left: 0.16rem;
 }
 .l-34-all .l-4-4 .button:nth-child(5):hover{
-    margin-left: 0.28rem;
+    margin-left: 0.3rem;
 }
 .l-5{
     width: 12.96rem;
@@ -339,7 +340,7 @@
     margin-top: 0.08rem;
 }
 .l-5-2 div .button:hover{
-    margin-top: -0.07rem;
+    margin-top: 0.07rem;
 }
 .l-5-3{
     text-align: center;
@@ -355,7 +356,7 @@
     margin-top: 0.08rem;
 }
 .l-5-3 div .button:hover{
-    margin-top: -0.07rem;
+    margin-top: 0.07rem;
 }
 .l-5-4{
     margin-top: 0.06rem;
@@ -372,12 +373,12 @@
     margin-left: 0.33rem;
 }
 .l-5-4 div .button:first-child:hover{
-    margin-top: -0.07rem;
-    margin-left: 0.2rem;
+    margin-top: 0.07rem;
+    margin-left: 0.33rem;
 }
 .l-5-4 div .button:last-child:hover{
-    margin-top: -0.07rem;
-    margin-left: 0.18rem;
+    margin-top: 0.07rem;
+    margin-left: 0.31rem;
 }
 .l-5-4 .button{   
     float: left;
@@ -430,14 +431,14 @@
     margin-top: 0.14rem;
 }
 .right .rr .button:hover{
-    margin-top: -0.01rem;
-    margin-right: 0.19rem;
+    margin-top: 0.13rem;
+    margin-right: 0.28rem;
     margin-bottom: -0.16rem;
 }
 .right .rr .button:nth-child(4):hover{
-        margin-top: -0.01rem;
-    margin-right: 0.19rem;
-    margin-bottom: -0.15rem;
+        margin-top: 0.13rem;
+    margin-right: 0.28rem;
+    margin-bottom: -0.069rem;
 }
 .right .rr-2{
     margin-left: 0.22rem;
@@ -450,8 +451,8 @@
     margin-top: 0.6rem;
 }
 .right .rr-2 .button:hover{
-    margin-top: 0.45rem;
-    margin-right: 0.19rem;
+    margin-top: 0.59rem;
+    margin-right: 0.28rem;
 }
 .right .rb{
     position: absolute;
@@ -668,8 +669,10 @@
     right: 0.15rem;
     position: absolute;
 } */
-.ldgz .text-content{
+.ldgz{
     cursor: pointer;
+}
+.ldgz .text-content{   
     height: 3.2rem;
     width: 4.76rem;
     left: 0.33rem;
@@ -679,6 +682,30 @@
     font-size: 0.18rem;
     color: #ffffff;
     overflow-y: scroll;
+}
+.text-content #colee1{
+    width: 4.74rem;
+}
+.text-content #colee2{
+    width: 4.74rem;
+}
+.text-content #coleee1{
+    width: 4.74rem;
+}
+.text-content #coleee2{
+    width: 4.74rem;
+}
+.text-content #r-colee1{
+    width: 4.74rem;
+}
+.text-content #r-colee2{
+    width: 4.74rem;
+}
+.text-content #r-coleee1{
+    width: 4.74rem;
+}
+.text-content #r-coleee2{
+    width: 4.74rem;
 }
 .ldgz .text-content .p{
     position: relative;
@@ -692,15 +719,17 @@
     width: 0.15rem;
     height: 0.13rem;
     position: absolute;
-    top: 0.08rem;
+    top: 0.05rem;
     left: 0rem;
 }
 .ldgz .text-content .t{
     display: inline-block;
     width: 4.15rem;
 }
-.bhqk .text-content{
+.bhqk{
     cursor: pointer;
+}
+.bhqk .text-content{
     height: 2.08rem;
     width: 4.76rem;
     left: 0.33rem;
@@ -773,7 +802,7 @@
     text-align: center;
     display: inline-block;
     line-height: 0.28rem;
-    margin-top: 0.04rem;
+    margin-top: 0.02rem;
     width: 1.85rem;
 }
 .button-blue{
@@ -783,8 +812,8 @@
 .button-blue:hover{
     background: url("../static/second/btn_green_selected.png") no-repeat;   
     background-size: 100% 100%;
-    padding: 0.04rem 0.04rem 0.04rem 0.04rem;
-    /* margin: -0.04rem -0.04rem -0.04rem -0.04rem; */
+    padding: 0.01rem 0.06rem 0.07rem 0.02rem;
+    margin: -0.01rem -0.06rem -0.07rem -0.02rem;
 }
 .button-yellow{
     background: url("../static/second/btn_yellow_normal.png") no-repeat;
@@ -793,8 +822,8 @@
 .button-yellow:hover{
     background: url("../static/second/btn_yellow_selected.png") no-repeat;   
     background-size: 100% 100%;
-    padding: 0.04rem 0.04rem 0.04rem 0.04rem;
-    margin: -0.04rem -0.04rem -0.04rem -0.04rem;
+    padding: 0.01rem 0.06rem 0.07rem 0.02rem;
+    margin: -0.01rem -0.06rem -0.07rem -0.02rem;
 }
 .button-red{
     background: url("../static/second/btn_red_normal.png") no-repeat;
@@ -803,8 +832,8 @@
 .button-red:hover{
     background: url("../static/second/btn_red_selected.png") no-repeat;   
     background-size: 100% 100%;
-    padding: 0.04rem 0.04rem 0.04rem 0.04rem;
-    margin: -0.04rem -0.04rem -0.04rem -0.04rem;
+    padding: 0.01rem 0.06rem 0.07rem 0.02rem;
+    margin: -0.01rem -0.06rem -0.07rem -0.02rem;
 }
 .font-2{
     font-size: 0.24rem;

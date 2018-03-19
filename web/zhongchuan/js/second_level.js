@@ -99,7 +99,7 @@ $(document).ready(function(){
     });
     
     //呼吸灯
-    chImg();
+    // chImg();
     //圆饼图表效果
     pie1();
     pie2();
@@ -135,6 +135,11 @@ function scoll1(){
         clearInterval(MyMar1);
         $("#colee").getNiceScroll().show();
     });
+    $('#ascrail2000').mouseover(function() {
+        clearInterval(MyMar1);
+        $("#colee").getNiceScroll().show();
+    });
+    $('#ascrail2000').css('cursor','pointer');
     //鼠标移开时重设定时器
     $('.ldgz').mouseout(function(){
         MyMar1=setInterval(Marquee1,speed);  
@@ -158,8 +163,6 @@ function scoll2(){
     function Marqueee1(){
     //当滚动至colee1与colee2交界时
     $("#coleee").getNiceScroll().hide();
-    console.log(coleee2.offsetTop);
-    console.log(coleee.scrollTop);
     if(coleee2.offsetTop-coleee.scrollTop<=0){
      coleee.scrollTop-=coleee2.offsetTop; //colee跳到最顶端
      }else{
@@ -172,6 +175,11 @@ function scoll2(){
         clearInterval(MyMarr1);
         $("#coleee").getNiceScroll().show();
     });
+    $('#ascrail2001').mouseover(function() {
+        clearInterval(MyMarr1);
+        $("#coleee").getNiceScroll().show();
+    });
+    $('#ascrail2001').css('cursor','pointer');
     //鼠标移开时重设定时器
     $('.bhqk').mouseout(function(){
         MyMarr1=setInterval(Marqueee1,speed);  
@@ -207,6 +215,11 @@ function scoll3(){
         clearInterval(MyMar1);
         $("#r-colee").getNiceScroll().show();
     });
+    $('#ascrail2000').mouseover(function() {
+        clearInterval(MyMar1);
+        $("#r-colee").getNiceScroll().show();
+    });
+    $('#ascrail2000').css('cursor','pointer');
     //鼠标移开时重设定时器
     $('.ldgz').mouseout(function(){
         MyMar1=setInterval(Marquee1,speed);  
@@ -230,8 +243,6 @@ function scoll4(){
     function Marqueee1(){
     //当滚动至colee1与colee2交界时
     $("#r-coleee").getNiceScroll().hide();
-    console.log(coleee2.offsetTop);
-    console.log(coleee.scrollTop);
     if(coleee2.offsetTop-coleee.scrollTop<=0){
      coleee.scrollTop-=coleee2.offsetTop; //colee跳到最顶端
      }else{
@@ -244,6 +255,11 @@ function scoll4(){
         clearInterval(MyMarr1);
         $("#r-coleee").getNiceScroll().show();
     });
+    $('#ascrail2001').mouseover(function() {
+        clearInterval(MyMarr1);
+        $("#r-coleee").getNiceScroll().show();
+    });
+    $('#ascrail2001').css('cursor','pointer');
     //鼠标移开时重设定时器
     $('.bhqk').mouseout(function(){
         MyMarr1=setInterval(Marqueee1,speed);  
@@ -251,29 +267,29 @@ function scoll4(){
 }
 
 
-//呼吸灯
-Img1 = new Array();
-Img2 = new Array();
-for(var x=0;x<90;x++){
-    if(x<10){
-        Img1[x] = "static/left_light/light_0000"+ x +".png"
-        Img2[x] = "static/right_light/light_right_0000"+ x +".png"
-    }else{
-        Img1[x] = "static/left_light/light_000"+ x +".png"
-        Img2[x] = "static/right_light/light_right_000"+ x +".png"
-    }    
-}
-size = Img1.length;  
-i = 0;  
-function chImg(){
-    $(".picID1").attr('src',Img1[44]);
-    $(".picID2").attr('src',Img2[44]);   
-    // $(".picID1").attr('src',Img1[i]);  
-    // $(".picID2").attr('src',Img2[i]); 
-    // i++;  
-    // if (i>=size) i = 0;  
-    // setTimeout("chImg()",33);
-} 
+// //呼吸灯
+// Img1 = new Array();
+// Img2 = new Array();
+// for(var x=0;x<90;x++){
+//     if(x<10){
+//         Img1[x] = "static/left_light/light_0000"+ x +".png"
+//         Img2[x] = "static/right_light/light_right_0000"+ x +".png"
+//     }else{
+//         Img1[x] = "static/left_light/light_000"+ x +".png"
+//         Img2[x] = "static/right_light/light_right_000"+ x +".png"
+//     }    
+// }
+// size = Img1.length;  
+// i = 0;  
+// function chImg(){
+//     $(".picID1").attr('src',Img1[44]);
+//     $(".picID2").attr('src',Img2[44]);   
+//     // $(".picID1").attr('src',Img1[i]);  
+//     // $(".picID2").attr('src',Img2[i]); 
+//     // i++;  
+//     // if (i>=size) i = 0;  
+//     // setTimeout("chImg()",33);
+// } 
 
 function pie1(){
     var echart = echarts.init(document.getElementById('pie-doughnut-1'));  
