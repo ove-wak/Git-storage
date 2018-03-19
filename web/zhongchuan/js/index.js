@@ -35,7 +35,7 @@ function chImg(){
     $(".picID2").attr('src',Img2[i]); 
     i++;  
     if (i>=size) i = 0;  
-    setTimeout("chImg()",33);
+    setTimeout("chImg()",22);
 } 
 
 function pie1(){

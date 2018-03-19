@@ -1,42 +1,43 @@
-var mbgk_ldgz = ['6月，国务院办公厅发文，同意在中船重工建设国家第二批双创示范基地。',
-'完成第一阶段“压减”任务，超额完成年度目标，获国资委对集团公司经营业绩考核加分。',
-'2017年新承接船舶海工项目122艘/747万吨/196亿元，吨位占全球接单量10.1%，远超集团公司2017年全球接单占比6%的指标要求。',
-'《财富》世界500强排名第一次位居全球船舶企业榜首。',
-'境外实现营业收入62.41亿元、利润22.67亿元，分别是上年的2.21倍和6.09倍，国际化经营迈开坚实步伐。',
-'完成11个事业群组建工作，与地方政府的战略合作协议金额已达20亿元。',
-'实施国内首例市场化债转股，增加中国重工资本金218.68亿元，可减少年利息支出8.48亿元，同时降低集团公司资产负债率4个百分点。',
-'中国动力低速机资源重组顺利完成。',
-'集团公司首次制定并发布“十三五”质量发展规划和安全生产发展规划，创新提出建立“质量领军型企业”和“本质安全型企业”。' ,
-'2017年发生死亡事故起数、人数，创集团公司有史以来最低。百亿产值死亡人数0.38人，创集团公司有史以来最低。',
-'推进领导干部交流工作，共计57人次的成员单位领导人员根据工作需要跨单位交流任职。',
-'入选中国企业慈善公益500强，位列第39名；集团公司2016年社会责任报告连续获金蜜蜂领袖企业奖。'
-]
-var gszl_ldgz = [
-'6月，国务院办公厅发文，同意在中船重工建设国家第二批双创示范基地。',
-'完成第一阶段“压减”任务，超额完成年度目标，获国资委对集团公司经营业绩考核加分。',
-'2017年新承接船舶海工项目122艘/747万吨/196亿元，吨位占全球接单量10.1%，远超集团公司2017年全球接单占比6%的指标要求。',
-'《财富》世界500强排名第一次位居全球船舶企业榜首。',
-'境外实现营业收入62.41亿元、利润22.67亿元，分别是上年的2.21倍和6.09倍，国际化经营迈开坚实步伐。',
-'完成11个事业群组建工作，与地方政府的战略合作协议金额已达20亿元。',
-'实施国内首例市场化债转股，增加中国重工资本金218.68亿元，可减少年利息支出8.48亿元，同时降低集团公司资产负债率4个百分点。',
-'中国动力低速机资源重组顺利完成。',
-'集团公司首次制定并发布“十三五”质量发展规划和安全生产发展规划，创新提出建立“质量领军型企业”和“本质安全型企业”。' ,
-'2017年发生死亡事故起数、人数，创集团公司有史以来最低。百亿产值死亡人数0.38人，创集团公司有史以来最低。',
-'推进领导干部交流工作，共计57人次的成员单位领导人员根据工作需要跨单位交流任职。',
-'入选中国企业慈善公益500强，位列第39名；集团公司2016年社会责任报告连续获金蜜蜂领袖企业奖。'
-]
-var mbgk_bhqk = {
+// var mbgk_ldgz = ['6月，国务院办公厅发文，同意在中船重工建设国家第二批双创示范基地。',
+// '完成第一阶段“压减”任务，超额完成年度目标，获国资委对集团公司经营业绩考核加分。',
+// '2017年新承接船舶海工项目122艘/747万吨/196亿元，吨位占全球接单量10.1%，远超集团公司2017年全球接单占比6%的指标要求。',
+// '《财富》世界500强排名第一次位居全球船舶企业榜首。',
+// '境外实现营业收入62.41亿元、利润22.67亿元，分别是上年的2.21倍和6.09倍，国际化经营迈开坚实步伐。',
+// '完成11个事业群组建工作，与地方政府的战略合作协议金额已达20亿元。',
+// '实施国内首例市场化债转股，增加中国重工资本金218.68亿元，可减少年利息支出8.48亿元，同时降低集团公司资产负债率4个百分点。',
+// '中国动力低速机资源重组顺利完成。',
+// '集团公司首次制定并发布“十三五”质量发展规划和安全生产发展规划，创新提出建立“质量领军型企业”和“本质安全型企业”。' ,
+// '2017年发生死亡事故起数、人数，创集团公司有史以来最低。百亿产值死亡人数0.38人，创集团公司有史以来最低。',
+// '推进领导干部交流工作，共计57人次的成员单位领导人员根据工作需要跨单位交流任职。',
+// '入选中国企业慈善公益500强，位列第39名；集团公司2016年社会责任报告连续获金蜜蜂领袖企业奖。'
+// ];
+// var gszl_ldgz = [
+// '6月，国务院办公厅发文，同意在中船重工建设国家第二批双创示范基地。',
+// '完成第一阶段“压减”任务，超额完成年度目标，获国资委对集团公司经营业绩考核加分。',
+// '2017年新承接船舶海工项目122艘/747万吨/196亿元，吨位占全球接单量10.1%，远超集团公司2017年全球接单占比6%的指标要求。',
+// '《财富》世界500强排名第一次位居全球船舶企业榜首。',
+// '境外实现营业收入62.41亿元、利润22.67亿元，分别是上年的2.21倍和6.09倍，国际化经营迈开坚实步伐。',
+// '完成11个事业群组建工作，与地方政府的战略合作协议金额已达20亿元。',
+// '实施国内首例市场化债转股，增加中国重工资本金218.68亿元，可减少年利息支出8.48亿元，同时降低集团公司资产负债率4个百分点。',
+// '中国动力低速机资源重组顺利完成。',
+// '集团公司首次制定并发布“十三五”质量发展规划和安全生产发展规划，创新提出建立“质量领军型企业”和“本质安全型企业”。' ,
+// '2017年发生死亡事故起数、人数，创集团公司有史以来最低。百亿产值死亡人数0.38人，创集团公司有史以来最低。',
+// '推进领导干部交流工作，共计57人次的成员单位领导人员根据工作需要跨单位交流任职。',
+// '入选中国企业慈善公益500强，位列第39名；集团公司2016年社会责任报告连续获金蜜蜂领袖企业奖。'
+// ];
+// var mbgk_bhqk = {
 
-}
-var gszl_bhqk = {
+// };
+// var gszl_bhqk = {
 
-}
+// };
 
 $(window).resize(function(){ 
     document.getElementById("pie-doughnut-1").removeAttribute("_echarts_instance_");
     document.getElementById("pie-doughnut-2").removeAttribute("_echarts_instance_"); 
     pie1();
     pie2();
+
 });
 $(document).ready(function(){ 
     // 目标管控和公司治理页面进入
@@ -45,8 +46,26 @@ $(document).ready(function(){
     {
        if(myid == "mbgk"){
             $(".left").css('display','inline-block'); 
+            //滚动条效果
+            if($('#colee').height()<$('#colee1').height())
+                scoll1();
+            else
+                $('#colee').css('overflow-y','hidden');
+            if($('#coleee').height()<$('#coleee1').height())
+                scoll2();
+            else
+                $('#coleee').css('overflow-y','hidden');
        }else{
             $(".right").css('display','inline-block'); 
+            //滚动条效果
+            if($('#r-colee').height()<$('#r-colee1').height())
+                scoll3();
+            else
+                $('#r-colee').css('overflow-y','hidden');
+            if($('#r-coleee').height()<$('#r-coleee1').height())
+                scoll4();
+            else
+                $('#r-coleee').css('overflow-y','hidden');
        }
     }
 
@@ -78,12 +97,161 @@ $(document).ready(function(){
     $(".second .close").click(function() {
             window.location.href="index.html";
     });
-
+    
+    //呼吸灯
     chImg();
+    //圆饼图表效果
     pie1();
     pie2();
 });
 
+function scoll1(){
+    $('#colee').niceScroll({
+        cursorcolor: "#00d2ff",//#CC0071 光标颜色
+        cursoropacitymax: 1, //改变不透明度非常光标处于活动状态（scrollabar“可见”状态），范围从1到0
+        touchbehavior: false, //使光标拖动滚动像在台式电脑触摸设备
+        cursorwidth: "0.055rem", //像素光标的宽度
+        cursorborder: "0rem solid #666", // 游标边框css定义
+        cursorborderradius: "0.05rem",//以像素为光标边界半径
+        autohidemode: "true"
+    });
+    var speed=40;
+    var colee2=document.getElementById("colee2");
+    var colee1=document.getElementById("colee1");
+    var colee=document.getElementById("colee");
+    colee2.innerHTML=colee1.innerHTML; //克隆colee1为colee2
+    function Marquee1(){
+    //当滚动至colee1与colee2交界时
+    $("#colee").getNiceScroll().hide();
+    if(colee2.offsetTop-colee.scrollTop<=0){
+     colee.scrollTop-=colee2.offsetTop; //colee跳到最顶端
+     }else{
+     colee.scrollTop++;
+    }
+    }
+    var MyMar1=setInterval(Marquee1,speed);//设置定时器
+    //鼠标移上时清除定时器达到滚动停止的目的
+    $('.ldgz').mouseover(function() {
+        clearInterval(MyMar1);
+        $("#colee").getNiceScroll().show();
+    });
+    //鼠标移开时重设定时器
+    $('.ldgz').mouseout(function(){
+        MyMar1=setInterval(Marquee1,speed);  
+    });
+}
+function scoll2(){
+    $('#coleee').niceScroll({
+        cursorcolor: "#00d2ff",//#CC0071 光标颜色
+        cursoropacitymax: 1, //改变不透明度非常光标处于活动状态（scrollabar“可见”状态），范围从1到0
+        touchbehavior: false, //使光标拖动滚动像在台式电脑触摸设备
+        cursorwidth: "0.055rem", //像素光标的宽度
+        cursorborder: "0rem solid #666", // 游标边框css定义
+        cursorborderradius: "0.05rem",//以像素为光标边界半径
+        autohidemode: "true"
+    });
+    var speed=40;
+    var coleee2=document.getElementById("coleee2");
+    var coleee1=document.getElementById("coleee1");
+    var coleee=document.getElementById("coleee");
+    coleee2.innerHTML=coleee1.innerHTML; //克隆colee1为colee2
+    function Marqueee1(){
+    //当滚动至colee1与colee2交界时
+    $("#coleee").getNiceScroll().hide();
+    console.log(coleee2.offsetTop);
+    console.log(coleee.scrollTop);
+    if(coleee2.offsetTop-coleee.scrollTop<=0){
+     coleee.scrollTop-=coleee2.offsetTop; //colee跳到最顶端
+     }else{
+     coleee.scrollTop++;
+    }
+    }
+    var MyMarr1=setInterval(Marqueee1,speed);//设置定时器
+    //鼠标移上时清除定时器达到滚动停止的目的
+    $('.bhqk').mouseover(function() {
+        clearInterval(MyMarr1);
+        $("#coleee").getNiceScroll().show();
+    });
+    //鼠标移开时重设定时器
+    $('.bhqk').mouseout(function(){
+        MyMarr1=setInterval(Marqueee1,speed);  
+    });
+}
+function scoll3(){
+    $('#r-colee').niceScroll({
+        cursorcolor: "#00d2ff",//#CC0071 光标颜色
+        cursoropacitymax: 1, //改变不透明度非常光标处于活动状态（scrollabar“可见”状态），范围从1到0
+        touchbehavior: false, //使光标拖动滚动像在台式电脑触摸设备
+        cursorwidth: "0.055rem", //像素光标的宽度
+        cursorborder: "0rem solid #666", // 游标边框css定义
+        cursorborderradius: "0.05rem",//以像素为光标边界半径
+        autohidemode: "true"
+    });
+    var speed=40;
+    var colee2=document.getElementById("r-colee2");
+    var colee1=document.getElementById("r-colee1");
+    var colee=document.getElementById("r-colee");
+    colee2.innerHTML=colee1.innerHTML; //克隆colee1为colee2
+    function Marquee1(){
+    //当滚动至colee1与colee2交界时
+    $("#r-colee").getNiceScroll().hide();
+    if(colee2.offsetTop-colee.scrollTop<=0){
+     colee.scrollTop-=colee2.offsetTop; //colee跳到最顶端
+     }else{
+     colee.scrollTop++;
+    }
+    }
+    var MyMar1=setInterval(Marquee1,speed);//设置定时器
+    //鼠标移上时清除定时器达到滚动停止的目的
+    $('.ldgz').mouseover(function() {
+        clearInterval(MyMar1);
+        $("#r-colee").getNiceScroll().show();
+    });
+    //鼠标移开时重设定时器
+    $('.ldgz').mouseout(function(){
+        MyMar1=setInterval(Marquee1,speed);  
+    });
+}
+function scoll4(){
+    $('#r-coleee').niceScroll({
+        cursorcolor: "#00d2ff",//#CC0071 光标颜色
+        cursoropacitymax: 1, //改变不透明度非常光标处于活动状态（scrollabar“可见”状态），范围从1到0
+        touchbehavior: false, //使光标拖动滚动像在台式电脑触摸设备
+        cursorwidth: "0.055rem", //像素光标的宽度
+        cursorborder: "0rem solid #666", // 游标边框css定义
+        cursorborderradius: "0.05rem",//以像素为光标边界半径
+        autohidemode: "true"
+    });
+    var speed=40;
+    var coleee2=document.getElementById("r-coleee2");
+    var coleee1=document.getElementById("r-coleee1");
+    var coleee=document.getElementById("r-coleee");
+    coleee2.innerHTML=coleee1.innerHTML; //克隆colee1为colee2
+    function Marqueee1(){
+    //当滚动至colee1与colee2交界时
+    $("#r-coleee").getNiceScroll().hide();
+    console.log(coleee2.offsetTop);
+    console.log(coleee.scrollTop);
+    if(coleee2.offsetTop-coleee.scrollTop<=0){
+     coleee.scrollTop-=coleee2.offsetTop; //colee跳到最顶端
+     }else{
+     coleee.scrollTop++;
+    }
+    }
+    var MyMarr1=setInterval(Marqueee1,speed);//设置定时器
+    //鼠标移上时清除定时器达到滚动停止的目的
+    $('.bhqk').mouseover(function() {
+        clearInterval(MyMarr1);
+        $("#r-coleee").getNiceScroll().show();
+    });
+    //鼠标移开时重设定时器
+    $('.bhqk').mouseout(function(){
+        MyMarr1=setInterval(Marqueee1,speed);  
+    });
+}
+
+
+//呼吸灯
 Img1 = new Array();
 Img2 = new Array();
 for(var x=0;x<90;x++){
@@ -95,7 +263,6 @@ for(var x=0;x<90;x++){
         Img2[x] = "static/right_light/light_right_000"+ x +".png"
     }    
 }
-
 size = Img1.length;  
 i = 0;  
 function chImg(){
