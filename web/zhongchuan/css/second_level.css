@@ -299,24 +299,16 @@
     float: left;
     display: inline-block;
 }
-.l-34-all .l-4-4 .button:nth-child(5){
+.l-34-all .l-4-4 .tl{
+    height: 0.68rem;
+}
+.l-34-all .l-4-4 .tl .button:nth-child(2){
     margin-left: 0.32rem;
 }
-.l-34-all .l-4-4 .button:nth-child(3){
-    margin-left: 0.32rem;
-}
-.l-34-all .l-4-4 .button:nth-child(2):hover{
-    margin-left: 0.16rem;
-    margin-bottom: -0.09rem;
-}
-.l-34-all .l-4-4 .button:nth-child(3):hover{
-    margin-left: 0.3rem;
-    margin-bottom: -0.069rem;
-}
-.l-34-all .l-4-4 .button:nth-child(4):hover{
+.l-34-all .l-4-4 .button:nth-child(1):hover{
     margin-left: 0.16rem;
 }
-.l-34-all .l-4-4 .button:nth-child(5):hover{
+.l-34-all .l-4-4 .tl .button:nth-child(2):hover{
     margin-left: 0.3rem;
 }
 .l-5{
@@ -424,19 +416,24 @@
     width: 11.4rem;
     padding-top: 0.14rem;
 }
+.right .rr .tl{
+    width: 11.4rem;
+    height: 0.58rem;
+
+    margin-top: 0.14rem;
+}
 .right .rr .button{
     display: inline-block;
     float: left;
     margin-right: 0.34rem;
-    margin-top: 0.14rem;
 }
 .right .rr .button:hover{
-    margin-top: 0.13rem;
+    /* margin-top: 0.13rem; */
     margin-right: 0.28rem;
     margin-bottom: -0.16rem;
 }
 .right .rr .button:nth-child(4):hover{
-        margin-top: 0.13rem;
+        /* margin-top: 0.13rem; */
     margin-right: 0.28rem;
     margin-bottom: -0.069rem;
 }
@@ -457,7 +454,9 @@
 .right .rb{
     position: absolute;
     right: 0.22rem;
-    bottom: -0.02rem;
+    bottom: 0rem;
+    height: 0.28rem;
+    line-height: 0.28rem;
 }
 /* right end */
 
@@ -621,10 +620,11 @@
 .dcl .list .w{
     float: left;
     margin-left: 0.12rem;
+    width: 0.3rem;
 }
 .dcl .list .e{
     color: #00d2ff;
-    float: right;
+    float: left;
 }
 .dcl .list .d-l-1 .w{
     color: #00d2ff;
@@ -679,7 +679,7 @@
     position: absolute;
     top: 0.7rem;
     overflow-x: hidden;
-    font-size: 0.18rem;
+    font-size: 0.20rem;
     color: #ffffff;
     overflow-y: scroll;
 }
@@ -736,7 +736,7 @@
     position: absolute;
     top: 0.7rem;
     overflow-x: hidden;
-    font-size: 0.18rem;
+    font-size: 0.20rem;
     color: #ffffff;
     overflow-y: scroll;
 }
@@ -745,8 +745,8 @@
     padding-left: 0.4rem;
 }
 .bhqk li{
-    height: 0.18rem;
-    line-height: 0.18rem;
+    height: 0.20rem;
+    line-height: 0.20rem;
     margin-bottom: 0.2rem;
 }
 .bhqk span{
@@ -757,27 +757,27 @@
 .bhqk .r{ 
     vertical-align: middle;
     background-color: #c51b00;
-    width: 0.18rem;
-    height: 0.18rem;
+    width: 0.20rem;
+    height: 0.20rem;
 }
 .bhqk .y{  
     vertical-align: middle;
     background-color: #fff100;
-    width: 0.18rem;
-    height: 0.18rem;
+    width: 0.20rem;
+    height: 0.20rem;
 }
 .bhqk .b{
     vertical-align: middle;
     background-color: #5ae06d;
-    width: 0.18rem;
-    height: 0.18rem;
+    width: 0.20rem;
+    height: 0.20rem;
 }
 .bhqk .jiantou{
     vertical-align: middle;
     background: url("../static/second/Arrow_2-3.png") no-repeat left center; 
     background-size: 100% 50%;
     width: 0.2rem;
-    height: 0.18rem;
+    height: 0.20rem;
 }
 .bhqk .t{
     width: 0.8rem;

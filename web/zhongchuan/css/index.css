@@ -385,12 +385,12 @@
     font-weight: bold;
     display: inline-block;
     float: left;
-    margin-left: 1.86rem;
+    margin-left: 1.76rem;
     margin-top: 0.43rem;
 }
 .d-left div{
     clear: both;
-    width: 1.5rem;
+    width: 1.7rem;
     height: 0.21rem;
     line-height: 0.18rem;
 }
@@ -406,10 +406,11 @@
 .d-left .w{
     float: left;
     margin-left: 0.12rem;
+    width: 0.3rem;
 }
 .d-left .e{
     color: #00d2ff;
-    float: right;
+    float: left;
 }
 .d-l-1 .w{
     color: #00d2ff;
@@ -437,7 +438,7 @@
 }
 #pie-doughnut-1,#pie-doughnut-2{
     float: left;
-    margin-left: 0.28rem;
+    margin-left: 0.38rem;
     width: 2.25rem;
     height: 1.6rem;
     display: inline-block;

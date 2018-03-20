@@ -20,11 +20,11 @@ Img1 = new Array();
 Img2 = new Array();
 for(var x=0;x<90;x++){
     if(x<10){
-        Img1[x] = "static/left_light/light_0000"+ x +".png"
-        Img2[x] = "static/right_light/light_right_0000"+ x +".png"
+        Img1[x] = "static/left_light/light_left2_0000"+ x +".png"
+        Img2[x] = "static/right_light/light_right2_0000"+ x +".png"
     }else{
-        Img1[x] = "static/left_light/light_000"+ x +".png"
-        Img2[x] = "static/right_light/light_right_000"+ x +".png"
+        Img1[x] = "static/left_light/light_left2_000"+ x +".png"
+        Img2[x] = "static/right_light/light_right2_000"+ x +".png"
     }
     
 }
