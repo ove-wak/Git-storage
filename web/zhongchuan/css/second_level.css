@@ -493,9 +493,14 @@
     top: 0.6rem;
     left: 0rem;
 }
+.data .dcl .num li{
+ height: 0.4rem;
+ width: 2rem;
+}
+/* 
 .left .data .dcl .num span{
     margin-left: 0.06rem;
-}
+} */
 .left .data .dcl .list{
     font-size: 0.21rem;
     position: absolute;
@@ -558,10 +563,10 @@
     position: absolute;
     top: 0.6rem;
     right: 0.5rem;
-}
+}/* 
 .right .data .dcl .num span{
     margin-left: 0.06rem;
-}
+} */
 .right .data .dcl .list{
     font-size: 0.21rem;
     position: absolute;
@@ -797,13 +802,16 @@
     margin-left: 0.04rem;
     margin-right: 0.04rem;
     line-height: 0.58rem;
+    width: 0.25rem;
 }
 .button .q3{
     text-align: center;
     display: inline-block;
     line-height: 0.28rem;
     margin-top: 0.02rem;
-    width: 1.85rem;
+    width: 1.92rem;
+    height: 0.55rem;
+    overflow: hidden;
 }
 .button-blue{
     background: url("../static/second/btn_green_normal.png") no-repeat;   

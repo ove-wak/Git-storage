@@ -471,14 +471,16 @@
     margin-left: 0.04rem;
     margin-right: 0.04rem;
     line-height: 0.47rem;
-    /* width: 0.15rem; */
+    width: 0.25rem;
 }
 .button .q3{
     text-align: center;
     display: inline-block;
     line-height: 0.2rem;
     margin-top: 0.05rem;
-    width: 1.22rem;
+    width: 1.26rem;
+    height: 0.38rem;
+    overflow: hidden;
 }
 .button-blue{
     background: url("../static/index/btn_blue.png") no-repeat;   

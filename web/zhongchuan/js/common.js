@@ -18,31 +18,31 @@ $(window).resize(function () {      //当浏览器大小变化时页面自适应
         $(".content").width(body_width);
         $(".content").offset({top:(body_height-(body_width/2160)*1400)/2,left:0});
     }
-    // 首页字体溢出的问题进行适配
-        if(!!!Btype['edge'] && !!!Btype['safari'] && !!!Btype['ie'] && !!!Btype['opera']){
-            if(rem <63){
-               $(".index .font-4").css({
-                // 'font-size':'14px',
-                '-webkit-transform': 'scale('+(rem/100)+')',
-                '-o-transform': 'scale(1)'
-               });
-                $(".index .button .q1").css({width:'0.07rem'});
-                $(".index .button .q3").css({
-                    width: '1.5rem'
-                }); 
-                $(".index .button").css({'line-height':'0.6rem'});
-            }else{
-                $(".index .font-4").css({
-                '-webkit-transform': '',
-                '-o-transform': ''
-               });
-                $(".index .button .q1").css({width:''});
-                $(".index .button .q3").css({
-                    width: '1.22rem'
-                }); 
-                $(".index .button").css({'line-height':'0.47rem'});
-            }  
-        }
+    // // 首页字体溢出的问题进行适配
+    //     if(!!!Btype['edge'] && !!!Btype['safari'] && !!!Btype['ie'] && !!!Btype['opera']){
+    //         if(rem <63){
+    //            $(".index .font-4").css({
+    //             // 'font-size':'14px',
+    //             '-webkit-transform': 'scale('+(rem/100)+')',
+    //             '-o-transform': 'scale(1)'
+    //            });
+    //             $(".index .button .q1").css({width:'0.07rem'});
+    //             $(".index .button .q3").css({
+    //                 width: '1.5rem'
+    //             }); 
+    //             $(".index .button").css({'line-height':'0.6rem'});
+    //         }else{
+    //             $(".index .font-4").css({
+    //             '-webkit-transform': '',
+    //             '-o-transform': ''
+    //            });
+    //             $(".index .button .q1").css({width:''});
+    //             $(".index .button .q3").css({
+    //                 width: '1.22rem'
+    //             }); 
+    //             $(".index .button").css({'line-height':'0.47rem'});
+    //         }  
+    //     }
         $(".content").css('display','block');
     
 });
@@ -68,22 +68,22 @@ $(document).ready(function(){
         $(".content").width(body_width);
         $(".content").offset({top:(body_height-(body_width/2160)*1400)/2,left:0});
     }
-    // 首页字体溢出的问题进行适配
-        if(!!!Btype['edge'] && !!!Btype['safari'] && !!!Btype['ie'] && !!!Btype['opera']){
-            if(rem < 63){
-               $(".index .font-4").css({
-                // 'font-size':'14px',
-                '-webkit-transform': 'scale('+(rem/100)+')',
-                '-o-transform': 'scale(1)'
-               });
-                $(".index .button .q1").css({width:'0.07rem'});
-                $(".index .button .q3").css({
-                    width: '1.5rem'
-                }); 
-                $(".index .button").css({'line-height':'0.6rem'});
-            }
+    // // 首页字体溢出的问题进行适配
+    //     if(!!!Btype['edge'] && !!!Btype['safari'] && !!!Btype['ie'] && !!!Btype['opera']){
+    //         if(rem < 63){
+    //            $(".index .font-4").css({
+    //             // 'font-size':'14px',
+    //             '-webkit-transform': 'scale('+(rem/100)+')',
+    //             '-o-transform': 'scale(1)'
+    //            });
+    //             $(".index .button .q1").css({width:'0.07rem'});
+    //             $(".index .button .q3").css({
+    //                 width: '1.5rem'
+    //             }); 
+    //             $(".index .button").css({'line-height':'0.6rem'});
+    //         }
         
-        }
+    //     }
         $(".content").css('display','block');
 });
 
