@@ -8,12 +8,16 @@ $(window).resize(function () {      //当浏览器大小变化时页面自适应
     if(body_height/body_width <= 1400/2160){
         rem = body_height * hwdef;// 以默认比例值乘以当前窗口高度,得到该高度下的相应FONT-SIZE值
         $('html').css('font-size', rem + "px");
+        $(".body").height(body_height);
+        $(".body").offset({top:0});
         $(".content").height(body_height);
         $(".content").width((body_height/1400)*2160);
         $(".content").offset({top:0,left:(body_width-(body_height/1400)*2160)/2});        
     }else{
         rem = body_width * whdef;// 以默认比例值乘以当前窗口宽度,得到该宽度下的相应FONT-SIZE值
         $('html').css('font-size', rem + "px");
+        $(".body").height((body_width/2160)*1400);
+        $(".body").offset({top:(body_height-(body_width/2160)*1400)/2});
         $(".content").height((body_width/2160)*1400);
         $(".content").width(body_width);
         $(".content").offset({top:(body_height-(body_width/2160)*1400)/2,left:0});
@@ -57,6 +61,8 @@ $(document).ready(function(){
     if(body_height/body_width <= 1400/2160){
         rem = body_height * hwdef;// 以默认比例值乘以当前窗口宽度,得到该宽度下的相应FONT-SIZE值
         $('html').css('font-size', rem + "px");
+        $(".body").height(body_height);
+        $(".body").offset({top:0});
         $(".content").height(body_height);
         $(".content").width((body_height/1400)*2160);
         $(".content").offset({top:0,left:(body_width-(body_height/1400)*2160)/2});
@@ -64,6 +70,8 @@ $(document).ready(function(){
     }else{
         rem = body_width * whdef;// 以默认比例值乘以当前窗口宽度,得到该宽度下的相应FONT-SIZE值
         $('html').css('font-size', rem + "px");
+        $(".body").height((body_width/2160)*1400);
+        $(".body").offset({top:(body_height-(body_width/2160)*1400)/2});
         $(".content").height((body_width/2160)*1400);
         $(".content").width(body_width);
         $(".content").offset({top:(body_height-(body_width/2160)*1400)/2,left:0});

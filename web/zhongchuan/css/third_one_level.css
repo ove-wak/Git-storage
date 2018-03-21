@@ -213,11 +213,9 @@
 }
 .middle2 .c{
     float: right;
-    display: none;
+    display: inline;
 }
 .middle2 .c > div{
-    height: 1.48rem;
-    margin-bottom: 0.2rem;
 }
 .middle2 .c1{
     width: 5.86rem;
@@ -237,93 +235,241 @@
 .middle2 .c6{
     width: 17.58rem;
 }
-.button{
-    cursor:pointer;
-    text-align: center;
-    width: 5.66rem;
-    height: 1.48rem;
-    text-align: left;  
-    line-height: 0.58rem;
-    display: inline-block;
-    margin-left: 0.2rem;
-    position: relative;
-    font-size: 0.28rem;
-    color: #ffffff;
-}
 .xuhao{
-    position: absolute;
-    top: 0rem;
-    right: 0rem;
     height: 0.45rem;
     line-height: 0.45rem;
     width: 1.29rem;
     text-align: center;
+    font-size: 0.32rem;
 }
 .wenzi{
-    position: absolute;
-    top: 0.2rem;
-    left: 0.6rem;
     width: 3.8rem;
     height: 0.6rem;
     overflow: hidden;
     text-overflow:ellipsis;
     white-space: nowrap;
 }
-.jindutiao{
-    position: absolute;
-    top: 0.85rem;
-    left: 0.6rem;
-    width: 3.2rem;
-    height: 0.2rem;
-    background-color: #d0d0d0;
-    border-radius: 0.5rem;
-    opacity:0.2;
+.button-1{
+    cursor:pointer;
+    text-align: center;
+    width: 4.74rem;
+    height: 1.39rem;
+    display: inline-block;
+    font-size: 0.28rem;
+    color: #ffffff;
 }
-.jindutiao2{
-    position: absolute;
-    top: 0.85rem;
-    left: 0.6rem;
-    width: 0rem;
-    height: 0.2rem;
-    background-color: #60c3d2;
-    border-radius: 0.5rem;
+.button-1:hover{   
+    padding: 0.07rem 0.03rem 0.2rem 0.1rem;
+    margin: -0.07rem -0.03rem -0.2rem -0.1rem;
 }
-.baifenbi{
-    position: absolute;
-    top: 0.82rem;
-    left: 4rem;
-    height: 0.3rem;
-    line-height: 0.3rem;
-}
-.button-blue{
-    background: url("../static/third_2/bg_green.png") no-repeat;   
+.button-blue-1{
+    background: url("../static/third_1/btn_left_1_green_normal.png") no-repeat;   
     background-size: 100% 100%;
 }
-.button-blue:hover{
-    background: url("../static/third_2/bg_green_selected.png") no-repeat;   
-    background-size: 100% 100%;
-    padding: 0rem 0.06rem 0.14rem 0.06rem;
-    margin: 0rem -0.06rem -0.14rem 0.14rem;
-}
-.button-yellow{
-    background: url("../static/third_2/bg_yellow.png") no-repeat;
+.button-blue-1:hover{
+    background: url("../static/third_1/btn_left_1_green_selected.png") no-repeat;   
     background-size: 100% 100%;
 }
-.button-yellow:hover{
-    background: url("../static/third_2/bg_yellow_selected.png") no-repeat;   
-    background-size: 100% 100%;
-    padding: 0rem 0.06rem 0.14rem 0.06rem;
-    margin: 0rem -0.06rem -0.14rem 0.14rem;
-}
-.button-red{
-    background: url("../static/third_2/bg_red.png") no-repeat;
+.button-yellow-1{
+    background: url("../static/third_1/btn_left_1_yellow_normal.png") no-repeat;
     background-size: 100% 100%;
 }
-.button-red:hover{
-    background: url("../static/third_2/bg_red_selected.png") no-repeat;   
+.button-yellow-1:hover{
+    background: url("../static/third_1/btn_left_1_yellow_selected.png") no-repeat;   
     background-size: 100% 100%;
-    padding: 0rem 0.06rem 0.14rem 0.06rem;
-    margin: 0rem -0.06rem -0.14rem 0.14rem;
+}
+.button-red-1{
+    background: url("../static/third_1/btn_left_1_red_normal.png") no-repeat;
+    background-size: 100% 100%;
+}
+.button-red-1:hover{
+    background: url("../static/third_1/btn_left_1_red_selected.png") no-repeat;   
+    background-size: 100% 100%;
+}
+.button-2{
+    cursor:pointer;
+    text-align: center;
+    width: 5.17rem;
+    height: 1.33rem;
+    display: inline-block;
+    font-size: 0.28rem;
+    color: #ffffff;
+}
+.button-2:hover{   
+    padding: 0.07rem 0.18rem 0.2rem 0.07rem;
+    margin: -0.07rem -0.18rem -0.2rem -0.07rem;
+}
+.button-blue-2{
+    background: url("../static/third_1/btn_left_2_green_normal.png") no-repeat;   
+    background-size: 100% 100%;
+}
+.button-blue-2:hover{
+    background: url("../static/third_1/btn_left_2_green_selected.png") no-repeat;   
+    background-size: 100% 100%;
+}
+.button-yellow-2{
+    background: url("../static/third_1/btn_left_2_yellow_normal.png") no-repeat;
+    background-size: 100% 100%;
+}
+.button-yellow-2:hover{
+    background: url("../static/third_1/btn_left_2_yellow_selected.png") no-repeat;   
+    background-size: 100% 100%;
+}
+.button-red-2{
+    background: url("../static/third_1/btn_left_2_red_normal.png") no-repeat;
+    background-size: 100% 100%;
+}
+.button-red-2:hover{
+    background: url("../static/third_1/btn_left_2_red_selected.png") no-repeat;   
+    background-size: 100% 100%;
+}
+.button-3{
+    cursor:pointer;
+    text-align: center;
+    width: 5.09rem;
+    height: 1.34rem;
+    display: inline-block;
+    font-size: 0.28rem;
+    color: #ffffff;
+}
+.button-3:hover{   
+    padding: 0.06rem 0.17rem 0.21rem 0.09rem;
+    margin: -0.06rem -0.17rem -0.21rem -0.09rem;
+}
+.button-blue-3{
+    background: url("../static/third_1/btn_left_3_green_normal.png") no-repeat;   
+    background-size: 100% 100%;
+}
+.button-blue-3:hover{
+    background: url("../static/third_1/btn_left_3_green_selected.png") no-repeat;   
+    background-size: 100% 100%;
+}
+.button-yellow-3{
+    background: url("../static/third_1/btn_left_3_yellow_normal.png") no-repeat;
+    background-size: 100% 100%;
+}
+.button-yellow-3:hover{
+    background: url("../static/third_1/btn_left_3_yellow_selected.png") no-repeat;   
+    background-size: 100% 100%;
+}
+.button-red-3{
+    background: url("../static/third_1/btn_left_3_red_normal.png") no-repeat;
+    background-size: 100% 100%;
+}
+.button-red-3:hover{
+    background: url("../static/third_1/btn_left_3_red_selected.png") no-repeat;   
+    background-size: 100% 100%;
+}
+.button-4{
+    cursor:pointer;
+    text-align: center;
+    width: 4.74rem;
+    height: 1.39rem;
+    display: inline-block;
+    font-size: 0.28rem;
+    color: #ffffff;
+}
+.button-4:hover{ 
+    padding: 0.07rem 0.07rem 0.2rem 0.06rem;
+    margin: -0.07rem -0.07rem -0.2rem -0.06rem;
+}
+.button-blue-4{
+    background: url("../static/third_1/btn_right_1_green_normal.png") no-repeat;   
+    background-size: 100% 100%;
+}
+.button-blue-4:hover{
+    background: url("../static/third_1/btn_right_1_green_selected.png") no-repeat;   
+    background-size: 100% 100%;
+}
+.button-yellow-4{
+    background: url("../static/third_1/btn_right_1_yellow_normal.png") no-repeat;
+    background-size: 100% 100%;
+}
+.button-yellow-4:hover{
+    background: url("../static/third_1/btn_right_1_yellow_selected.png") no-repeat;   
+    background-size: 100% 100%;
+}
+.button-red-4{
+    background: url("../static/third_1/btn_right_1_red_normal.png") no-repeat;
+    background-size: 100% 100%;
+}
+.button-red-4:hover{
+    background: url("../static/third_1/btn_right_1_red_selected.png") no-repeat;   
+    background-size: 100% 100%;
+}
+.button-5{
+    cursor:pointer;
+    text-align: center;
+    width: 5.17rem;
+    height: 1.33rem;
+    display: inline-block;
+    font-size: 0.28rem;
+    color: #ffffff;
+}
+.button-5:hover{   
+    padding: 0.07rem 0.18rem 0.2rem 0.07rem;
+    margin: -0.07rem -0.18rem -0.2rem -0.07rem;
+}
+.button-blue-5{
+    background: url("../static/third_1/btn_right_2_green_normal.png") no-repeat;   
+    background-size: 100% 100%;
+}
+.button-blue-5:hover{
+    background: url("../static/third_1/btn_right_2_green_selected.png") no-repeat;   
+    background-size: 100% 100%;
+}
+.button-yellow-5{
+    background: url("../static/third_1/btn_right_2_yellow_normal.png") no-repeat;
+    background-size: 100% 100%;
+}
+.button-yellow-5:hover{
+    background: url("../static/third_1/btn_right_2_yellow_selected.png") no-repeat;   
+    background-size: 100% 100%;
+}
+.button-red-5{
+    background: url("../static/third_1/btn_right_2_red_normal.png") no-repeat;
+    background-size: 100% 100%;
+}
+.button-red-5:hover{
+    background: url("../static/third_1/btn_right_2_red_selected.png") no-repeat;   
+    background-size: 100% 100%;
+}
+.button-6{
+    cursor:pointer;
+    text-align: center;
+    width: 5.09rem;
+    height: 1.34rem;
+    display: inline-block;
+    font-size: 0.28rem;
+    color: #ffffff;
+}
+.button-6:hover{   
+    padding: 0.07rem 0rem 0.2rem 0.28rem;
+    margin: -0.07rem 0rem -0.2rem -0.28rem;
+}
+.button-blue-6{
+    background: url("../static/third_1/btn_right_3_green_normal.png") no-repeat;   
+    background-size: 100% 100%;
+}
+.button-blue-6:hover{
+    background: url("../static/third_1/btn_right_3_green_selected.png") no-repeat;   
+    background-size: 100% 100%;
+}
+.button-yellow-6{
+    background: url("../static/third_1/btn_right_3_yellow_normal.png") no-repeat;
+    background-size: 100% 100%;
+}
+.button-yellow-6:hover{
+    background: url("../static/third_1/btn_right_3_yellow_selected.png") no-repeat;   
+    background-size: 100% 100%;
+}
+.button-red-6{
+    background: url("../static/third_1/btn_right_3_red_normal.png") no-repeat;
+    background-size: 100% 100%;
+}
+.button-red-6:hover{
+    background: url("../static/third_1/btn_right_3_red_selected.png") no-repeat;   
+    background-size: 100% 100%;
 }
 .font-2{
     font-size: 0.24rem;
