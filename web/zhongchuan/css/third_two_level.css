@@ -132,6 +132,106 @@
 .middle1 .text .t1{
     margin-right: 0.04rem;
 }
+.middle1 .dial-plate{
+    position: absolute;
+    background: url("../static/third_2/dial plate.png") no-repeat;
+    background-size: 100% 100%;
+    width: 7.28rem;
+    height: 6.56rem;
+    top: 1.33rem;
+    right: 2.13rem;
+}
+.middle1 .pointer{
+    position: absolute;
+    background: url("../static/third_2/pointer.png") no-repeat;
+    background-size: 100% 100%;
+    width: 1.14rem;
+    height: 1.40rem;
+    bottom: 1.62rem;
+    right: 5.78rem;
+}
+.middle1 .pointer
+{
+transform:rotate(-52deg);
+-ms-transform:rotate(-52deg);     /* IE 9 */
+-moz-transform:rotate(-52deg);    /* Firefox */
+-webkit-transform:rotate(-52deg); /* Safari 和 Chrome */
+-o-transform:rotate(-52deg);  /* Opera */
+transform-origin:right bottom;
+-ms-transform-origin:right bottom;     /* IE 9 */
+-moz-transform-origin:right bottom;    /* Firefox */
+-webkit-transform-origin:right bottom; /* Safari 和 Chrome */
+-o-transform-origin:right bottom;  /* Opera */
+}
+.middle1 .baifenbi-all{
+    position: absolute;
+    font-size: 0.4rem;
+    color: #ffffff;
+    font-weight: bold;
+    text-align: center;
+    top: 3.3rem;
+    left: 5rem;
+    /* letter-spacing: 0.01rem; */
+    width: 2rem;
+}
+.middle1 .icon{
+    position: absolute;
+    height: 0.85rem;
+    width: 2.55rem;
+    left: 4.8rem;
+    bottom: 1.2rem;
+}
+.middle1 .icon > div{
+    float: left;
+}
+.icon-b-l{
+    background: url("../static/third_2/icon_green.png") no-repeat;
+    background-size: 100% 100%;
+    width: 0.5rem;
+    height: 0.5rem;
+    margin: 0.175rem;
+    display: inline-block;
+}
+.icon-y-l{
+    background: url("../static/third_2/icon_yellow.png") no-repeat;
+    background-size: 100% 100%;
+    width: 0.5rem;
+    height: 0.5rem;
+    margin: 0.175rem;
+    display: inline-block;
+}
+.icon-r-l{
+    background: url("../static/third_2/icon_red.png") no-repeat;
+    background-size: 100% 100%;
+    width: 0.5rem;
+    height: 0.5rem;
+    margin: 0.175rem;
+    display: inline-block;
+}
+.icon-b-b{
+    background: url("../static/third_2/icon_green_big.png") no-repeat;
+    background-size: 100% 100%;
+    width: 0.85rem;
+    height: 0.85rem;
+    margin: 0rem;
+    display: none;
+}
+.icon-y-b{
+    background: url("../static/third_2/icon_yellow_big.png") no-repeat;
+    background-size: 100% 100%;
+    width: 0.85rem;
+    height: 0.85rem;
+    margin: 0rem;
+    display: none;
+}
+.icon-r-b{
+    background: url("../static/third_2/icon_red_big.png") no-repeat;
+    background-size: 100% 100%;
+    width: 0.85rem;
+    height: 0.85rem;
+    margin: 0rem;
+    display: none;
+}
 .middle2{
     height: 3.16rem;
     width: 17.38rem;

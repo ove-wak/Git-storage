@@ -139,6 +139,21 @@ $(document).ready(function(){
             else if(data[x-1][2] == "y"){ $(".b"+x).addClass('button-yellow');yellow=1}
             else {$(".b"+x).addClass('button-red');red=1}
        }
+       if(red == 1){
+            $(".icon-r-b").show();
+            $(".icon-r-l").hide();
+       }else if(yellow == 1){
+            $(".icon-y-b").show();
+            $(".icon-y-l").hide();
+       }else{
+            $(".icon-b-b").show();
+            $(".icon-b-l").hide();
+       }
+       $(".baifenbi-all").html(data[length]+"%");
+        $('.pointer').rotate('-52deg');
+        var pointer = 180*(data[length]/100);
+        var time = 2000*(data[length]/100)
+       $(".pointer").animate({"rotate":"+="+pointer+"deg"},time);
     }
 
     $(".back").hover(function(){
