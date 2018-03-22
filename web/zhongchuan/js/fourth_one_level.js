@@ -1,10 +1,10 @@
 $(document).ready(function(){ 
-    // var urlinfo = window.location.href;//获取url 
-    // var urlcontent = urlinfo.split('?')[1].split('&');//拆分url得到”=”后面的参数 
-    // // 公司治理三级页面进入
-    // var myid1=urlcontent[0].split("=")[1];
-    // var myid2=urlcontent[1].split("=")[1];
-    // var name=decodeURI(urlcontent[2].split("=")[1]);
+    var urlinfo = window.location.href;//获取url 
+    var urlcontent = urlinfo.split('?')[1].split('&');//拆分url得到”=”后面的参数 
+    // 目标管控四级页面进入
+    var myid1=urlcontent[0].split("=")[1];
+    var myid2=urlcontent[1].split("=")[1];
+    var name=decodeURI(urlcontent[2].split("=")[1]);
 
     $(".back").hover(function(){
         $(".back-img").css("background","url(static/second/backbutton_selected.png) no-repeat");
@@ -28,11 +28,11 @@ $(document).ready(function(){
             $(".close-img").css("margin","");
             $(".close-img").css("padding","");
       });
-    // $(".third_two .back").click(function() {
-    //         window.location.href="second_level.html?id=mbgk";
-    // });
-    // $(".third_two .close").click(function() {
-    //         window.location.href="second_level.html?id=mbgk";
-    // });
+    $(".fourth_one .back").click(function() {
+            window.location.href=encodeURI("third_one_level.html?id1="+myid1+"&id2="+myid2+"&name="+name);
+    });
+    $(".fourth_one .close").click(function() {
+            window.location.href=encodeURI("third_one_level.html?id1="+myid1+"&id2="+myid2+"&name="+name);
+    });
     
 });

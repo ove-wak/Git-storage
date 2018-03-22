@@ -255,8 +255,15 @@
     height: 1.56rem;
     top: 0rem;
     left: 13.8rem;
+    
+}
+.c-1-6 .ldgz{
+    width: 4.1rem;
+    height: 1.56rem;
+    position: absolute;
     background-color: rgba(0,210,255,0.1);
     padding: 0.3rem 0.2rem 0.1rem 0.2rem;
+    overflow-y: hidden;
 }
 .c-2{
     display: none;

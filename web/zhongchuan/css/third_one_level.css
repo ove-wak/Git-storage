@@ -205,49 +205,113 @@
     display: none;
 }
 .middle2{
-    height: 3.16rem;
-    width: 17.38rem;
+    height: 6rem;
+    width: 12rem;
     position: relative;
-    float: right;
-    margin-right: 1.29rem;
+    float: left;
+    margin-left: 1rem;
+    margin-top: 3.5rem;
 }
 .middle2 .c{
-    float: right;
-    display: inline;
+    display: none;
+    position: relative;
+    width: 100%;
+    height: 100%;
 }
-.middle2 .c > div{
+.middle2 .c>div{
+    position: absolute;
 }
-.middle2 .c1{
-    width: 5.86rem;
+.middle2 .c1 .b1{
+    top: 2.33rem;
+    left: 5.5rem;
 }
-.middle2 .c2{
-    width: 5.86rem;
+.middle2 .c2 .b1{
+    top: 0.8rem;
+    left: 4.8rem;
 }
-.middle2 .c3{
-    width: 11.72rem;
+.middle2 .c2 .b2{
+    top: 3.8rem;
+    left: 4.4rem;
 }
-.middle2 .c4{
-    width: 11.72rem;
+.middle2 .c3 .b1{
+    top: 0.8rem;
+    left: 4.8rem;
 }
-.middle2 .c5{
-    width: 17.58rem;
+.middle2 .c3 .b2{
+    top: 2.33rem;
+    left: 5.5rem;
 }
-.middle2 .c6{
-    width: 17.58rem;
+.middle2 .c3 .b3{
+    top: 3.8rem;
+    left: 4.4rem;
+}
+.middle2 .c4 .b1{
+    top: 0.8rem;
+    left: -0.2rem;
+}
+.middle2 .c4 .b2{
+    top: 3.8rem;
+    left: -0.3rem;
+}
+.middle2 .c4 .b3{
+    top: 0.8rem;
+    left: 7.8rem;
+}
+.middle2 .c4 .b4{
+    top: 3.8rem;
+    left: 7.4rem;
+}
+.middle2 .c5 .b1{
+    top: 0.8rem;
+    left: -0.2rem;
+}
+.middle2 .c5 .b2{
+    top: 2.33rem;
+    left: -0.3rem;
+}
+.middle2 .c5 .b3{
+    top: 3.8rem;
+    left: -0.3rem;
+}
+.middle2 .c5 .b4{
+    top: 0.8rem;
+    left: 7.8rem;
+}
+.middle2 .c5 .b5{
+    top: 3.8rem;
+    left: 7.4rem;
+}
+.middle2 .c6 .b1{
+    top: 0.8rem;
+    left: -0.2rem;
+}
+.middle2 .c6 .b2{
+    top: 2.33rem;
+    left: -0.3rem;
+}
+.middle2 .c6 .b3{
+    top: 3.8rem;
+    left: -0.3rem;
+}
+.middle2 .c6 .b4{
+    top: 0.8rem;
+    left: 7.8rem;
+}
+.middle2 .c6 .b5{
+    top: 2.33rem;
+    left: 8.5rem;
+}
+.middle2 .c6 .b6{
+    top: 3.8rem;
+    left: 7.4rem;
 }
 .xuhao{
-    height: 0.45rem;
-    line-height: 0.45rem;
-    width: 1.29rem;
-    text-align: center;
     font-size: 0.32rem;
+    text-align: center;
 }
 .wenzi{
-    width: 3.8rem;
-    height: 0.6rem;
+    text-align: center;
     overflow: hidden;
-    text-overflow:ellipsis;
-    white-space: nowrap;
 }
 .button-1{
     cursor:pointer;
@@ -261,6 +325,20 @@
 .button-1:hover{   
     padding: 0.07rem 0.03rem 0.2rem 0.1rem;
     margin: -0.07rem -0.03rem -0.2rem -0.1rem;
+}
+.button-1 .xuhao{
+    float: right;
+    margin-top: 0.15rem;
+    margin-right: 0.6rem;
+    width: 0.9rem;
+}
+.button-1 .wenzi{
+    float: left;
+    margin: 0.2rem;
+    width: 2.8rem;
+    height: 0.8rem;
+    margin-top: 0.4rem;
+    line-height: 0.4rem;
 }
 .button-blue-1{
     background: url("../static/third_1/btn_left_1_green_normal.png") no-repeat;   
@@ -299,6 +377,21 @@
     padding: 0.07rem 0.18rem 0.2rem 0.07rem;
     margin: -0.07rem -0.18rem -0.2rem -0.07rem;
 }
+.button-2 .xuhao{
+    float: right;
+    margin-top: 0.15rem;
+    margin-right: 1.4rem;
+    width: 1.1rem;
+}
+.button-2 .wenzi{
+    float: left;
+    /* margin: 0.2rem; */
+    width: 2.3rem;
+    height: 0.8rem;
+    margin-top: 0.33rem;
+    margin-left: 0.33rem;
+    line-height: 0.4rem;
+}
 .button-blue-2{
     background: url("../static/third_1/btn_left_2_green_normal.png") no-repeat;   
     background-size: 100% 100%;
@@ -335,6 +428,21 @@
 .button-3:hover{   
     padding: 0.06rem 0.17rem 0.21rem 0.09rem;
     margin: -0.06rem -0.17rem -0.21rem -0.09rem;
+}
+.button-3 .xuhao{
+    float: right;
+    margin-top: 0.15rem;
+    margin-right: 1.1rem;
+    width: 0.9rem;
+}
+.button-3 .wenzi{
+    float: left;
+    margin: 0.2rem;
+    width: 2.8rem;
+    height: 0.8rem;
+    margin-top: 0.33rem;
+    line-height: 0.4rem;
+    margin-right: 0rem;
 }
 .button-blue-3{
     background: url("../static/third_1/btn_left_3_green_normal.png") no-repeat;   
@@ -373,6 +481,21 @@
     padding: 0.07rem 0.07rem 0.2rem 0.06rem;
     margin: -0.07rem -0.07rem -0.2rem -0.06rem;
 }
+.button-4 .xuhao{
+    float: left;
+    margin-top: 0.15rem;
+    margin-left: 0.3rem;
+    width: 0.9rem;
+}
+.button-4 .wenzi{
+    float: right;
+    /* margin: 0.2rem; */
+    width: 3rem;
+    height: 0.8rem;
+    margin-top: 0.36rem;
+    line-height: 0.4rem;
+    margin-right: 0.43rem;
+}
 .button-blue-4{
     background: url("../static/third_1/btn_right_1_green_normal.png") no-repeat;   
     background-size: 100% 100%;
@@ -410,6 +533,21 @@
     padding: 0.07rem 0.18rem 0.2rem 0.07rem;
     margin: -0.07rem -0.18rem -0.2rem -0.07rem;
 }
+.button-5 .xuhao{
+    float: left;
+    margin-top: 0.15rem;
+    margin-left: 0.1rem;
+    width: 1rem;
+}
+.button-5 .wenzi{
+    float: right;
+    /* margin: 0.2rem; */
+    width: 2.4rem;
+    height: 0.8rem;
+    margin-top: 0.33rem;
+    margin-right: 1.6rem;
+    line-height: 0.4rem;
+}
 .button-blue-5{
     background: url("../static/third_1/btn_right_2_green_normal.png") no-repeat;   
     background-size: 100% 100%;
@@ -446,6 +584,22 @@
 .button-6:hover{   
     padding: 0.07rem 0rem 0.2rem 0.28rem;
     margin: -0.07rem 0rem -0.2rem -0.28rem;
+}
+.button-6 .xuhao{
+    float: left;
+    margin-top: 0.15rem;
+    margin-left: 0.95rem;
+    width: 0.9rem;
+}
+.button-6 .wenzi{
+    float: right;
+    margin: 0.2rem;
+    width: 2.8rem;
+    height: 0.8rem;
+    margin-top: 0.33rem;
+    line-height: 0.4rem;
+    margin-left: 0rem;
+    margin-right: 0.4rem;
 }
 .button-blue-6{
     background: url("../static/third_1/btn_right_3_green_normal.png") no-repeat;   
