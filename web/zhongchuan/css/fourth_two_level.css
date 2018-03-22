@@ -1,6 +1,9 @@
+body{  
+    background: url("../static/third_2/bg.jpg") no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
 .content{
-    background: url("../static/third_1/background.png") no-repeat;
-    background-size: 100% 100%;
     position: relative;
 }
 .content-all{
@@ -204,6 +207,20 @@
     height: 0.20rem;
     display: inline-block;
 }
+.arrow_low{
+    background: url("../static/fourth_1/arrow_low.png") no-repeat;
+    background-size: 100% 100%;
+    width: 0.28rem;
+    height: 0.25rem;
+    display: inline-block;
+}
+.arrow_top{
+    background: url("../static/fourth_1/arrow_top.png") no-repeat;
+    background-size: 100% 100%;
+    width: 0.28rem;
+    height: 0.25rem;
+    display: inline-block;
+}
 .c-1{
     margin-left: 0.56rem;
     position: relative;
@@ -275,40 +292,36 @@
 }
 .c-1-6 .ldgz{
     width: 4.1rem;
-    height: 1.46rem;
+    height: 1.26rem;
     transition: all 2s;
-    position: absolute;
+    position: relative;
     background-color: rgba(0,210,255,0.1);
     padding: 0.3rem 0.2rem 0.2rem 0.2rem;
     overflow: hidden;
 }
+.c-1-6 .ldgz .tt{
+    line-height: 0.3rem;
+}
 .dr_1{
     cursor: pointer;
     width: 4.5rem;
-    position: absolute;
-    bottom: 0rem;
-    left: 0rem;
+    position: relative;
     height: 0.2rem;
+    transition: all 2s;
     line-height: 0.2rem;
     text-align: center;
     z-index: 4;
-    background: url("../static/fourth_1/bg_c.png") no-repeat;
-    background-size: 100% 100%;
-    /* background-image: -webkit-linear-gradient(top,hsla(0,0%,50%,.5),#063a69);
-    background-image: linear-gradient(180deg,hsla(0,0%,50%,.5),#063a69); */
+    background-color: rgba(0,210,255,0.1);
 }
 .dr_2{
     cursor: pointer;
-    width: 5.2rem;
-    position: absolute;
-    bottom: 0rem;
-    left: 0rem;
+    width: 4.8rem;
+    position: relative;
     height: 0.2rem;
+    transition: all 1s;
     line-height: 0.2rem;
     text-align: center;
     z-index: 4;
-    background-image: -webkit-linear-gradient(top,hsla(0,0%,50%,.5),#00d2ff);
-    background-image: linear-gradient(180deg,hsla(0,0%,50%,.5),#00d2ff);
 }
 .c-2{
     position: relative;
@@ -321,7 +334,7 @@
 .c-2-1{
     position: relative;
     float: left;
-    width: 5.2rem;
+    width: 5.8rem;
     height: 6rem;
     margin-top: 0.4rem;
 }
@@ -339,7 +352,7 @@
 .c-2-1 .a{
     display: block;
     float: left;
-    width: 4.4rem;
+    width: 5rem;
     margin-left: 0.15rem;
     margin-top: 0.08rem;
     line-height: 0.3rem;
@@ -350,7 +363,7 @@
     top: 0;
     left: 0;
     height: 1.1rem;
-    width: 4.8rem;
+    width: 5.4rem;
     overflow: hidden;
 }
 .c-2-1-2{
@@ -359,7 +372,7 @@
     top: 1.5rem;
     left: 0;
     height: 1.1rem;
-    width: 4.8rem;
+    width: 5.4rem;
     overflow: hidden;
 }
 .c-2-1-3{
@@ -368,25 +381,77 @@
     top: 3rem;
     left: 0;
     height: 1.1rem;
-    width: 4.8rem;
-    overflow: hidden;
-}
-.c-2-1-4{
-    padding: 0.3rem 0.2rem 0.1rem 0.2rem;
-    position: absolute;
-    top: 4.5rem;
-    left: 0;
-    height: 1.1rem;
-    width: 4.8rem;
+    width: 5.4rem;
     overflow: hidden;
 }
 .c-2-2{
     position: relative;
     float: left;
-    width: 2.61rem;
+    width: 3.37rem;
     margin-left: 0.03rem;
     height: 6rem;
     margin-top: 0.4rem;
+}
+.c-2-2 .dbl{
+    font-size: 0.18rem;
+    position: absolute;
+    top: 0.5rem;
+    left: 0.1rem;
+    color: #00d2ff;
+}
+.c-2-2 .dbl span:first-child{
+    font-weight: bold;
+    display: inline-block;
+    padding-top: -0.04rem;
+    position: absolute;
+    top: -0.03rem;
+}
+.c-2-2 .dbl span:last-child{
+    margin-left: 0.1rem;
+}
+.jindutiao1{
+    position: absolute;
+    top: 0.85rem;
+    left: 0.1rem;
+    width: 3.1rem;
+    height: 0.2rem;
+    background-color: #d0d0d0;
+    border-radius: 0.5rem;
+    opacity:0.2;
+}
+.jindutiao2{
+    position: absolute;
+    top: 0.85rem;
+    left: 0.1rem;
+    width: 0.8rem;
+    height: 0.2rem;
+    background-color: #60c3d2;
+    border-radius: 0.5rem;
+}
+.baifenbi{
+    position: absolute;
+    top: 0.28rem;
+    left: 2rem;
+    height: 0.51rem;
+    width: 1.19rem;
+    line-height: 0.4rem;
+    text-align: center;
+    font-size: 0.3rem;
+}
+.baifenbi-1{
+    background: url("../static/fourth_2/percentage_bg_blue.png") no-repeat;
+    background-size: 100% 100%;
+    color: #5ae16d;
+}
+.baifenbi-2{
+    background: url("../static/fourth_2/percentage_bg_yellow.png") no-repeat;
+    background-size: 100% 100%;
+    color: #fff110;
+}
+.baifenbi-3{
+    background: url("../static/fourth_2/percentage_bg_red.png") no-repeat;
+    background-size: 100% 100%;
+    color: #c51b00;
 }
 .c-2-2-1{
     padding: 0.3rem 0.2rem 0.1rem 0.2rem;
@@ -394,7 +459,7 @@
     top: 0;
     left: 0;
     height: 1.1rem;
-    width: 2.21rem;
+    width: 2.97rem;
     overflow: hidden;
 }
 .c-2-2-2{
@@ -403,7 +468,7 @@
     top: 1.5rem;
     left: 0;
     height: 1.1rem;
-    width: 2.21rem;
+    width: 2.97rem;
     overflow: hidden;
 }
 .c-2-2-3{
@@ -412,45 +477,40 @@
     top: 3rem;
     left: 0;
     height: 1.1rem;
-    width: 2.21rem;
+    width: 2.97rem;
     overflow: hidden;
-}
-.c-2-2-4{
-    padding: 0.3rem 0.2rem 0.1rem 0.2rem;
-    position: absolute;
-    top: 4.5rem;
-    left: 0;
-    height: 1.1rem;
-    width: 2.21rem;
-    overflow: hidden;
-}
-.ship-b{
-    background: url("../static/fourth_1/blue.png") no-repeat;
-    background-size: 100% 100%;
-    width: 2.29rem;
-    height: 0.94rem;
-}
-.ship-y{
-    background: url("../static/fourth_1/yellow.png") no-repeat;
-    background-size: 100% 100%;
-    width: 2.07rem;
-    height: 0.78rem;
-    margin-top: 0.22rem;
-}
-.ship-r{
-    background: url("../static/fourth_1/red.png") no-repeat;
-    background-size: 100% 100%;
-    width: 2.07rem;
-    height: 0.78rem;
-    margin-top: 0.22rem;
 }
 .c-2-3{
     position: relative;
     float: left;
-    width: 5.2rem;
+    width: 2.48rem;
     margin-left: 0.03rem;
     height: 6rem;
     margin-top: 0.4rem;
+}
+.c-2-3 .bg-color-1{
+    font-size: 0.3rem;
+    color: #5ae16d;
+    font-weight: bold;
+    letter-spacing: 0.07rem;
+    text-align: center;
+    line-height: 1.1rem;
+}
+.c-2-3 .bg-color-2{
+    font-size: 0.3rem;
+    color: #fff110;
+    font-weight: bold;
+    letter-spacing: 0.07rem;
+    text-align: center;
+    line-height: 1.1rem;
+}
+.c-2-3 .bg-color-3{
+    font-size: 0.3rem;
+    color: #c51b00;
+    font-weight: bold;
+    letter-spacing: 0.07rem;
+    text-align: center;
+    line-height: 1.1rem;
 }
 .c-2-3-1{
     padding: 0.3rem 0.2rem 0.1rem 0.2rem;
@@ -458,7 +518,7 @@
     top: 0;
     left: 0;
     height: 1.1rem;
-    width: 4.8rem;
+    width: 2.08rem;
     overflow: hidden;
 }
 .c-2-3-2{
@@ -467,7 +527,7 @@
     top: 1.5rem;
     left: 0;
     height: 1.1rem;
-    width: 4.8rem;
+    width: 2.08rem;
     overflow: hidden;
 }
 .c-2-3-3{
@@ -476,22 +536,13 @@
     top: 3rem;
     left: 0;
     height: 1.1rem;
-    width: 4.8rem;
-    overflow: hidden;
-}
-.c-2-3-4{
-    padding: 0.3rem 0.2rem 0.1rem 0.2rem;
-    position: absolute;
-    top: 4.5rem;
-    left: 0;
-    height: 1.1rem;
-    width: 4.8rem;
+    width: 2.08rem;
     overflow: hidden;
 }
 .c-2-4{
     position: relative;
     float: left;
-    width: 5.2rem;
+    width: 6.56rem;
     margin-left: 0.03rem;
     height: 6rem;
     margin-top: 0.4rem;
@@ -502,7 +553,7 @@
     top: 0;
     left: 0;
     height: 1.1rem;
-    width: 4.8rem;
+    width: 6.16rem;
     overflow: hidden;
 }
 .c-2-4-2{
@@ -512,7 +563,7 @@
     transition: all 2s;
     left: 0;
     height: 1.1rem;
-    width: 4.8rem;
+    width: 6.16rem;
     overflow: hidden;
 }
 .c-2-4-3{
@@ -521,16 +572,7 @@
     top: 3rem;
     left: 0;
     height: 1.1rem;
-    width: 4.8rem;
-    overflow: hidden;
-}
-.c-2-4-4{
-    padding: 0.3rem 0.2rem 0.1rem 0.2rem;
-    position: absolute;
-    top: 4.5rem;
-    left: 0;
-    height: 1.1rem;
-    width: 4.8rem;
+    width: 6.16rem;
     overflow: hidden;
 }
 .bg-color-1{

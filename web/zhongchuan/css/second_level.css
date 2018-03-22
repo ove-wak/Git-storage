@@ -1,6 +1,9 @@
+body{  
+    background: url("../static/second/bg.jpg") no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
 .content{
-    background: url("../static/second/bg.png") no-repeat;
-    background-size: 100% 100%;
     position: relative;
 }
 .head{
@@ -562,7 +565,7 @@
     font-size: 0.24rem;
     position: absolute;
     top: 0.6rem;
-    right: 0.5rem;
+    right: 0.3rem;
 }/* 
 .right .data .dcl .num span{
     margin-left: 0.06rem;
@@ -605,6 +608,10 @@
 }
 .dcl .list{
     width: 100%;
+}
+ul{
+    -webkit-padding-start: 0px;
+    padding-left: 0.6rem;
 }
 .dcl .list div{
     width: 33%;
@@ -802,7 +809,7 @@
     margin-left: 0.04rem;
     margin-right: 0.04rem;
     line-height: 0.58rem;
-    width: 0.25rem;
+    width: 0.35rem;
 }
 .button .q3{
     text-align: center;

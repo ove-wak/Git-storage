@@ -30,6 +30,9 @@ $(document).ready(function(){
       });
     $('.dr_1').click(function(){
         // 其他关闭
+        if($('.dr_2').find('.double_arrow_top').length>0){
+            $('.dr_2').click();
+        }
         if($(this).find('.double_arrow_low').length>0){
             height = $(this).parent().find('.tt').height();
             $(this).siblings('.ldgz').css({'height':height});
@@ -47,6 +50,9 @@ $(document).ready(function(){
         }   
     });
     $('.dr_2').click(function(){
+        if($('.dr_1').find('.double_arrow_top').length>0){
+            $('.dr_1').click();
+        }
         if($(this).find('.double_arrow_low').length>0){
             height = $(this).parent().find('.tt').height();
             $(this).parent().css({'background-color':"#014886"});
@@ -67,6 +73,9 @@ $(document).ready(function(){
         }
     });
     $('.zhankai').click(function(){
+        if($('.dr_1').find('.double_arrow_top').length>0){
+            $('.dr_1').click();
+        }
         if($(this).find('.arrow_low').length>0){         
             $(".c-3").fadeOut('fast');
             $(".c-1").fadeOut('fast',function(){
