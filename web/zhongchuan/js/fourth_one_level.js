@@ -28,11 +28,70 @@ $(document).ready(function(){
             $(".close-img").css("margin","");
             $(".close-img").css("padding","");
       });
+    $('.dr_1').click(function(){
+        // 其他关闭
+        if($(this).find('.double_arrow_low').length>0){
+            height = $(this).parent().find('.tt').height();
+            $(this).siblings('.ldgz').css({'height':height});
+            $(this).siblings('.ldgz').css({'background-color':"#014886"});
+            $(this).siblings('.ldgz').css({'z-index':3});
+            $(this).siblings(".title-big-long").css({'z-index':4});
+            $(this).css({'background-color':"#014886"});
+            $(this).find(".double_arrow_low").addClass("double_arrow_top").removeClass("double_arrow_low");
+        }else{
+            $(this).siblings('.ldgz').css({'height':"1.26rem"});
+            $(this).siblings('.ldgz').css({'background-color':"rgba(0,210,255,0.1)"});
+            $(this).siblings('.ldgz').css({'z-index':1});
+            $(this).css({'background-color':"rgba(0,210,255,0.1)"});
+            $(this).find(".double_arrow_top").addClass("double_arrow_low").removeClass("double_arrow_top");
+        }   
+    });
+    $('.dr_2').click(function(){
+        if($(this).find('.double_arrow_low').length>0){
+            height = $(this).parent().find('.tt').height();
+            $(this).parent().css({'background-color':"#014886"});
+            $(this).siblings().css({'height':height});
+            $(this).parent().css({'height':height+$(this).height()});
+            $(this).siblings().css({'background-color':"#014886"});
+            $(this).siblings().css({'z-index':3});
+            $(this).css({'background-color':"#014886"});
+            $(this).find(".double_arrow_low").addClass("double_arrow_top").removeClass("double_arrow_low");
+        }else{
+            $(this).siblings().css({'height':'1rem'});
+            $(this).parent().css({'background-color':"rgba(255,255,0,0.1)"});
+            $(this).parent().css({'height':'1.2rem'});
+            $(this).siblings().css({'background-color':""});
+            $(this).siblings().css({'z-index':1});
+            $(this).css({'background-color':""});
+            $(this).find(".double_arrow_top").addClass("double_arrow_low").removeClass("double_arrow_top");
+        }
+    });
+    $('.zhankai').click(function(){
+        if($(this).find('.arrow_low').length>0){         
+            $(".c-3").fadeOut('fast');
+            $(".c-1").fadeOut('fast',function(){
+                $(".c-2").css({'margin-top':'2.7rem'});
+                $('.c-2').animate({'margin-top':'1.3rem'}, 'slow');
+                $('.c-2').animate({'max-height':'6.4rem'}, 'slow');
+            });
+            $(this).html("<div class='arrow_top'></div>收起表格");
+        }else{
+
+            $('.c-2').animate({'max-height':'4.58rem'}, 'slow');
+            $('.c-2').animate({'margin-top':'2.7rem'}, 'slow',function(){
+                $(".c-2").css({'margin-top':'0.3rem'});
+                $(".c-1").fadeIn('fast');
+                $(".c-3").fadeIn('fast');
+            });
+            
+            $(this).html("<div class='arrow_low'></div>点击显示全部项目");
+        }
+    });
     $(".fourth_one .back").click(function() {
             window.location.href=encodeURI("third_one_level.html?id1="+myid1+"&id2="+myid2+"&name="+name);
     });
     $(".fourth_one .close").click(function() {
-            window.location.href=encodeURI("third_one_level.html?id1="+myid1+"&id2="+myid2+"&name="+name);
+            window.location.href="index.html";
     });
     
 });

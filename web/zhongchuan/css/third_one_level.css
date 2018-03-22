@@ -13,19 +13,23 @@
     background-size: 100% 100%;
 }
 .content-2{
-    background: url('../static/third_1/ship/3.1.png') no-repeat;
+    background: url('../static/third_1/ship/3.2.png') no-repeat;
     background-size: 100% 100%;
 }
 .content-3{
-    background: url('../static/third_1/ship/3.1.png') no-repeat;
+    background: url('../static/third_1/ship/3.3.png') no-repeat;
     background-size: 100% 100%;
 }
 .content-4{
-    background: url('../static/third_1/ship/3.1.png') no-repeat;
+    background: url('../static/third_1/ship/3.4.png') no-repeat;
     background-size: 100% 100%;
 }
 .content-5{
-    background: url('../static/third_1/ship/3.1.png') no-repeat;
+    background: url('../static/third_1/ship/3.5.png') no-repeat;
+    background-size: 100% 100%;
+}
+.content-6{
+    background: url('../static/third_1/ship/3.6.png') no-repeat;
     background-size: 100% 100%;
 }
 .head{
@@ -239,7 +243,7 @@
 }
 .middle2 .c3 .b2{
     top: 2.33rem;
-    left: 5.5rem;
+    left: 5.55rem;
 }
 .middle2 .c3 .b3{
     top: 3.8rem;

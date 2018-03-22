@@ -195,7 +195,11 @@ $(document).ready(function(){
             window.location.href="second_level.html?id=gszl";
     });
     $(".third_two .close").click(function() {
-            window.location.href="second_level.html?id=gszl";
+            window.location.href="index.html";
+    });
+    $(".button").click(function(){
+        window.location.href=encodeURI("fourth_two_level.html?id1="+myid1+"&id2="+myid2+"&name="+name);
+
     });
     
 
