@@ -765,6 +765,15 @@ ul{
     display: inline-block;
     margin-left: 0.12rem;
     vertical-align: middle;
+    display: inline-block;
+    margin-left: 0.12rem;
+    vertical-align: middle;
+    width: 2.3rem;
+    overflow: hidden;
+    height: 0.195rem;
+    line-height: 0.195rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .bhqk .r{ 
     vertical-align: middle;

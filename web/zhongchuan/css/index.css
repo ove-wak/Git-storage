@@ -440,6 +440,7 @@ body{
     background-color: #c51b00;
 }
 #pie-doughnut-1,#pie-doughnut-2{
+    cursor: pointer;
     float: left;
     margin-left: 0.38rem;
     width: 2.25rem;

@@ -11,9 +11,17 @@ $(document).ready(function(){
     $(".left .main-content").click(function() {
             window.location.href="second_level.html?id=mbgk";
     });
+    $("#pie-doughnut-1").click(function() {
+            window.location.href="second_level.html?id=mbgk";
+    });
+
     $(".right .main-content").click(function() {
             window.location.href="second_level.html?id=gszl";
     });
+    $("#pie-doughnut-2").click(function() {
+            window.location.href="second_level.html?id=gszl";
+    });
+
 });
 
 Img1 = new Array();
