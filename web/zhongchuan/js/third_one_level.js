@@ -166,6 +166,10 @@ $(document).ready(function(){
             $(".icon-b-l").hide();
        }
        $(".content-all").addClass('content-'+data[length].split(",")[1]);
+       if(data[length].split(",")[0].length>9){
+        $(".tab").addClass('tab-long').removeClass('tab');
+        $(".h").html(data[length].split(",")[0]);
+       }
        $(".h").html(data[length].split(",")[0]);
     }
 
@@ -220,7 +224,7 @@ $(document).ready(function(){
     // pie1();
 });
 Img1 = new Array();
-for(var x=0;x<90;x++){
+for(var x=0;x<100;x++){
     if(x<10){
         Img1[x] = "static/dongxiao/dongxiao_0000"+ x +".png"
     }else{

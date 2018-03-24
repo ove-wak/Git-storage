@@ -812,6 +812,7 @@ ul{
     height: 0.58rem;
     text-align: left;  
     line-height: 0.58rem;
+    vertical-align: middle;
 }
 .button .q1{
     display: inline-block;
@@ -824,10 +825,9 @@ ul{
     text-align: center;
     display: inline-block;
     line-height: 0.28rem;
-    margin-top: 0.02rem;
     width: 1.92rem;
-    height: 0.55rem;
     overflow: hidden;
+    vertical-align: middle;
 }
 .button-blue{
     background: url("../static/second/btn_green_normal.png") no-repeat;   

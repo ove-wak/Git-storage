@@ -469,6 +469,7 @@ body{
     height: 0.47rem;
     text-align: left;  
     line-height: 0.47rem;
+    vertical-align: middle;
 }
 .button .q1{
     display: inline-block;
@@ -481,10 +482,9 @@ body{
     text-align: center;
     display: inline-block;
     line-height: 0.2rem;
-    margin-top: 0.05rem;
     width: 1.26rem;
-    height: 0.38rem;
     overflow: hidden;
+    vertical-align: middle;
 }
 .button-blue{
     background: url("../static/index/btn_blue.png") no-repeat;   

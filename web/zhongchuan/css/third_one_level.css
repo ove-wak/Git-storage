@@ -169,6 +169,27 @@ body{
     line-height: 1rem;
     text-align: center;
 }
+.tab-long{
+    position: absolute;
+    background: url("../static/third_1/tab-blue-long.png") no-repeat;
+    background-size: 100% 100%;
+    width: 12.94rem;
+    height: 1.38rem;
+    top: 2.4rem;
+    left: 0.16rem;
+}
+.tab-long .h{
+    position: absolute;
+    font-size: 0.39rem;
+    color: #ffffff;
+    font-weight: bold;
+    left: 0.72rem;
+    top: 0.15rem;
+    width: 6.85rem;
+    height: 1rem;
+    line-height: 1rem;
+    text-align: center;
+}
 .middle1{
     height: 10rem;
     width: 10rem;

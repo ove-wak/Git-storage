@@ -5,7 +5,14 @@ $(document).ready(function(){
     var myid1=urlcontent[0].split("=")[1];
     var myid2=urlcontent[1].split("=")[1];
     var name=decodeURI(urlcontent[2].split("=")[1]);
-
+    var title = '以"三会一课"为基本形式,开展基层党组织"两学一做"学习教育';
+    if(title.length>10){
+        $(".middle").addClass('middle-long').removeClass('middle');
+        $(".m-title").addClass('m-title-long').removeClass('m-title');
+        $(".m-h").html(title);
+    }else{
+       $(".m-h").html(title); 
+    }
     $(".back").hover(function(){
         $(".back-img").css("background","url(static/second/backbutton_selected.png) no-repeat");
         $(".back-img").css("background-size","100% 100%");

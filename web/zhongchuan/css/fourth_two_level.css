@@ -84,6 +84,17 @@ body{
     top: 1.3rem;
     left: 1.08rem;
 }
+.middle-long{
+    color:#ffffff;
+    font-size: 0.22rem;
+    background: url("../static/fourth_2/bg_long_2.png") no-repeat;
+    background-size: 100% 100%; 
+    width: 19.42rem;
+    height: 11.67rem;
+    position: absolute;
+    top: 1.3rem;
+    left: 1.08rem;
+}
 .m-head{
     position: relative;
     width: 100%;
@@ -96,6 +107,16 @@ body{
     line-height: 0.85rem;
     height: 0.85rem;
     width: 5.15rem;
+    right: 1.9rem;
+    top: 0.3rem;
+}
+.m-title-long{
+    position: absolute;
+    font-size: 0.36rem;
+    text-align: center;
+    line-height: 0.85rem;
+    height: 0.85rem;
+    width: 11.15rem;
     right: 1.9rem;
     top: 0.3rem;
 }
