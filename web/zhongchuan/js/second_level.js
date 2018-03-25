@@ -34,7 +34,18 @@ $(document).ready(function(){
                 $('#r-coleee').css('overflow-y','hidden');
        }
     }
-
+    $(".left .dcl").click(function(event) {
+        window.location.href="mbgk_dcl.html";
+    });
+    $(".left .ldgz").click(function(event) {
+        window.location.href="mbgk_ldgz.html";
+    });
+    $(".right .dcl").click(function(event) {
+        window.location.href="gszl_dcl.html";
+    });
+    $(".right .ldgz").click(function(event) {
+        window.location.href="gszl_ldgz.html";
+    });
     $(".back").hover(function(){
         $(".back-img").css("background","url(static/second/backbutton_selected.png) no-repeat");
         $(".back-img").css("background-size","100% 100%");
