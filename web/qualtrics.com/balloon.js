@@ -21,7 +21,6 @@ Qualtrics.SurveyEngine.addOnload(function()
     var inner = document.getElementsByClassName("Inner");
     inner[0].style.display = "none";
     loadHtml();
-    loadHtmlEvent();
     // loadCanvas.call(this);
     // drawCircle();
     // var canvas = document.getElementById('balloon');
@@ -31,33 +30,36 @@ Qualtrics.SurveyEngine.addOnload(function()
 
 function loadHtml(){
     balloonNum +=1;
-    timeInput.value += "*******"+balloonNum+":  ";
     var content = document.createElement('div');
     content.id = "loadHtml";
     content.style.textAlign = "center";
     content.style.clear = "both";
     content.innerHTML="<div>已用时:<span id='timing'></span></div>";
-    content.innerHTML+="<div style='position:relative;'><span id='clickNum' style='position: absolute;left: 344px;top: 62px;font-size: 54px;font-weight: bold;width:80px;text-align:center;'></span><img id='balloon' border='0' src='https://rucsb.asia.qualtrics.com/WRQualtricsControlPanel/Graphic.php?IM=IM_7Oo1i47qgXZCaWN' alt='Balloon' data-image-state='ready'></div>";
-    content.innerHTML+="<button id='close' style='color: #fff;background-color: #DC143C;border-color: #DC143C;padding: 2.5px 10px;float:right;margin-right:150px;'>结束任务</button>";  
-    that.questionContainer.appendChild(content);
+    content.innerHTML+="<div style='position:relative;'><span id='clickNum'  onselectstart='return false;' style='position: absolute;left: 309px;top: 28px;font-size: 54px;font-weight: bold;width:152px;height:152px;line-height:152px;cursor:pointer;text-align:center;border-radius:76px;'></span><img id='balloon' border='0' src='https://rucsb.asia.qualtrics.com/WRQualtricsControlPanel/Graphic.php?IM=IM_7Oo1i47qgXZCaWN' alt='Balloon' data-image-state='ready'></div>";
+    content.innerHTML+="<button id='close' style='color: #fff;background-color: #DC143C;border-color: #DC143C;padding: 2.5px 10px;float:right;margin-right:150px;'>结束任务</button>"; 
+    setTimeout(function(){
+        timeInput.value += "*******"+balloonNum+":  ";       
+        that.questionContainer.appendChild(content);
+        loadHtmlEvent();
+    },"150"); 
 }
 function loadHtmlEvent(){
     clickNum = 0;//点击次数
     var balloon = document.getElementById('balloon');
     var clickNumSpan = document.getElementById('clickNum');
     var close = document.getElementById('close');
-    balloon.onclick = function(){
+    clickNumSpan.onclick = function(){
         clickNum ++;
         clickNumSpan.innerHTML=clickNum;
         balloon.style.marginLeft = "-20px";
-        clickNumSpan.style.left = "324px";
+        clickNumSpan.style.left = "289px";
             setTimeout(function () {
                 balloon.style.marginLeft = "-10px";
-                clickNumSpan.style.left = "334px";
+                clickNumSpan.style.left = "299px";
             },30);
             setTimeout(function () {
                 balloon.style.marginLeft = "0px";
-                clickNumSpan.style.left = "344px";
+                clickNumSpan.style.left = "309px";
             },60);
         console.log(clickNum);
         if (clickNum === 1) {
@@ -87,7 +89,7 @@ function loadClose(){
     var content = document.createElement('div');
     content.id = "loadClose";
     content.style.textAlign = "center";
-    content.innerHTML="<div>爆破失败，任务结束（<span id='time2'></span>秒后回到主页面</div>";  
+    content.innerHTML="<div>爆破失败，任务结束（<span id='time2'></span>后回到主页面)</div>";  
     that.questionContainer.appendChild(content);
     var timingSpan = document.getElementById('time2');
     var tt = failureTime;
@@ -133,9 +135,10 @@ function timingCount(){
         if(tt>=timing){
             var el = document.getElementById('loadHtml');
             window.clearInterval(int);
-            el.parentNode.removeChild(el);
+            // el.parentNode.removeChild(el);
             timeInput.value += "failure";
-            loadClose();
+            console.log(timeInput.value);
+            // loadClose();
         }
     },1000);
 }
