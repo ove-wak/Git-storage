@@ -8,9 +8,7 @@ class ConnectMysql:
     def __init__(self):
         self.db = pymysql.connect(host="localhost",
                              port=3306,
-                             user='root',
-                             password='123456',
-                             db='wifi_0419')
+                             user='root',passwd='123456',db='wifi_0419')
 
     # 关闭连接
     def close_conn(self):
