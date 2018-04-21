@@ -1,15 +1,15 @@
 import os,time
 from connectMysql import ConnectMysql
 class SaveData:
-    # def __init__(self):
-    #     # 连接数据库
-    #     self.conn = ConnectMysql()
-    #     # 如果表不存在则创建表
-    #     self.conn.create_table()
+    def __init__(self):
+        # 连接数据库
+        self.conn = ConnectMysql()
+        # 如果表不存在则创建表
+        self.conn.create_table()
 
     # 完整数据保存               
     def data_save(self,path,file,phone_model,tt_time): 
-        print(path+"\n") 
+        print(path) 
         time_period = tt_time;
         with open(path + file, 'r') as file_read:
             file_a = file.split('.')
@@ -32,7 +32,7 @@ class SaveData:
                 line_time_t.append(line_data[0] + " " + line_data[1])
             for time_p in time_period:
                 model = time_p[0]
-                if time_p[1] in line_time_t and time_p[2] in line_time_t:
+                if time_p[1] in line_time_t and time_p[2] in line_time_t:#数据采集出了比较大的问题,只有部分数据完整,只保存完整的数据
                     print(model+" " +str(1)) 
                     line_datas_t = line_datas[line_time_t.index(time_p[1]):line_time_t.index(time_p[2])]
                     if int(model) == 0: # 模型0为底图采集
@@ -45,9 +45,9 @@ class SaveData:
                                 for x in range(0,len(line_data),2):
                                     mac.append(line_data[x])
                                     ap.append(line_data[x+1])
-                            # flag = self.conn.insert_data(model,addr,phoneIP,1,strx,stry,direction,line_time,mac,ap)  
-                            # if flag == -1:
-                            #     return line_time  
+                            flag = self.conn.insert_data(model,addr,phoneIP,1,strx,stry,direction,line_time,mac,ap)  
+                            if flag == -1:
+                                return line_time  
                     else: #其他数据分为四组
                         one = int(len(line_datas_t)/4)
                         for x in range(1,5):
@@ -58,21 +58,21 @@ class SaveData:
                                 mac = []
                                 ap = []
                                 if line_data:
-                                    for x in range(0,len(line_data),2):
-                                        mac.append(line_data[x])
-                                        ap.append(line_data[x+1])
-                                # flag = self.conn.insert_data(str(x)+""+str(model),addr,phoneIP,1,strx,stry,direction,line_time,mac,ap)  
-                                # if flag == -1:
-                                #     return line_time 
+                                    for y in range(0,len(line_data),2):
+                                        mac.append(line_data[y])
+                                        ap.append(line_data[y+1])
+                                flag = self.conn.insert_data(str(x)+""+str(model),addr,phoneIP,1,strx,stry,direction,line_time,mac,ap)  
+                                if flag == -1:
+                                    return line_time 
         return 1
 
     # 读取数据
     def data_read(self):
-        data = self.conn.select_data()
+        data = self.conn.read_data()
         return data
 
     #关闭连接
     def close_connect(self):
         pass
-        # self.conn.close_conn()
+        self.conn.close_conn()
 

@@ -1,7 +1,28 @@
+# todo 表中添加置信度
+# todo 下次采集数据的时候要考虑到规范化处理
+# todo 数据库读的速度太慢了,还不清楚哪里出了问题,后面要解决一下.
 from dataToExcel import DataToExcel
 import pymysql
 import xlwt,time,numpy
 import matplotlib.pyplot as plt
+
+class Fs:
+    x = 0
+    y = 0
+    data = []
+
+    def __init__(self, x, y, data):
+        self.x = x
+        self.y = y
+        self.data = data
+
+    def show_info(self):
+        print(self.x, ' ', self.y, ' ')
+        for i in range(len(self.data)):
+            temp = self.data[i]
+            for j in range(len(temp)-1):
+                print(temp[j], end=',')
+            print(temp[len(temp)-1])
 
 class ConnectMysql:
     # 初始化类连接数据库
@@ -76,6 +97,37 @@ class ConnectMysql:
             flag = -1
         cursor.close()
         return flag
+
+    def read_data(self):
+        model_num = 44
+        ap_mac = ('50:bd:5f:7e:79:11','12:27:1d:1a:59:ab','00:27:1d:1a:59:ab','22:27:1d:1a:59:ab','70:ba:ef:d5:96:52','50:64:2b:30:90:ca','74:7d:24:eb:f5:a2','12:27:1d:1a:59:c5','02:27:1d:1a:59:ab','70:ba:ef:b8:c9:96','00:27:1d:1a:59:c3','32:27:1d:1a:59:ab','70:ba:ef:d5:97:71','70:ba:ef:d5:96:50','70:ba:ef:d5:96:51','70:ba:ef:d5:96:54','00:27:1d:1a:59:ea','58:6a:b1:c3:73:a0','70:ba:ef:d5:97:70','70:ba:ef:d5:b5:c4','70:ba:ef:d5:b5:c1','70:ba:ef:d5:b5:c2','70:ba:ef:d5:b5:c3','70:ba:ef:b8:c9:94','70:ba:ef:b8:c9:93','70:ba:ef:d5:b5:c0','70:ba:ef:d5:97:60','70:ba:ef:d5:97:62','70:ba:ef:d5:97:63','70:ba:ef:d5:97:64')
+        hi = []#历史数据
+        cu = []#当前数据
+        cursor = self.db.cursor()
+        sql = "select id,coordinate_x,coordinate_y from fingerprint_record where model_num="+str(model_num)+";"
+        cursor.execute(sql)    
+        results=cursor.fetchall()
+        results = list(results)
+        data = []
+        for result in results:
+            print(result[0])
+            temp = []
+            # for mac in ap_mac:
+            #     print(mac)
+                #sql = "select signal_strength from signal_record where record_id = "+str(result[0])+" and signal_mac_address='"+mac+"';" 
+            sql = "select signal_strength from signal_record where record_id = "+str(result[0])+";" 
+            cursor.execute(sql)
+            res=cursor.fetchall()
+            if len(res) == 0:
+                temp.append(-100)
+            else:
+                temp.append(res[0])
+            cu.append([result[0], result[1], temp])
+        print(cu)
+        cursor.close()
+        return 1
+
+
 
 # 预处理得到后续数据excel文件
     def select_data(self,model_num):
@@ -203,9 +255,9 @@ class ConnectMysql:
 # 测试环境下运行
 if __name__ == "__main__":
     conn = ConnectMysql()
-    # conn.select_data(0)
+    conn.read_data()
     # conn.img_data()
-    for x in range(0,20):
-        conn.select_data(x)
-        print(str(x)+" complete")
+    # for x in range(0,20):
+    #     conn.select_data(x)
+    #     print(str(x)+" complete")
 

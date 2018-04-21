@@ -62,6 +62,7 @@ class GuiContent:
                     break
                 tt_time.append(lines.split("\n")[0].split(","))
         tt_time = tt_time[0:-1]
+        print(tt_time)
         #禁用按钮
         b1['state'] = DISABLED
         b3['state'] = DISABLED

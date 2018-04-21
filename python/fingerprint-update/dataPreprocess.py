@@ -8,7 +8,7 @@ sheet = 0 # 单ap训练,定义ap序号
 
 class DataPreprocess:
     def __init__(self):
-        file = xlrd.open_workbook('excel/底图.xls')
+        file = xlrd.open_workbook('excel/0.xls')
         table = file.sheets()[sheet]  #通过索引顺序获取工作表
         nrows = table.nrows #行数              
         self.mlab = Matlab()
@@ -21,7 +21,7 @@ class DataPreprocess:
 
     # 生成中间数据
     def get_median(self):
-        for j in range(1,20):
+        for j in range(0,20):
             file = xlrd.open_workbook('excel/'+str(j)+'.xls')
             table = file.sheets()[sheet]  #通过索引顺序获取工作表
             nrows = table.nrows #行数
@@ -49,16 +49,16 @@ class DataPreprocess:
     # 1是训练条件不同结果不同
     # 2是随机参数不同结果不同
     # 多次训练取最优解
-    def training(self): 
+    def training(self,model_num): 
         # 初始训练
-        res = self.mlab.run_func('OSELM_initial_training.m','middata'+str(sheet)+'/1.txt',10,'sin',nargout=5)
+        res = self.mlab.run_func('OSELM_initial_training.m','middata'+str(sheet)+'/0.txt',10,'sin',nargout=5)
         IW = res['result'][0]
         Bias = res['result'][1]
         M = res['result'][2]
         beta =res['result'][3]
         # 增量学习
         # ####!!!添加将 每一次增量学习结果的误差输出出来并可视化
-        for x in range(2,11):
+        for x in range(1,model_num+1):
             res = self.mlab.run_func('OSELM_increase_study.m','middata'+str(sheet)+'/'+str(x)+'.txt',IW,Bias,M,beta,'sin',1,nargout=4)
             IW = res['result'][0]
             Bias = res['result'][1]
@@ -94,13 +94,14 @@ class DataPreprocess:
 if __name__ == "__main__":
     d = DataPreprocess()
     data = []
+    model_num = 10
     for x in range(4):
         sheet = x
-        #d.get_median()
-        #d.get_none()
-        data.append(d.training())
+        # d.get_median()
+        # d.get_none()
+        data.append(d.training(model_num))
 
     excel = DataToExcel()
     ##记得改文件名
-    excel.odte("第一次增量学习结果",data)
+    excel.odte(str(model_num)+"oselm",data)
     d.mlab_stop()
