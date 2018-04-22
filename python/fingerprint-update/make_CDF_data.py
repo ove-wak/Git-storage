@@ -3,7 +3,7 @@ import xlrd,os,time,numpy,csv
 
 # 生成中间数据
 # def get_median(self):
-j = 10
+j = 3
 
 cdf_data = []
 for x in range(4):
