@@ -12,7 +12,7 @@ with open("3_cdf.csv","r") as csvfile:
      for i in read:
           data = i
 for x in range(len(data)):
-    data[x]= int(data[x])
+    data[x]= float(data[x])
 data = np.sort(data)
 d_x = []
 d_y = []
@@ -35,7 +35,7 @@ with open("6_cdf.csv","r") as csvfile:
      for i in read:
           data = i
 for x in range(len(data)):
-    data[x]= int(data[x])
+    data[x]= float(data[x])
 data = np.sort(data)
 d_x = []
 d_y = []
@@ -58,7 +58,7 @@ with open("10_cdf.csv","r") as csvfile:
      for i in read:
           data = i
 for x in range(len(data)):
-    data[x]= int(data[x])
+    data[x]= float(data[x])
 data = np.sort(data)
 d_x = []
 d_y = []
