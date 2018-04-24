@@ -75,9 +75,11 @@ for x in range(0,31):
 # d_y = [func(i, popt[0],popt[1],popt[2]) for i in d_x]  
 plt.plot(d_x,d_y,label="After 10 days")
 
-plt.xlabel("RSS prediction error[dB]",fontsize=20)
-plt.ylabel("CDF",fontsize=20)
+plt.xlabel("RSS prediction error[dB]",fontsize=30)
+plt.ylabel("CDF",fontsize=30)
 plt.axis([0,30,0,1])
+plt.xticks(fontsize=24)
+plt.yticks(fontsize=24)
 plt.grid(linestyle='--')
-plt.legend(loc=4,fontsize=20)
+plt.legend(loc=4,fontsize=30)
 plt.show()
