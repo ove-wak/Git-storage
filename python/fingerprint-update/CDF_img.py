@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt
 from scipy.optimize import curve_fit
 import csv
 
-def func(x, a, b, c):  
-    return a * np.exp(-b * x) + c  
+# def func(x, a, b, c):  
+#     return a * np.exp(-b * x) + c  
 
 with open("3_cdf.csv","r") as csvfile:
      #读取csv文件，返回的是迭代类型
