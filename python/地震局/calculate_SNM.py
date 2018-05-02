@@ -2,10 +2,13 @@
 #2 数据筛选
 #3 数据预处理
 #4 求功率谱
+#
+# 中国地震台网:http://news.ceic.ac.cn/index.html?time=1525227249
 #### 文件命名方式待规范
 
 import os,time
-import numpy as np 
+import numpy as np
+from matplotlib.pyplot import plot, show 
 # 数据筛选
 # 功能:去除数据缺失超过1h的无效数据，缺失数据的重力和气压值为999999.000
 # 输入:数据文件所在目录
@@ -49,7 +52,7 @@ def data_preprocessing(dir_path,qualified_files,dir_path_pre):
         temp = []
         with open(dir_path + file, 'r') as file_read:
             # while True:
-            line_datas = file_read.readlines() # 读取整行数据
+            line_datas = file_read.readlines() # 读取全部行数据
                 # if not line_data:
                 #     break
                 # line_datas.append(line_data.split())
@@ -84,6 +87,19 @@ def calculate_power_spectrum(n,std_day,dir_path_pre):
     for need_data in need_datas:
         need_files.append("大武_X212MGPH0131_"+need_data[0]+"_原始观测数据.tsf")
     print(need_files)
+    line_datas = []
+    waves = []
+    with open(dir_path + need_files[0], 'r') as file_read:
+        line_datas = file_read.readlines() # 读取全部行数据
+    for x in range(len(line_datas)):
+        if x >= 18:#这个数值是头文件所占行数
+            #预处理操作
+            line_datas[x] = line_datas[x].split()
+            waves.append(line_datas[x][6])
+    transformed = np.fft.fft(waves)  #使用fft函数对余弦波信号进行傅里叶变换。
+    print(transformed)
+    plot(transformed)  #使用Matplotlib绘制变换后的信号。
+    show()
 
 dir_path = "d://地震局0425/大武原始数据/" 
 dir_path_pre = "d://地震局0425/preprocess_data/" 
