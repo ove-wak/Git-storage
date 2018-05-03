@@ -90,7 +90,7 @@ def calculate_power_spectrum(n,std_day,dir_path_pre):
     line_datas = []
     waves = []
     with open(dir_path + need_files[0], 'r') as file_read:
-        line_datas = file_read.readlines() # 读取全部行数据
+        line_datas = file_read.r eadlines() # 读取全部行数据
     for x in range(len(line_datas)):
         if x >= 18:#这个数值是头文件所占行数
             #预处理操作
