@@ -89,6 +89,7 @@ def calculate_power_spectrum(n,std_day,dir_path_pre):
     print(need_files)
     line_datas = []
     waves = []
+    # ##n个文件
     with open(dir_path + need_files[0], 'r') as file_read:
         line_datas = file_read.readlines() # 读取全部行数据
     for x in range(len(line_datas)):
@@ -96,10 +97,13 @@ def calculate_power_spectrum(n,std_day,dir_path_pre):
             #预处理操作
             line_datas[x] = line_datas[x].split()
             waves.append(line_datas[x][6])
-    transformed = np.fft.fft(waves)  #使用fft函数对余弦波信号进行傅里叶变换。
-    print(transformed)
+    transformed = np.fft.fft(waves)  #使用fft函数对信号进行傅里叶变换。
+    transformed = transformed[0:int(len(transformed)/2)] # 因为变换后是对称的,因此删除一半
+    print(len(transformed))
+    # ##n个功率谱取平均值
     plot(transformed)  #使用Matplotlib绘制变换后的信号。
     show()
+    # ##频段内求平均值
 
 dir_path = "d://地震局0425/大武原始数据/" 
 dir_path_pre = "d://地震局0425/preprocess_data/" 

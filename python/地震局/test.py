@@ -11,11 +11,9 @@ for x in range(len(line_datas)):
         for t in line_datas[x]:
             waves.append(float(t))
 print(waves[0])
-# x = np.linspace(0, 2 * np.pi, 30) #创建一个包含30个点的余弦波信号
-# print(x)
-# wave = np.cos(x)
-# print(wave)
-transformed = np.fft.fft(waves)  #使用fft函数对余弦波信号进行傅里叶变换。
-print(transformed[1])  #对变换后的结果应用ifft函数，应该可以近似地还原初始信号。
+transformed = np.fft.fft(waves)  #使用fft函数对信号进行傅里叶变换。
+transformed = transformed[0:int(len(transformed)/2)] # 因为变换后是对称的,因此删除一半
+print(len(transformed))
+print(transformed[1])  
 plot(transformed)  #使用Matplotlib绘制变换后的信号。
 show()
