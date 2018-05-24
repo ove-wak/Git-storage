@@ -34,20 +34,17 @@ for quanfile in quanfiles:
                 timet = time.strftime("%m/%d/%Y %H:%M:%S",time.localtime(int(timet)+60))#全站仪绝对时间偏差约为60秒
                 timed.append(timet)
         flag = 0
-        print(quanfile)
-        print(timed)
         for q in quandata:
             # print(q)
             if flag < len(timed) and timed[flag] in q:
                 flag = flag + 1
                 locd.append([q[3],q[4]])
-        print(len(timed))
-        print(len(locd))
-        print(locd)
+        print(quanfile)
+        print(timed)
+        for j in range(len(files)):
+            file_name = str(j+1).zfill(5)+"_"+str(round(float(locd[j][0]),3))+"_"+str(round(float(locd[j][1]),3))+".csv"
+            os.rename("Wi-Fi_Data/"+room+"/"+files[j],"Wi-Fi_Data/"+room+"/"+file_name)
 
 
 
-
-    # file_name = str(i+1).zfill(5)+"_"+str(round(temp_x,3))+"_"+str(round(temp_y,3))+".csv"
-    # os.rename("Wi-Fi_Data/"+room+"/"+files[i],"Wi-Fi_Data/"+room+"/"+file_name)
 
