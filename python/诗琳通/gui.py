@@ -44,9 +44,5 @@ def save_data_event():
     save_data.close_connect()
        
     return 1
-
-#读取数据.待补充
-def read_data_event():
-    pass
         
-save_data_event()
+# save_data_event()

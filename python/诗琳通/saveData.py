@@ -36,11 +36,6 @@ class SaveData:
                         return line_timet        
         return 1
 
-    # 读取数据
-    def data_read(self):
-        data = self.conn.select_data()
-        return data
-
     #关闭连接
     def close_connect(self):
         self.conn.close_conn()
