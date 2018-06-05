@@ -118,3 +118,4 @@ with open(building_id+'_bt.json', 'w') as f:
     json.dump(data, f)
 print("蓝牙指纹转为json格式完成.")
 print("程序执行完毕.")
+os.system("pause")
