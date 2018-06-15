@@ -40,9 +40,9 @@ def get_excel(a,b,val,file_name):
         if val[x][0] < 4:
             val[x][0] = 4
         while val[x][0] - short_num[x][12] < 0.3 or val[x][0] - short_num[x][12] > 1:
-            short_num[x][0] = 1.56+round(random.uniform(0.05,0.8),2)
+            short_num[x][0] = 1.56+round(random.uniform(0.1,1.5),2)
             for y in range(1,13):
-                short_num[x][y] = short_num[x][y-1]+round(random.uniform(0.05,0.8),2) 
+                short_num[x][y] = short_num[x][y-1]+round(random.uniform(0.1,1.5),2) 
             # print(short_num[x][12])
 
     for x in range(a*b):
@@ -50,9 +50,9 @@ def get_excel(a,b,val,file_name):
         if val[x][1] < 4:
             val[x][1] = 4
         while val[x][1] - long_num[x][12] < 0.3 or val[x][1] - long_num[x][12] > 1:
-            long_num[x][0] = 1.56+round(random.uniform(0.05,0.8),2)
+            long_num[x][0] = 1.56+round(random.uniform(0.1,1.5),2)
             for y in range(1,13):
-                long_num[x][y] = long_num[x][y-1]+round(random.uniform(0.05,0.8),2)     
+                long_num[x][y] = long_num[x][y-1]+round(random.uniform(0.1,1.5),2)     
 
 
     for x in range(1,15):

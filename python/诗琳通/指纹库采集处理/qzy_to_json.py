@@ -52,7 +52,7 @@ def data_to_json(dir_path,building_id):
         # 显示进度
         print("正在处理 "+room_name + " 下的文件")
         begin_time = time.time()
-        file_names =  [name for name in os.listdir(dir_path+dir_name)]  
+        file_names  =  [name for name in os.listdir(dir_path+dir_name)]  
         for file_name in file_names:
             file_num = file_name.split("_")[0]
             coo_x = file_name.split("_")[1]
