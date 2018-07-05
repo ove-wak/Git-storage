@@ -29,45 +29,63 @@ def data_with_cz():
             temp_y = 0.0
             direc_x = ""
             dt = 0.0
-            for i in range(len(files)):
-                if i == 0:
-                    temp_x = x_1
-                    temp_y = y_1
-                elif i == 1:
-                    temp_x = x_2
-                    temp_y = y_2
-                    dt_x = x_2 - x_1
-                    dt = abs(dt_x)
-                    if dt_x > 0:
-                        direc_x = "+"
+            if x == 1:# 当MAX_x只有1时，沿y轴直接计算
+                for i in range(len(files)):        
+                    if i == 0:
+                        temp_x = x_1
+                        temp_y = y_1
+                    elif i == 1:
+                        temp_x = x_2
+                        temp_y = y_2
+                        dt = abs(y_2 - y_1)
                     else:
-                        direc_x = "-"
-                else:
-                    if i % x == 0:
                         if direc_y == "+":
-                            x_t = 0
                             y_t = dt
                         else:
-                            x_t = 0
-                            y_t = 0 - dt
-                    else:
-                        y_t = 0 
-                        if (i//x) % 2 == 0:
-                            if direc_x == "+":
-                                x_t = dt
-                            else:
-                                x_t = 0 - dt
+                            y_t = 0 - dt 
+                        temp_y = temp_y + y_t
+                    file_name = str(i+1).zfill(5)+"_"+str(round(temp_x,3))+"_"+str(round(temp_y,3))+".csv"
+                    os.rename("Wi-Fi_Data/"+room+"/"+files[i],"Wi-Fi_Data/"+room+"/"+file_name)
+                    os.rename("BT_Data/"+room+"/"+files[i],"BT_Data/"+room+"/"+file_name)
+            else:
+                for i in range(len(files)): 
+                    if i == 0:
+                        temp_x = x_1
+                        temp_y = y_1
+                    elif i == 1:
+                        temp_x = x_2
+                        temp_y = y_2
+                        dt_x = x_2 - x_1
+                        dt = abs(dt_x)
+                        if dt_x > 0:
+                            direc_x = "+"
                         else:
-                            if direc_x == "+":
-                                x_t = 0 - dt
+                            direc_x = "-"
+                    else:
+                        if i % x == 0:
+                            if direc_y == "+":
+                                x_t = 0
+                                y_t = dt
                             else:
-                                x_t = dt
-                    temp_x = temp_x + x_t
-                    temp_y = temp_y + y_t
-
-                file_name = str(i+1).zfill(5)+"_"+str(round(temp_x,3))+"_"+str(round(temp_y,3))+".csv"
-                os.rename("Wi-Fi_Data/"+room+"/"+files[i],"Wi-Fi_Data/"+room+"/"+file_name)
-                os.rename("BT_Data/"+room+"/"+files[i],"BT_Data/"+room+"/"+file_name)
+                                x_t = 0
+                                y_t = 0 - dt
+                        else:
+                            y_t = 0 
+                            if (i//x) % 2 == 0:
+                                if direc_x == "+":
+                                    x_t = dt
+                                else:
+                                    x_t = 0 - dt
+                            else:
+                                if direc_x == "+":
+                                    x_t = 0 - dt
+                                else:
+                                    x_t = dt
+                        temp_x = temp_x + x_t
+                        temp_y = temp_y + y_t
+                    file_name = str(i+1).zfill(5)+"_"+str(round(temp_x,3))+"_"+str(round(temp_y,3))+".csv"
+                    os.rename("Wi-Fi_Data/"+room+"/"+files[i],"Wi-Fi_Data/"+room+"/"+file_name)
+                    os.rename("BT_Data/"+room+"/"+files[i],"BT_Data/"+room+"/"+file_name)
 
 # 指纹数据转为json格式
 def data_to_json(dir_path,building_id):
