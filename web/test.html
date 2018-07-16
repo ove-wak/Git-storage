@@ -1,6 +1,15 @@
 <!doctype html>
 <html>
     <head>
+    <script type="text/javascript">
+        function doAdd(n){
+            arguments[1] = 10;
+            console.log(arguments.length);
+            console.log(arguments[1]);
+            console.log(arguments[0]);
+        }
+        doAdd(1);
+    </script>
     <meta charset="utf-8">
     <!-- 禁止手机缩放页面 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
