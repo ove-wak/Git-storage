@@ -23,20 +23,20 @@ class ConnectMysql:
         # 创建指纹记录表
         sql = "CREATE TABLE IF NOT EXISTS fingerprint_record(\
                  id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,\
-                 model_num INT NOT NULL,\
-                 address VARCHAR(20) NOT NULL,\
-                 phone_ip VARCHAR(20) NOT NULL,\
+                 address VARCHAR(40) NOT NULL,\
                  signal_type INT NOT NULL,\
-                 coordinate_x INT NOT NULL,\
-                 coordinate_y INT NOT NULL,\
-                 direction VARCHAR(6),\
-                 signal_time VARCHAR(40));"
+                 coordinate_x FLOAT(10,3) NOT NULL,\
+                 coordinate_y FLOAT(10,3) NOT NULL,\
+                 signal_time VARCHAR(40),\
+                 uploading_device VARCHAR(40));"
         cursor.execute(sql)
         # 创建信号记录表
         sql = "CREATE TABLE IF NOT EXISTS signal_record(\
                  id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,\
                  record_id INT UNSIGNED NOT NULL,\
+                 valid_num INT  NOT NULL,\
                  signal_mac_address VARCHAR(20),\
+                 signal_name VARCHAR(20),\
                  signal_strength INT NOT NULL);"
         cursor.execute(sql)
         # 创建指纹库表
@@ -44,11 +44,12 @@ class ConnectMysql:
                  id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,\
                  model_num INT NOT NULL,\
                  update_num INT NOT NULL,\
-                 address VARCHAR(20) NOT NULL,\
+                 address VARCHAR(40) NOT NULL,\
                  signal_type INT NOT NULL,\
-                 coordinate_x INT NOT NULL,\
-                 coordinate_y INT NOT NULL,\
+                 coordinate_x FLOAT(10,3) NOT NULL,\
+                 coordinate_y FLOAT(10,3) NOT NULL,\
                  signal_mac_address VARCHAR(20),\
+                 signal_name VARCHAR(20),\
                  signal_strength INT NOT NULL);"
         cursor.execute(sql)
         cursor.close()
@@ -61,9 +62,9 @@ class ConnectMysql:
         cursor.close()
 
     # 插入指纹信号数据
-    def insert_data(self,model,addr,phoneIP,strtype,x,y,direction,time,mac,ap):
+    def insert_data(self,addr,signal_type,strx,stry,line_time,uploading_device,ap_mac,ap_name,ap_value):
         cursor = self.db.cursor()
-        sql = "INSERT INTO fingerprint_record VALUES(NULL, '" + str(model) + "', '" + addr + "', '" + phoneIP + "', " + str(strtype) + ", " + str(x) + ", " + str(y) + ", '" + direction + "', '" + time + "');"
+        sql = "INSERT INTO fingerprint_record VALUES(NULL, '" + addr + "', " + str(signal_type) + ", " + str(strx) + ", " + str(stry) + ", '" + uploading_device + "', '" + line_time + "');"
         flag = 0 # 是否执行成功标记
         try:
             # 执行sql语句
@@ -73,7 +74,8 @@ class ConnectMysql:
             if mac:
                 strsql = []
                 for i in range(len(mac)):
-                    strsql.append("(NULL, " + strRecordID + ", '" + mac[i] + "', " + str(ap[i]) + ")")
+                    # **插入失效参数
+                    strsql.append("(NULL, " + strRecordID + ", '" + ap_mac[i] + "', '" + ap_name[i] + "', " + str(ap_value[i]) + ")")
                 sql ="INSERT INTO signal_record VALUES" + ",".join(strsql) + ";"  
                 try:
                     cursor.execute(sql)
@@ -92,44 +94,46 @@ class ConnectMysql:
         return flag
 
     # 读取原始指纹库
-    def select_data(self,ap_mac,model_num,c_x,c_y):
+    def select_data(self,address,begin_time,end_time):
         #初始化数组
         ap_m = []
-        for i in range(len(ap_mac)):
-            ap_m.append([])
-            for j in range(c_x):
-                ap_m[i].append([])
-                for k in range(c_y):
-                    ap_m[i][j].append(-1)
-        mid_data = []
-        for i in range(c_x):
-            mid_data.append([])
-            for j in range(c_y):
-                mid_data[i].append(-1)
+        #***每个点在该时间段仍只取一个值，所以还是要取均值
+        #***某ap在地图上不完整要-100补充
+        # for i in range(len(ap_mac)):
+        #     ap_m.append([])
+        #     for j in range(c_x):
+        #         ap_m[i].append([])
+        #         for k in range(c_y):
+        #             ap_m[i][j].append(-1)
+        # mid_data = []
+        # for i in range(c_x):
+        #     mid_data.append([])
+        #     for j in range(c_y):
+        #         mid_data[i].append(-1)
 
-        cursor = self.db.cursor()
-        sql = "select id,coordinate_x,coordinate_y from fingerprint_record where model_num="+str(model_num)+";"
-        cursor.execute(sql)    
-        results=cursor.fetchall()
-        results = list(results)
-        for result in results:
-            if mid_data[result[1]][result[2]] == -1:
-                mid_data[result[1]][result[2]] = []
-            mid_data[result[1]][result[2]].append(result[0])
-        for x in range(c_x):
-            for y in range(c_y):
-                if mid_data[x][y] != -1:
-                    for ap in range(len(ap_mac)):
-                        sql = "select signal_strength from signal_record where record_id IN "+str(tuple(mid_data[x][y]))+" and signal_mac_address='"+ap_mac[ap]+"';" 
-                        cursor.execute(sql)
-                        res=cursor.fetchall()
-                        num = 0
-                        for r in res:
-                            num = num + r[0]
-                        if len(res) == 0:
-                           ap_m[ap][x][y] = -95
-                        else: 
-                            ap_m[ap][x][y] = int(num/len(res))###目前直接取均值
+        # cursor = self.db.cursor()
+        # sql = "select id,coordinate_x,coordinate_y from fingerprint_record where model_num="+str(model_num)+";"
+        # cursor.execute(sql)    
+        # results=cursor.fetchall()
+        # results = list(results)
+        # for result in results:
+        #     if mid_data[result[1]][result[2]] == -1:
+        #         mid_data[result[1]][result[2]] = []
+        #     mid_data[result[1]][result[2]].append(result[0])
+        # for x in range(c_x):
+        #     for y in range(c_y):
+        #         if mid_data[x][y] != -1:
+        #             for ap in range(len(ap_mac)):
+        #                 sql = "select signal_strength from signal_record where record_id IN "+str(tuple(mid_data[x][y]))+" and signal_mac_address='"+ap_mac[ap]+"';" 
+        #                 cursor.execute(sql)
+        #                 res=cursor.fetchall()
+        #                 num = 0
+        #                 for r in res:
+        #                     num = num + r[0]
+        #                 if len(res) == 0:
+        #                    ap_m[ap][x][y] = -95
+        #                 else: 
+        #                     ap_m[ap][x][y] = int(num/len(res))###目前直接取均值
                         ####计算标准差
                         # num = []
                         # for r in res:
@@ -142,6 +146,7 @@ class ConnectMysql:
         return ap_m
 
     # 插入指纹库数据
+    # ***应为覆盖写***
     def insert_fingerprint_data(self,model_num,update_num,addr,signal_type,ap_mac,ap_m):
         cursor = self.db.cursor()
         flag = 0 # 是否执行成功标记

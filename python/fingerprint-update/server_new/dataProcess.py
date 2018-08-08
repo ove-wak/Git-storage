@@ -1,6 +1,7 @@
 # 数据处理之连接数据库模块
 import os,time
 from connectMysql import ConnectMysql
+from matching import Matching
 class DataProcess:
     def __init__(self):
         # 连接数据库
@@ -8,35 +9,35 @@ class DataProcess:
         # 如果表不存在则创建表
         self.conn.create_table()
 
-    # 数据处理
-    def process_data(self,ap_mac,model_num,c_x,c_y):
-        ap_m = self.conn.select_data(ap_mac,model_num,c_x,c_y)
-        # c204底图数据额外处理
-        if model_num == 0:
-            for t in range(len(ap_mac)):
-                for x in range(c_x):
-                    for y in range(c_y):
-                        if x == 0 or x == 1 or x == 9 or y == 0 or y == 12:
-                            pass
-                        elif ap_m[t][x][y] != -1:
-                            pass
-                        elif (x % 2) == 1 and (y % 2) == 1:
-                            ap_m[t][x][y] = int((ap_m[t][x-1][y]+ap_m[t][x+1][y])/2)
-                        elif (x % 2) == 1 and (y % 2) == 0:
-                            ap_m[t][x][y] = int((ap_m[t][x-1][y-1]+ap_m[t][x-1][y+1]+ap_m[t][x+1][y-1]+ap_m[t][x+1][y+1])/4)
-                        else:
-                            ap_m[t][x][y] = int((ap_m[t][x][y-1]+ap_m[t][x][y+1])/2)
+    # 数据提取，预处理，保存指纹库
+    # 
+    def process_data(self,address,begin_time,end_time):
+        ap_m = self.conn.select_data(address,begin_time,end_time)
+        # 底图处理
+        if end_time == global_begin_time: 
+            #***与上一次底图进行比较，更新ap_mac（包含其中的无效化值）
+        # 历史数据匹配
+        else:
+            #**历史数据匹配
+            #
+            match = Matching("信号类型0或1")
+            # 匹配历史数据的时间范围
+            match.history_division("开始时间", "结束时间")
+            # 匹配的结果
+            aps,result = match.match.history_matching(begin_time,end_time)
+            #**两部分数据整合：ap_m和result
         return ap_m
 
     # 指纹库保存到数据库中
+    # model_num模型序号，初始为0，每次底图采集递加1
     # update_num:更新次数,原数据更新次数为0,每次更新后更新次数加一并保存
-    def save_data(self,model_num,update_num,ap_mac,ap_m):
-        addr = "c204"
+    def save_data(self,attr,model_num,update_num,ap_mac,ap_m):
         signal_type = 1
         flag = self.conn.insert_fingerprint_data(model_num,update_num,addr,signal_type,ap_mac,ap_m)
         return flag
 
     # 获取指定指纹库
+    # 
     def get_data(self,model_num,update_num,signal_mac_address,c_x,c_y):
         results = self.conn.select_fingerprint_data(model_num,update_num,signal_mac_address)        
         mid_data = []
