@@ -81,76 +81,6 @@ class ConnectMysql:
         cursor.close()
         return flag
 
-# 按建筑
-#     #读取数据库并保存为指定json格式
-#     ### 对比之后发现两个问题:
-#     #1.当前绝对坐标跟经纬度的区别
-#     #2.字典和json参数的顺序问题??
-#     def read_data(self,signal_type):
-
-#         record = {}
-#         temp = -1
-#         ap = 0       
-#         cursor = self.db.cursor()
-#         sql = "select * from signal_record;" 
-#         cursor.execute(sql)
-#         res=cursor.fetchall()
-#         for r in res:
-#             if r[1] == temp:
-#                 ap = ap + 1
-#                 record[r[1]].append({'AP':ap,'BSSID':r[2],'SSID':r[3],'Level':r[4]})
-#             else:
-#                 ap = 0
-#                 temp = r[1]
-#                 record[r[1]] = [{'AP':ap,'BSSID':r[2],'SSID':r[3],'Level':r[4]}]
-
-
-#         data = []
-#         pt = 0
-#         c_x = ""
-#         c_y = ""
-#         point_num = 0
-#         round_num = 1
-#         sql = "select * from fingerprint_record where signal_type = "+str(signal_type)+";"
-#         cursor.execute(sql)    
-#         results=cursor.fetchall()
-#         results = list(results)
-#         for result in results:
-#             scaninfo = record[result[0]]
-#             if result[4] == c_x and result[5] == c_y:
-#                 round_num = round_num + 1
-#                 pt['WIFIscan'].append({'Round':round_num,'Date':result[6],'WifiScanInfo':scaninfo})
-#             else:
-#                 round_num = 1
-#                 c_x = result[4]
-#                 c_y = result[5]
-#                 if pt != 0:
-#                     data.append(pt)
-#                 pt = {}
-#                 pt['Point NO'] = point_num
-#                 pt['PosLon'] = float(c_x)
-#                 pt['PosLat'] = float(c_y)
-#                 pt['Building ID'] = 'shilintong'
-#                 pt['Floor ID'] = str(result[2][10:12])
-#                 pt['Date'] = result[6]
-#                 pt['WIFIscan'] = [{'Round':round_num,'Date':result[6],'WifiScanInfo':scaninfo}]
-#                 point_num = point_num + 1           
-#         cursor.close()
-#         return data
-
-# if __name__ == '__main__':
-#     conn = ConnectMysql()
-#     # conn.drop_table()
-#     signal_type = 2# 1为wifi;2为蓝牙
-#     data = conn.read_data(signal_type)
-#     if signal_type == 1:
-#         with open('shilintong_wifi.json', 'w') as f:
-#             json.dump(data, f)
-#     else:
-#         with open('shilintong_bt.json', 'w') as f:
-#             json.dump(data, f)
-
-
 #按楼层
     #读取数据库并保存为指定json格式
     ### 对比之后发现两个问题:
@@ -220,13 +150,15 @@ class ConnectMysql:
 if __name__ == '__main__':
     conn = ConnectMysql()
     # conn.drop_table()
-    signal_type = 1# 1为wifi;2为蓝牙
+    signal_type = 2# 1为wifi;2为蓝牙
     data = conn.read_data(signal_type)
     if signal_type == 1:
         for ft in range(5): 
-            with open('shilintong_wifi_f0'+str(ft+1)+'.json', 'w') as f:
+            with open('shilintong/floor_'+str(ft+1)+'/WIFIscan.json', 'w') as f:
                 json.dump(data[ft], f)
+            print(str(ft+1)+'over')
     else:
         for ft in range(5):
-            with open('shilintong_bt_f0'+str(ft+1)+'.json', 'w') as f:
+            with open('shilintong/floor_'+str(ft+1)+'/IBeaconScan.json', 'w') as f:
                 json.dump(data[ft], f)
+            print(str(ft+1)+'over')

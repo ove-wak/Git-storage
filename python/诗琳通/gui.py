@@ -29,7 +29,11 @@ def save_data_event():
                 save_data.close_connect()
                 return -1
             # 存储bt单文件数据
-            flag = save_data.data_save(bt_path+dir_name+"/"+file_num+".csv",2,addr,coo_x,coo_y)
+            bt_file_names =  [name for name in os.listdir(bt_path+dir_name)] 
+            if file_name in bt_file_names:
+                flag = save_data.data_save(bt_path+dir_name+"/"+file_name,2,addr,coo_x,coo_y)
+            else:
+                flag = save_data.data_save(bt_path+dir_name+"/"+file_num+".csv",2,addr,coo_x,coo_y)
 
             if flag != 1:# 存储出错
                 print("出错位置:" +bt_path+dir_name + "/" +file_num+" "+flag)
@@ -45,4 +49,4 @@ def save_data_event():
        
     return 1
         
-# save_data_event()
+save_data_event()

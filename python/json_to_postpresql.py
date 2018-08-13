@@ -1,0 +1,1 @@
+# json格式的指纹数据远程存储到postgresql中
