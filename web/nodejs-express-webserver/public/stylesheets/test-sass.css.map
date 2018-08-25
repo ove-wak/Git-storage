@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AACA,GAAG;EACF,KAAK,EAFC,OAAO",
-"sources": ["test-sass.scss"],
-"names": [],
-"file": "test-sass.css"
-}
