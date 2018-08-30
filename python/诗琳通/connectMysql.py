@@ -1,10 +1,16 @@
 import pymysql
 import xlwt,time,numpy,json
 import matplotlib.pyplot as plt
+import jpype 
+from jpype import *
 
 class ConnectMysql:
     # 初始化类连接数据库
     def __init__(self):
+        self.jvmPath = u'C:\\Program Files\\Java\\jre-9.0.4\\bin\\server\\jvm.dll'
+        self.jpype.startJVM(jvmPath,"-Djava.class.path=C:\\Users\\ovewa\\Desktop\\lab\\cab.jar") 
+        self.cab = JClass('com.example.user.epcab.Cab')
+        self.c = cab()
         self.db = pymysql.connect(host="localhost",
                              port=3306,
                              user='root',
@@ -14,6 +20,7 @@ class ConnectMysql:
     # 关闭连接
     def close_conn(self):
         self.db.close()
+        self.jpype.shutdownJVM()
     
     # 创建表
     # 对于没有 phone_ip 的数据,人为标识区分
@@ -48,7 +55,8 @@ class ConnectMysql:
         cursor.close()
 
     # 插入数据
-    def insert_data(self,model,addr,strtype,x,y,time,mac,name,ap):
+    def insert_data(self,model,addr,strtype,x,y,time,mac,name,apt,room_device):
+        ap = apt
         cursor = self.db.cursor()
         sql = "INSERT INTO fingerprint_record VALUES(NULL, '" + str(model) + "', '" + addr + "', " + str(strtype) + ", '" + str(x) + "', '" + str(y) + "', '" + time + "');"
         flag = 0 # 是否执行成功标记
@@ -63,6 +71,10 @@ class ConnectMysql:
                     if name[i] == "null":
                         name[i] = ""
                     # print(name[i])
+                    # 数据标定
+                    ap[i] = self.c.getCabData(room_device,strtype,ap[i])
+                    if strtype == 1:#根据杨帆学长那边统一要求，将所有wifi的值转成正数
+                        ap[i] = abs(int(ap[i]))
                     strsql.append("(NULL, " + strRecordID + ", '" + mac[i] + "', '" + name[i] + "', " + str(ap[i]) + ")")
             sql ="INSERT INTO signal_record VALUES" + ",".join(strsql) + ";"  
             try:
@@ -150,7 +162,7 @@ class ConnectMysql:
 if __name__ == '__main__':
     conn = ConnectMysql()
     # conn.drop_table()
-    signal_type = 2# 1为wifi;2为蓝牙
+    signal_type = 1# 1为wifi;2为蓝牙
     data = conn.read_data(signal_type)
     if signal_type == 1:
         for ft in range(5): 

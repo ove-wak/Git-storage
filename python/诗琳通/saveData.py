@@ -8,7 +8,7 @@ class SaveData:
         self.conn.create_table()
 
     # 完整数据保存               
-    def data_save(self,path,type_t,addr,coo_x,coo_y): 
+    def data_save(self,path,type_t,addr,coo_x,coo_y,room_device): 
         if os.path.getsize(path):#判断文件是否为空   
             with open(path, 'r') as file_read:           
                 model = 0
@@ -31,7 +31,7 @@ class SaveData:
                         if int(a) != -200:# 当一行全部都是无效数据时数据库会报错,因此提前检验一次
                             flag_ap = 1
                     if flag_ap == 1:
-                        flag = self.conn.insert_data(model,addr,type_t,coo_x,coo_y,line_time,mac,name,ap)  
+                        flag = self.conn.insert_data(model,addr,type_t,coo_x,coo_y,line_time,mac,name,ap,room_device)  
                     if flag == -1:
                         return line_timet        
         return 1
