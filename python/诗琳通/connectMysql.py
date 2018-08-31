@@ -7,10 +7,8 @@ from jpype import *
 class ConnectMysql:
     # 初始化类连接数据库
     def __init__(self):
-        self.jvmPath = u'C:\\Program Files\\Java\\jre-9.0.4\\bin\\server\\jvm.dll'
-        self.jpype.startJVM(jvmPath,"-Djava.class.path=C:\\Users\\ovewa\\Desktop\\lab\\cab.jar") 
-        self.cab = JClass('com.example.user.epcab.Cab')
-        self.c = cab()
+        jvmPath = u'C:\\Program Files\\Java\\jre-9.0.4\\bin\\server\\jvm.dll'
+        jpype.startJVM(jvmPath,"-Djava.class.path=C:\\Users\\ovewa\\Desktop\\lab\\cab.jar") 
         self.db = pymysql.connect(host="localhost",
                              port=3306,
                              user='root',
@@ -20,7 +18,7 @@ class ConnectMysql:
     # 关闭连接
     def close_conn(self):
         self.db.close()
-        self.jpype.shutdownJVM()
+        jpype.shutdownJVM()
     
     # 创建表
     # 对于没有 phone_ip 的数据,人为标识区分
@@ -55,7 +53,11 @@ class ConnectMysql:
         cursor.close()
 
     # 插入数据
-    def insert_data(self,model,addr,strtype,x,y,time,mac,name,apt,room_device):
+    def insert_data(self,model,addr,strtype,x,y,time,mac,name,apt,room_device):  
+        # 数据标定
+        cab = JClass('com.example.user.epcab.Cab')
+        cabt = cab()
+        
         ap = apt
         cursor = self.db.cursor()
         sql = "INSERT INTO fingerprint_record VALUES(NULL, '" + str(model) + "', '" + addr + "', " + str(strtype) + ", '" + str(x) + "', '" + str(y) + "', '" + time + "');"
@@ -67,15 +69,16 @@ class ConnectMysql:
             strRecordID = str(cursor.lastrowid)
             strsql = []
             for i in range(len(mac)):
-                if int(ap[i]) != -200:
+                ap_value = int(ap[i])
+                if ap_value != -200:
                     if name[i] == "null":
                         name[i] = ""
-                    # print(name[i])
+                    # print(name[i])  
                     # 数据标定
-                    ap[i] = self.c.getCabData(room_device,strtype,ap[i])
+                    ap_value = cabt.getCabData(room_device,strtype,ap_value)                  
                     if strtype == 1:#根据杨帆学长那边统一要求，将所有wifi的值转成正数
-                        ap[i] = abs(int(ap[i]))
-                    strsql.append("(NULL, " + strRecordID + ", '" + mac[i] + "', '" + name[i] + "', " + str(ap[i]) + ")")
+                        ap_value = abs(ap_value)
+                    strsql.append("(NULL, " + strRecordID + ", '" + mac[i] + "', '" + name[i] + "', " + str(ap_value) + ")")
             sql ="INSERT INTO signal_record VALUES" + ",".join(strsql) + ";"  
             try:
                 cursor.execute(sql)
@@ -162,7 +165,7 @@ class ConnectMysql:
 if __name__ == '__main__':
     conn = ConnectMysql()
     # conn.drop_table()
-    signal_type = 1# 1为wifi;2为蓝牙
+    signal_type = 2# 1为wifi;2为蓝牙
     data = conn.read_data(signal_type)
     if signal_type == 1:
         for ft in range(5): 
