@@ -54,9 +54,13 @@ class ConnectMysql:
 
     # 插入数据
     def insert_data(self,model,addr,strtype,x,y,time,mac,name,apt,room_device):  
-        # 数据标定
-        cab = JClass('com.example.user.epcab.Cab')
-        cabt = cab()
+        # 数据标定初始化
+        # cab = JClass('com.example.user.epcab.Cab')
+        # cabt = cab()
+        
+        # 诗琳通原始数据坐标有偏差，现校准 --20180906
+        x = float(x) - 0.169
+        y = float(y) + 0.0276
         
         ap = apt
         cursor = self.db.cursor()
@@ -74,8 +78,8 @@ class ConnectMysql:
                     if name[i] == "null":
                         name[i] = ""
                     # print(name[i])  
-                    # 数据标定
-                    ap_value = cabt.getCabData(room_device,strtype,ap_value)                  
+                    # 数据标定 暂不标定0906
+                    # ap_value = cabt.getCabData(room_device,strtype,ap_value)                  
                     if strtype == 1:#根据杨帆学长那边统一要求，将所有wifi的值转成正数
                         ap_value = abs(ap_value)
                     strsql.append("(NULL, " + strRecordID + ", '" + mac[i] + "', '" + name[i] + "', " + str(ap_value) + ")")
@@ -165,7 +169,7 @@ class ConnectMysql:
 if __name__ == '__main__':
     conn = ConnectMysql()
     # conn.drop_table()
-    signal_type = 2# 1为wifi;2为蓝牙
+    signal_type = 1# 1为wifi;2为蓝牙
     data = conn.read_data(signal_type)
     if signal_type == 1:
         for ft in range(5): 

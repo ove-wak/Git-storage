@@ -21,6 +21,9 @@ def save_data_event():
         file_names =  [name for name in os.listdir(wifi_path+dir_name)]  
         for file_name in file_names:
             file_num = file_name.split("_")[0]
+            # 说明：按照遥感测绘坐标系规定应该是，N为x正方向，E为y正方向
+            # 但此处在处理之前n和e弄混了，因此x，y和n，e的对应刚好是反的
+            # 警示后人
             coo_x = file_name.split("_")[1]
             coo_y = (file_name.split("_")[2])[:-4]
             begin_time = time.time()
