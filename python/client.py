@@ -12,14 +12,14 @@ class myThread (threading.Thread):
 def connect_clint(x):
     postdata = json.dumps({'number':x})
     # print(postdata)
-    r = requests.Session().get('http://203.207.224.107:8281/fingerprint/download?buildinginfo=[{"buildingid":"LIESMARS","floor":[]}]')
+    r = requests.Session().get('http://203.207.224.107:8281/fingerprint/download?buildinginfo=[{"buildingid":"shilintong"}]')
     # print(r.content)
 
 tl = []
 
-for i in range(10000):
-    tl.append(myThreadi))
+for i in range(1000):
+    tl.append(myThread(i))
 
-for i in range(10000):
+for i in range(1000):
     tl[i].start()
 
