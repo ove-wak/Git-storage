@@ -2,58 +2,14 @@
 <html>
     <head>
     <meta charset="utf-8">
-    <!-- 禁止手机缩放页面 -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <!-- 媒体查询适配页面 -->
     <title></title>
     </head>
     <body>
-        <div class="search">
-            <div><input type="text" class="js-input" value="北大"></div>
-            <div class="js-suggest">
-                <ul>
-                    <li>根据输入框的值</li>
-                    <li>从给定字符串数组中筛选出匹配的数据，依次显示在li节点中</li>
-                    <li>如果没有匹配的数据，请移除所有li节点，并隐藏.js-suggest节点</li>
-                </ul>
-            </div>
-        </div>
+        <div class="animat"></div>
     </body>
     
     <script type="text/javascript">
-        items = ["北大","北京大学","大北京","zhong北京大学"];
-        function suggest(items) {
-            var item = $.trim($(".js-input").val());
-            if(item == ""){
-                $(".js-suggest li").remove();
-                $(".js-suggest").hide();
-            }else{
-                var reg="/";
-                for(var j=0;j<item.length;j++){
-                    reg = reg+item[j]+".*?";
-                }
-                reg = eval(reg+"/");
-                console.log(res);
-                var res = [];
-                for(var i=0;i<items.length;i++){
-                    if(reg.test(items[i])){
-                        res.push(items[i]);
-                    }
-                }
-                if(res.length == 0){
-                    $(".js-suggest li").remove();
-                    $(".js-suggest").hide();
-                }else{
-                    $(".js-suggest").show();
-                    var htm = "";
-                    for(var t=0;t<res.length;t++){
-                        htm += "<li>" + res[t] + "</li>"; 
-                    }
-                    $(".js-suggest ul").append(htm);
-                }
-            }
-        }
-        suggest(items);
+        
     </script>
 </html>
