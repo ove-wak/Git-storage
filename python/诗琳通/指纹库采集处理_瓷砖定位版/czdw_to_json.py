@@ -114,7 +114,7 @@ def data_to_json(dir_path,building_id):
                 pt['Floor ID'] = floor_id
                 pt['WIFIscan'] = []
                 point_num = point_num + 1 
-                with open(path, 'r') as file_read:
+                with open(path, 'rt', encoding='utf-8') as file_read:
                     line_datas = []
                     read = csv.reader(file_read)
                     for i in read:
