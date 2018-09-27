@@ -8,7 +8,8 @@ class ConnectMysql:
     # 初始化类连接数据库
     def __init__(self):
         jvmPath = u'C:\\Program Files\\Java\\jre-9.0.4\\bin\\server\\jvm.dll'
-        jpype.startJVM(jvmPath,"-Djava.class.path=C:\\Users\\ovewa\\Desktop\\lab\\cab.jar") 
+        # jpype.startJVM(jvmPath,"-Djava.class.path=C:\\Users\\ovewa\\Desktop\\lab\\cab.jar") 
+        jpype.startJVM(jvmPath,"-Djava.class.path=C:\\Users\\ovewa\\Desktop\\trans.jar")
         self.db = pymysql.connect(host="localhost",
                              port=3306,
                              user='root',
@@ -57,11 +58,15 @@ class ConnectMysql:
         # 数据标定初始化
         # cab = JClass('com.example.user.epcab.Cab')
         # cabt = cab()
-        
+        trans = JClass('wak.Trans')
         # 诗琳通原始数据坐标有偏差，现校准 --20180906
         x = float(x) - 0.169
         y = float(y) + 0.0276
-        
+        # 坐标系转换
+        ba = trans.xy2LB([y,x-500000])
+        y = ba[0]
+        x = ba[1]
+
         ap = apt
         cursor = self.db.cursor()
         sql = "INSERT INTO fingerprint_record VALUES(NULL, '" + str(model) + "', '" + addr + "', " + str(strtype) + ", '" + str(x) + "', '" + str(y) + "', '" + time + "');"
@@ -169,7 +174,7 @@ class ConnectMysql:
 if __name__ == '__main__':
     conn = ConnectMysql()
     # conn.drop_table()
-    signal_type = 1# 1为wifi;2为蓝牙
+    signal_type = 2# 1为wifi;2为蓝牙
     data = conn.read_data(signal_type)
     if signal_type == 1:
         for ft in range(5): 

@@ -1,19 +1,13 @@
-# 斑马题
-str = input()
-result=[]
-temp=0
-for i in range(len(str)-1):
-    if str[i] != str[i+1]:
-        temp=temp+1
-    else:
-        result.append(temp+1)
-        temp=0
-result.append(temp+1)
-if str[0] != str[-1]:
-    result[0] = result[0]+result[-1]
-res=0
-for r in result:
-    if res<r:
-        res=r
+import jpype 
+from jpype import *
 
-print(res)
+jvmPath = u'C:\\Program Files\\Java\\jre-9.0.4\\bin\\server\\jvm.dll'
+jpype.startJVM(jvmPath,"-Djava.class.path=C:\\Users\\ovewa\\Desktop\\trans.jar")
+trans = JClass('wak.Trans')
+# transt = trans()
+ab = []
+ab.append(3378842.4475280102)
+ab.append(34058.6869331948)
+ba = trans.xy2LB(ab)
+print(ba)
+jpype.shutdownJVM()
