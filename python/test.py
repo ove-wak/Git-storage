@@ -1,14 +1,13 @@
+import jpype 
+from jpype import *
 
-f_num = input()
-num_ar = []
-for x in range(int(f_num)):
-    temp = input()
-    num_ar.append(temp)
-for num in num_ar:
-    t = 0
-    for i in range(len(num)):
-        t = t + int(num[i])
-    if int(num) % t :
-        print("NO")
-    else:
-        print("YES")
+jvmPath = u'C:\\Program Files\\Java\\jre-9.0.4\\bin\\server\\jvm.dll'
+jpype.startJVM(jvmPath,"-Djava.class.path=C:\\Users\\ovewa\\Desktop\\trans.jar")
+trans = JClass('wak.Trans')
+# transt = trans()
+ab = []
+ab.append(3378842.44752)
+ab.append(34058.68693)
+ba = trans.xy2LB(ab)
+print(ba)
+jpype.shutdownJVM()
