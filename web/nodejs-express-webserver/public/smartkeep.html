@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SmartKeep</title>
+    <meta name="viewport"  content="initial-scale=1.0,user-scalable=no,width=device-width" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style type="text/css">
+        html{
+            font-size: 100px;
+        }
+        #user-name{
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding-top: 58%;
+        }
+        #user-name input{
+            width: 30%;
+            border: 0rem;
+            border-bottom: 0.01rem solid #aaa;
+            font-size: 0.24rem;
+
+        }
+        #user-name input:focus{
+            border: 0rem;
+            border-bottom: 0.01rem solid blue; 
+            outline: none;         
+        }
+    </style>
+</head>
+<body>
+    <div id="user-name" class="content-div">
+        <input type="text" name="user-name" placeholder="用户名" v-model="username" autofocus/>
+    </div>
+</body>
+<script type="text/javascript">
+    var app = new Vue({
+          el: '#user-name',
+          data: {
+            username: ''
+          }
+        });
+    
+</script>
+</html>
