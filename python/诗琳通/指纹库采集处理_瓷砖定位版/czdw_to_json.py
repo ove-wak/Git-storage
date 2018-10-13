@@ -44,7 +44,7 @@ def data_with_cz():
                         else:
                             y_t = 0 - dt 
                         temp_y = temp_y + y_t
-                    file_name = str(i+1).zfill(5)+"_"+str(round(temp_x,3))+"_"+str(round(temp_y,3))+".csv"
+                    file_name = str(i+1).zfill(5)+"_"+str(temp_x)+"_"+str(temp_y)+".csv"
                     os.rename("Wi-Fi_Data/"+room+"/"+files[i],"Wi-Fi_Data/"+room+"/"+file_name)
                     os.rename("BT_Data/"+room+"/"+files[i],"BT_Data/"+room+"/"+file_name)
             else:
@@ -83,7 +83,7 @@ def data_with_cz():
                                     x_t = dt
                         temp_x = temp_x + x_t
                         temp_y = temp_y + y_t
-                    file_name = str(i+1).zfill(5)+"_"+str(round(temp_x,3))+"_"+str(round(temp_y,3))+".csv"
+                    file_name = str(i+1).zfill(5)+"_"+str(temp_x)+"_"+str(temp_y)+".csv"
                     os.rename("Wi-Fi_Data/"+room+"/"+files[i],"Wi-Fi_Data/"+room+"/"+file_name)
                     os.rename("BT_Data/"+room+"/"+files[i],"BT_Data/"+room+"/"+file_name)
 

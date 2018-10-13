@@ -36,7 +36,7 @@ def data_with_qzy():
                 flag = flag + 1
                 locd.append([q[3],q[4]])
         for j in range(len(files)):
-            file_name = str(j+1).zfill(5)+"_"+str(round(float(locd[j][0]),3))+"_"+str(round(float(locd[j][1]),3))+".csv"
+            file_name = str(j+1).zfill(5)+"_"+str(float(locd[j][0]))+"_"+str(float(locd[j][1]))+".csv"
             os.rename("Wi-Fi_Data/"+room+"/"+files[j],"Wi-Fi_Data/"+room+"/"+file_name)
             os.rename("BT_Data/"+room+"/"+files[j],"BT_Data/"+room+"/"+file_name)
 
