@@ -87,15 +87,15 @@ def data_with_cz():
                     os.rename("Wi-Fi_Data/"+room+"/"+files[i],"Wi-Fi_Data/"+room+"/"+file_name)
                     os.rename("BT_Data/"+room+"/"+files[i],"BT_Data/"+room+"/"+file_name)
 
-# 指纹数据转为json格式
-def data_to_json(dir_path,building_id):
+# wifi指纹数据转为json格式
+def wifidata_to_json(dir_path,building_id):
     data = []
     point_num = 0
     # 获取文件夹列表
     dir_names = [name for name in os.listdir(dir_path)]
     for dir_name in dir_names:
         room_name = dir_name.split("_")[0]
-        floor_id = room_name[:2]
+        floor_id = str(int(room_name[:2]))
         # 显示进度
         print("正在处理 "+room_name + " 下的文件")
         begin_time = time.time()
@@ -134,13 +134,62 @@ def data_to_json(dir_path,building_id):
                         ap_num = 0
                         record = []
                         for i in range(len(ap)):
-                            if int(ap[i]) != -200:
+                            ap_value = int(ap[i])
+                            if ap_value != -200:
                                 if name[i] == "null":
                                     name[i] = ""
-                                record.append({'AP':ap_num,'BSSID':mac[i],'SSID':name[i],'Level':int(ap[i])})
+                                # wifi值转为正数
+                                ap_value = abs(ap_value)
+                                record.append({'AP':ap_num,'BSSID':mac[i],'SSID':name[i],'Level':ap_value})
                                 ap_num = ap_num + 1
                         if ap_num != 0:
                             pt['WIFIscan'].append({'Round':round_num,'Date':line_time,'WifiScanInfo':record})
+                data.append(pt) 
+        end_time = time.time()
+        print(room_name + " 下的文件处理完成("+str(int((begin_time-end_time)/1000))+"s)")
+    return data
+
+# 蓝牙数据转为json格式
+def btdata_to_json(dir_path,building_id):
+    data = []
+    # 获取文件夹列表
+    dir_names = [name for name in os.listdir(dir_path)]
+    for dir_name in dir_names:
+        room_name = dir_name.split("_")[0]
+        floor_id = str(int(room_name[:2]))
+        # 显示进度
+        print("正在处理 "+room_name + " 下的文件")
+        begin_time = time.time()
+        file_names  =  [name for name in os.listdir(dir_path+dir_name)]  
+        for file_name in file_names:
+            file_num = file_name.split("_")[0]
+            coo_x = file_name.split("_")[1]
+            coo_y = (file_name.split("_")[2])[:-4]
+            path = dir_path+dir_name+"/"+file_name
+            if os.path.getsize(path):#判断文件是否为空  
+                pt = {}          
+                pt['PosLon'] = float(coo_x)
+                pt['PosLat'] = float(coo_y)
+                line_datas = []
+                with open(path, 'rt', encoding='utf-8') as file_read:  
+                    read = csv.reader(file_read)
+                    for i in read:
+                        line_datas.append(i)
+                pt['TimeStamp'] = line_datas[2][0]
+                pt['ScanResult'] = []
+                names = line_datas[0][1:]
+                macs = line_datas[1][1:]
+                for i in range(len(names)):
+                    rssiinfo = []
+                    for x in range(2,len(line_datas)):
+                        ap_value = int(line_datas[x][i+1])
+                        if ap_value != -200:
+                            if names[i] == "null":
+                                rssiinfo.append({"RSSI":ap_value,"APaddress":macs[i]})
+                            else:
+                                rssiinfo.append({"APname":names[i],"RSSI":ap_value,"APaddress":macs[i]})
+                    if rssiinfo != []:
+                        pt['ScanResult'].append({"RSSI info":rssiinfo,"APaddress":macs[i]})
                 data.append(pt) 
         end_time = time.time()
         print(room_name + " 下的文件处理完成("+str(int((begin_time-end_time)/1000))+"s)")
@@ -153,15 +202,15 @@ building_id = input("请输入建筑名称:")
 wifi_path = "Wi-Fi_Data/"
 bt_path = "BT_Data/" 
 print("wifi指纹正在转为json格式.")
-data = data_to_json(wifi_path,building_id)
+data = wifidata_to_json(wifi_path,building_id)
 print("json文件正在保存中,请稍等...")
-with open(building_id+'_wifi.json', 'w') as f:
+with open('WIFIscan.json', 'w') as f:
     json.dump(data, f)
 print("wifi指纹转为json格式完成.\n\n\n\n\n\n\n\n")
 print("蓝牙指纹正在转为json格式.")
-data = data_to_json(bt_path,building_id)
+data = btdata_to_json(bt_path,building_id)
 print("json文件正在保存中,请稍等...")
-with open(building_id+'_bt.json', 'w') as f:
+with open('IBeaconScan.json', 'w') as f:
     json.dump(data, f)
 print("蓝牙指纹转为json格式完成.")
 print("程序执行完毕.")
