@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block body %}
+  {% if session.logged_in %}
+    <form action="{{ url_for('add_entry') }}" method=post class=add-entry>
+        <textarea name=text rows=5 cols=70></textarea>
+        <input class=button type=submit value=Send>
+    </form>
+  {% endif %}
+  <ul class=entries>
+  {% for entry in entries %}
+    <li><div><h2>{{ entry.username }} </h2><span>{{entry.time}}</span></div>
+      {{ entry.text|safe }}
+  {% else %}
+    <li><em>Unbelievable.  No entries here so far</em>
+  {% endfor %}
+  </ul>
+{% endblock %}
