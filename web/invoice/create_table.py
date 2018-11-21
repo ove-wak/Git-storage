@@ -38,10 +38,10 @@ cursor.execute(sql)
 sql = """CREATE TABLE IF NOT EXISTS version(
          id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
          userid INT NOT NULL,
-         date VARCHAR(40) NOT NULL,
-         department VARCHAR(40) NOT NULL,  
-         serialnumber VARCHAR(40) NOT NULL,
-         manager VARCHAR(40) NOT NULL) DEFAULT CHARSET=utf8;"""
+         date VARCHAR(10) NOT NULL,
+         department VARCHAR(60) NOT NULL,  
+         serialnumber VARCHAR(60) NOT NULL,
+         manager VARCHAR(60) NOT NULL) DEFAULT CHARSET=utf8;"""
 cursor.execute(sql)
 sql = """CREATE TABLE IF NOT EXISTS invoice(
          id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -49,6 +49,6 @@ sql = """CREATE TABLE IF NOT EXISTS invoice(
          versionid INT NOT NULL,
          invoicecode VARCHAR(20) NOT NULL,
          invoicenumber VARCHAR(10) NOT NULL,  
-         remarks VARCHAR(80)) DEFAULT CHARSET=utf8;"""
+         remarks VARCHAR(120)) DEFAULT CHARSET=utf8;"""
 cursor.execute(sql)
 db.close()
