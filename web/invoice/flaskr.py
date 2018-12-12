@@ -197,20 +197,25 @@ def queryrule():
     cursor.execute(sql)
     results = cursor.fetchall()
     if len(results) > 0:# 版本存在
-        sql = "select invoicenumber from invoice where versionid="+versionid+" and invoicecode='"+invoicecode+"';"
+        sql = "select invoicenumber from invoice where invoicecode='"+invoicecode+"';"
         cursor.execute(sql)
         results = cursor.fetchall()
 
         rule = 1
         invoicenumbers = []
         int_invoicenumber = int(invoicenumber)
+        norule_invoicenumber = ""
         for result in results:
             invoicenumbers.append(result[0])
         for i in range(g_range + 1):
             if str(int_invoicenumber + i) in invoicenumbers:
                 rule = -1
+                norule_invoicenumber = str(int_invoicenumber + i)
+                break
             if str(int_invoicenumber - i) in invoicenumbers:
                 rule = -1
+                norule_invoicenumber = str(int_invoicenumber - i)
+                break
         if rule == 1:# 合规
             remarks = ""
             sql = "insert into invoice values(NULL,"+userid+","+versionid+",'"+invoicecode+"','"+invoicenumber+"','"+remarks+"');"
@@ -228,8 +233,25 @@ def queryrule():
             else:
                 data = False
         else:# 不合规
+            sql = "select userid,versionid from invoice where invoicecode='"+invoicecode+"' and invoicenumber='"+norule_invoicenumber+"';"
+            cursor.execute(sql)
+            results = cursor.fetchall()
+            userid = results[0][0]
+            versionid = results[0][1]
+            sql = "select username from user where id="+str(userid)+";"
+            cursor.execute(sql)
+            results = cursor.fetchall()
+            username = results[0][0]
+            sql = "select date,department,serialnumber,manager from version where id="+str(versionid)+";"
+            cursor.execute(sql)
+            results = cursor.fetchall()
+            date = results[0][0]
+            department = results[0][1]
+            serialnumber = results[0][2]
+            manager = results[0][3]
             data = 'norule' 
-            cursor.close()      
+            cursor.close() 
+            return json.dumps({'data':data,'information':{'username':username,'date':date,'department':department,'serialnumber':serialnumber,'manager':manager,'invoicecode':invoicecode,'invoicenumber':norule_invoicenumber}})     
     else:
         data = False
     return json.dumps({'data':data})
