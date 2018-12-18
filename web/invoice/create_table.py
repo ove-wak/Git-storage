@@ -5,7 +5,6 @@ g_port = ""
 g_user = ""
 g_password = ""
 g_db = ""
-g_range = ""
 
 with open("config.json", 'r',encoding='UTF-8') as file_read:
     results = json.load(file_read)
@@ -14,7 +13,6 @@ with open("config.json", 'r',encoding='UTF-8') as file_read:
     g_user = results["user"]
     g_password = results["password"]
     g_db = results["db"]
-    g_range = results["compliance_range"]
 
 # 连接数据库
 def connect_db():
@@ -29,6 +27,10 @@ def connect_db():
 
 db = connect_db()
 cursor = db.cursor()
+sql = """CREATE TABLE IF NOT EXISTS rule(
+         id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+         rulerange INT NOT NULL) DEFAULT CHARSET=utf8;"""
+cursor.execute(sql)
 sql = """CREATE TABLE IF NOT EXISTS user(
          id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
          username VARCHAR(40) NOT NULL,
@@ -41,7 +43,9 @@ sql = """CREATE TABLE IF NOT EXISTS version(
          date VARCHAR(10) NOT NULL,
          department VARCHAR(60) NOT NULL,  
          serialnumber VARCHAR(60) NOT NULL,
-         manager VARCHAR(60) NOT NULL) DEFAULT CHARSET=utf8;"""
+         manager VARCHAR(60) NOT NULL,
+         totalnumber INT NOT NULL,
+         completednumber INT NOT NULL) DEFAULT CHARSET=utf8;"""
 cursor.execute(sql)
 sql = """CREATE TABLE IF NOT EXISTS invoice(
          id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -49,6 +53,7 @@ sql = """CREATE TABLE IF NOT EXISTS invoice(
          versionid INT NOT NULL,
          invoicecode VARCHAR(20) NOT NULL,
          invoicenumber VARCHAR(10) NOT NULL,  
-         remarks VARCHAR(120)) DEFAULT CHARSET=utf8;"""
+         remarks VARCHAR(120),
+         queuenumber INT NOT NULL) DEFAULT CHARSET=utf8;"""
 cursor.execute(sql)
 db.close()

@@ -3,6 +3,5 @@
 	"port":3306,
 	"user":"invoice_root",
 	"password":"invoice_root",
-	"db":"invoice_db",
-	"compliance_range":1
+	"db":"invoice_db"
 }

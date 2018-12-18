@@ -6,7 +6,6 @@ g_port = ""
 g_user = ""
 g_password = ""
 g_db = ""
-g_range = ""
 with open("config.json", 'r',encoding='UTF-8') as file_read:
     results = json.load(file_read)
     g_host = results["host"]# 放到服务器上的最终版本记得修改为本地
@@ -14,7 +13,6 @@ with open("config.json", 'r',encoding='UTF-8') as file_read:
     g_user = results["user"]
     g_password = results["password"]
     g_db = results["db"]
-    g_range = results["compliance_range"]
 
 
 app = Flask(__name__)
@@ -156,31 +154,93 @@ def begin():
     department = request.args.get('department')
     serialnumber = request.args.get('serialnumber')
     manager = request.args.get('manager')
+    totalnumber = request.args.get('totalnumber')
     cursor = g.db.cursor()
 
     sql = "select * from user where id='"+userid+"';" 
     cursor.execute(sql)
     results = cursor.fetchall()
     if len(results) > 0:# 用户存在
-        sql = "insert into version values(NULL,"+userid+",'"+date+"','"+department+"','"+serialnumber+"','"+manager+"');"
-        flag = -1
-        try:
-            cursor.execute(sql)
-            g.db.commit()
-            sql = "select last_insert_id();" 
-            cursor.execute(sql) 
-            results = cursor.fetchall()
-            flag = 1 # 添加版本成功
-        except:
-            g.db.rollback()
-            flag = -1 
-        cursor.close()
-        if flag == 1:
-            data = {"versionid":results[0][0]}
-        else:
-            data = False
+        sql = "select * from version where serialnumber='"+serialnumber+"';" 
+        cursor.execute(sql)
+        results = cursor.fetchall()
+        if len(results) == 0:#全新的版本
+            sql = "insert into version values(NULL,"+userid+",'"+date+"','"+department+"','"+serialnumber+"','"+manager+"',"+totalnumber+",0);"
+            flag = -1
+            try:
+                cursor.execute(sql)
+                g.db.commit()
+                sql = "select last_insert_id();" 
+                cursor.execute(sql) 
+                results = cursor.fetchall()
+                flag = 1 # 添加版本成功
+            except:
+                g.db.rollback()
+                flag = -1 
+        
+            if flag == 1:
+                data = {"flag":1,"versionid":results[0][0]}
+            else:
+                data = False
+        else:# 已经存在的版本
+            totalnumber = int(totalnumber)
+            if totalnumber != results[0][6]:
+                if totalnumber <= results[0][7]:
+                    data = {"flag":-1,"message":"本版此次输入的总张数小于已识别张数，不合法"}
+                else:
+                    data = {"flag":2,"message":"本版此次输入的总张数与上次不一致，确认继续么？"}
+            else:
+                if totalnumber == results[0][7]:
+                    data = {"flag":-1,"message":"本版已检测完成"}
+                else:
+                    data = {"flag":3,"message":"本版已检测完成前"+str(results[0][7])+"张","completednumber":results[0][7]}
     else:
         data = False
+    cursor.close()
+    return json.dumps({'data':data}, ensure_ascii=False)
+
+# 张数不一致时确认继续
+@app.route('/conbegin', methods=['GET'])
+def conbegin():
+    userid = request.args.get('userid')
+    date = request.args.get('date')
+    department = request.args.get('department')
+    serialnumber = request.args.get('serialnumber')
+    manager = request.args.get('manager')
+    totalnumber = request.args.get('totalnumber')
+    cursor = g.db.cursor()
+
+    sql = "select * from user where id='"+userid+"';" 
+    cursor.execute(sql)
+    results = cursor.fetchall()
+    if len(results) > 0:# 用户存在
+        sql = "select * from version where serialnumber='"+serialnumber+"';" 
+        cursor.execute(sql)
+        results = cursor.fetchall()
+        if len(results) > 0:#版本存在
+            sql = "SET @update_id := 0;"
+            cursor.execute(sql)
+            sql = "update version set totalnumber='"+totalnumber+"', id = (SELECT @update_id := id) where serialnumber='"+serialnumber+"';"
+            flag = -1
+            try:
+                cursor.execute(sql)
+                g.db.commit()
+                sql = "select @update_id;" 
+                cursor.execute(sql) 
+                results = cursor.fetchall()
+                flag = 1 # 添加版本成功
+            except:
+                g.db.rollback()
+                flag = -1 
+            if flag == 1:
+                data = {"flag":1,"versionid":results[0][0]}
+            else:
+                data = False
+        else:
+            data = False          
+    else:
+        data = False
+    cursor.close()
     return json.dumps({'data':data})
 
 # 合规性检测
@@ -191,6 +251,7 @@ def queryrule():
     versionid = request.args.get('versionid')
     invoicecode = request.args.get('invoicecode')
     invoicenumber = request.args.get('invoicenumber')
+    completednumber = request.args.get('completednumber')
     cursor = g.db.cursor()
 
     sql = "select * from version where id='"+versionid+"';" 
@@ -204,57 +265,80 @@ def queryrule():
         rule = 1
         invoicenumbers = []
         int_invoicenumber = int(invoicenumber)
-        norule_invoicenumber = ""
+        norule_invoicenumbers = []
         for result in results:
             invoicenumbers.append(result[0])
-        for i in range(g_range + 1):
+        sql = "select * from rule;"
+        cursor.execute(sql)
+        results = cursor.fetchall()
+        for i in range(results[0][1] + 1):
             if str(int_invoicenumber + i) in invoicenumbers:
                 rule = -1
-                norule_invoicenumber = str(int_invoicenumber + i)
-                break
+                norule_invoicenumbers.append(str(int_invoicenumber + i))
+                if i == 0:
+                    continue
             if str(int_invoicenumber - i) in invoicenumbers:
                 rule = -1
-                norule_invoicenumber = str(int_invoicenumber - i)
-                break
+                norule_invoicenumbers.append(str(int_invoicenumber - i))
         if rule == 1:# 合规
             remarks = ""
-            sql = "insert into invoice values(NULL,"+userid+","+versionid+",'"+invoicecode+"','"+invoicenumber+"','"+remarks+"');"
+            sql = "insert into invoice values(NULL,"+userid+","+versionid+",'"+invoicecode+"','"+invoicenumber+"','"+remarks+"',"+completednumber+");"
             flag = -1
             try:
                 cursor.execute(sql)
                 g.db.commit()
                 flag = 1 # 添加发票成功
+                sql = "update version set completednumber='"+completednumber+"' where id="+versionid+";"
+                flag = -1
+                try:
+                    cursor.execute(sql)
+                    g.db.commit()
+                    flag = 1 
+                except:
+                    g.db.rollback()
+                    flag = -1 
             except:
                 g.db.rollback()
-                flag = -1 
-            cursor.close()
+                flag = -1     
             if flag == 1:
-                data = True
+                sql = "select totalnumber,completednumber from version where id="+versionid+";"
+                cursor.execute(sql)
+                results = cursor.fetchall()
+                if results[0][0] == results[0][1]:
+                    data = {"flag":2,"message":"本版已检测完成"}
+                else:
+                    data = {"flag":1}
             else:
                 data = False
+            cursor.close()
         else:# 不合规
-            sql = "select userid,versionid from invoice where invoicecode='"+invoicecode+"' and invoicenumber='"+norule_invoicenumber+"';"
-            cursor.execute(sql)
-            results = cursor.fetchall()
-            userid = results[0][0]
-            versionid = results[0][1]
-            sql = "select username from user where id="+str(userid)+";"
-            cursor.execute(sql)
-            results = cursor.fetchall()
-            username = results[0][0]
-            sql = "select date,department,serialnumber,manager from version where id="+str(versionid)+";"
-            cursor.execute(sql)
-            results = cursor.fetchall()
-            date = results[0][0]
-            department = results[0][1]
-            serialnumber = results[0][2]
-            manager = results[0][3]
-            data = 'norule' 
+            informations = []
+            data = 'norule'
+            for norule_invoicenumber in norule_invoicenumbers:
+                sql = "select userid,versionid,remarks,queuenumber from invoice where invoicecode='"+invoicecode+"' and invoicenumber='"+norule_invoicenumber+"';"
+                cursor.execute(sql)
+                results = cursor.fetchall()
+                userid = results[0][0]
+                versionid = results[0][1]
+                remarks = results[0][2]
+                queuenumber = results[0][3]
+                sql = "select username from user where id="+str(userid)+";"
+                cursor.execute(sql)
+                results = cursor.fetchall()
+                username = results[0][0]
+                sql = "select date,department,serialnumber,manager from version where id="+str(versionid)+";"
+                cursor.execute(sql)
+                results = cursor.fetchall()
+                date = results[0][0]
+                department = results[0][1]
+                serialnumber = results[0][2]
+                manager = results[0][3]
+                informations.append({'username':username,'date':date,'department':department,'serialnumber':serialnumber,'manager':manager,'invoicecode':invoicecode,'invoicenumber':norule_invoicenumber,'remarks':remarks,'queuenumber':queuenumber}) 
             cursor.close() 
-            return json.dumps({'data':data,'information':{'username':username,'date':date,'department':department,'serialnumber':serialnumber,'manager':manager,'invoicecode':invoicecode,'invoicenumber':norule_invoicenumber}})     
+            return json.dumps({'data':data,'information':informations}, ensure_ascii=False)     
     else:
         data = False
-    return json.dumps({'data':data})
+    return json.dumps({'data':data}, ensure_ascii=False)
 
 # 确认合规
 @app.route('/yesrule', methods=['GET'])
@@ -264,26 +348,42 @@ def yesrule():
     invoicecode = request.args.get('invoicecode')
     invoicenumber = request.args.get('invoicenumber')
     remarks = request.args.get('remarks')
+    completednumber = request.args.get('completednumber')
     cursor = g.db.cursor()
 
     sql = "select * from version where id='"+versionid+"';" 
     cursor.execute(sql)
     results = cursor.fetchall()
     if len(results) > 0:# 版本存在
-        sql = "insert into invoice values(NULL,"+userid+","+versionid+",'"+invoicecode+"','"+invoicenumber+"','"+remarks+"');"
+        sql = "insert into invoice values(NULL,"+userid+","+versionid+",'"+invoicecode+"','"+invoicenumber+"','"+remarks+"',"+str(completednumber)+");"
         flag = -1
         try:
             cursor.execute(sql)
             g.db.commit()
-            flag = 1 # 添加版本成功
+            flag = 1 # 成功
+            sql = "update version set completednumber='"+completednumber+"' where serialnumber='"+serialnumber+"';"
+            flag = -1
+            try:
+                cursor.execute(sql)
+                g.db.commit()
+                flag = 1 
+            except:
+                g.db.rollback()
+                flag = -1 
         except:
             g.db.rollback()
-            flag = -1 
-        cursor.close()
+            flag = -1     
         if flag == 1:
-            data = True
+            sql = "select totalnumber,completednumber from version where serialnumber='"+serialnumber+"';"
+            cursor.execute(sql)
+            results = cursor.fetchall()
+            if results[0][0] == results[0][1]:
+                data = {"flag":2,"message":"本版已检测完成"}
+            else:
+                data = {"flag":1}
         else:
             data = False
+        cursor.close()
     else:
         data = False
     return json.dumps({'data':data})
@@ -336,6 +436,43 @@ def alluser():
         data=[]
         for res in results:
             data.append({'userid':res[0],'username':res[1],'password':res[2],'permissionid':res[3]})      
+    else:
+        data = False
+    return json.dumps({'data':data})
+
+@app.route('/setrule', methods=['GET'])
+def setrule():
+    userid = request.args.get('userid')
+    pid = request.args.get('permissionid')
+    invoicenumber_range = request.args.get('invoicenumber_range')
+    cursor = g.db.cursor()
+
+    sql = "select * from user where id='"+userid+"';" 
+    cursor.execute(sql)
+    results = cursor.fetchall()
+    if len(results) > 0:
+        if int(invoicenumber_range) == -1:
+            sql = "select * from rule;"
+            cursor.execute(sql)
+            results = cursor.fetchall()
+            in_range = results[0][1]
+            data = in_range
+        else:
+            sql = "update rule set rulerange="+invoicenumber_range+" where id=1;"
+            flag = -1
+            try:
+                cursor.execute(sql)
+                g.db.commit()
+                flag = 1 # 添加版本成功
+            except:
+                g.db.rollback()
+                flag = -1 
+            cursor.close()
+            if flag == 1:
+                data = True
+            else:
+                data = False
+        cursor.close()             
     else:
         data = False
     return json.dumps({'data':data})
