@@ -317,23 +317,24 @@ def queryrule():
             for norule_invoicenumber in norule_invoicenumbers:
                 sql = "select userid,versionid,remarks,queuenumber from invoice where invoicecode='"+invoicecode+"' and invoicenumber='"+norule_invoicenumber+"';"
                 cursor.execute(sql)
-                results = cursor.fetchall()
-                userid = results[0][0]
-                versionid = results[0][1]
-                remarks = results[0][2]
-                queuenumber = results[0][3]
-                sql = "select username from user where id="+str(userid)+";"
-                cursor.execute(sql)
-                results = cursor.fetchall()
-                username = results[0][0]
-                sql = "select date,department,serialnumber,manager from version where id="+str(versionid)+";"
-                cursor.execute(sql)
-                results = cursor.fetchall()
-                date = results[0][0]
-                department = results[0][1]
-                serialnumber = results[0][2]
-                manager = results[0][3]
-                informations.append({'username':username,'date':date,'department':department,'serialnumber':serialnumber,'manager':manager,'invoicecode':invoicecode,'invoicenumber':norule_invoicenumber,'remarks':remarks,'queuenumber':queuenumber}) 
+                i_results = cursor.fetchall()
+                for i_result in i_results:
+                    userid = i_result[0]
+                    versionid = i_result[1]
+                    remarks = i_result[2]
+                    queuenumber = i_result[3]
+                    sql = "select username from user where id="+str(userid)+";"
+                    cursor.execute(sql)
+                    results = cursor.fetchall()
+                    username = results[0][0]
+                    sql = "select date,department,serialnumber,manager from version where id="+str(versionid)+";"
+                    cursor.execute(sql)
+                    results = cursor.fetchall()
+                    date = results[0][0]
+                    department = results[0][1]
+                    serialnumber = results[0][2]
+                    manager = results[0][3]
+                    informations.append({'username':username,'date':date,'department':department,'serialnumber':serialnumber,'manager':manager,'invoicecode':invoicecode,'invoicenumber':norule_invoicenumber,'remarks':remarks,'queuenumber':queuenumber}) 
             cursor.close() 
             return json.dumps({'data':data,'information':informations}, ensure_ascii=False)     
     else:
