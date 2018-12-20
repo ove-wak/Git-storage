@@ -355,13 +355,13 @@ def yesrule():
     cursor.execute(sql)
     results = cursor.fetchall()
     if len(results) > 0:# 版本存在
-        sql = "insert into invoice values(NULL,"+userid+","+versionid+",'"+invoicecode+"','"+invoicenumber+"','"+remarks+"',"+str(completednumber)+");"
+        sql = "insert into invoice values(NULL,"+userid+","+versionid+",'"+invoicecode+"','"+invoicenumber+"','"+remarks+"',"+completednumber+");"
         flag = -1
         try:
             cursor.execute(sql)
             g.db.commit()
-            flag = 1 # 成功
-            sql = "update version set completednumber='"+completednumber+"' where serialnumber='"+serialnumber+"';"
+            flag = 1 # 添加发票成功
+            sql = "update version set completednumber='"+completednumber+"' where id="+versionid+";"
             flag = -1
             try:
                 cursor.execute(sql)
@@ -374,7 +374,7 @@ def yesrule():
             g.db.rollback()
             flag = -1     
         if flag == 1:
-            sql = "select totalnumber,completednumber from version where serialnumber='"+serialnumber+"';"
+            sql = "select totalnumber,completednumber from version where id="+versionid+";"
             cursor.execute(sql)
             results = cursor.fetchall()
             if results[0][0] == results[0][1]:
