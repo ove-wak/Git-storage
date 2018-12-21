@@ -183,17 +183,18 @@ def begin():
             else:
                 data = False
         else:# 已经存在的版本
+            versionid = results[0][0]
             totalnumber = int(totalnumber)
             if totalnumber != results[0][6]:
                 if totalnumber <= results[0][7]:
                     data = {"flag":-1,"message":"本版此次输入的总张数小于已识别张数，不合法"}
                 else:
-                    data = {"flag":2,"message":"本版此次输入的总张数与上次不一致，确认继续么？"}
+                    data = {"flag":2,"message":"本版此次输入的总张数与上次("+results[0][6]+")不一致，确认继续么？"}
             else:
                 if totalnumber == results[0][7]:
                     data = {"flag":-1,"message":"本版已检测完成"}
                 else:
-                    data = {"flag":3,"message":"本版已检测完成前"+str(results[0][7])+"张","completednumber":results[0][7]}
+                    data = {"flag":3,"message":"本版已检测完成前"+str(results[0][7])+"张","completednumber":results[0][7],"versionid":versionid}
     else:
         data = False
     cursor.close()
@@ -214,10 +215,11 @@ def conbegin():
     cursor.execute(sql)
     results = cursor.fetchall()
     if len(results) > 0:# 用户存在
-        sql = "select * from version where serialnumber='"+serialnumber+"';" 
+        sql = "select completednumber from version where serialnumber='"+serialnumber+"';" 
         cursor.execute(sql)
         results = cursor.fetchall()
         if len(results) > 0:#版本存在
+            completednumber = results[0][0]
             sql = "SET @update_id := 0;"
             cursor.execute(sql)
             sql = "update version set totalnumber='"+totalnumber+"', id = (SELECT @update_id := id) where serialnumber='"+serialnumber+"';"
@@ -233,7 +235,7 @@ def conbegin():
                 g.db.rollback()
                 flag = -1 
             if flag == 1:
-                data = {"flag":1,"versionid":results[0][0]}
+                data = {"flag":1,"versionid":results[0][0],"completednumber":completednumber}
             else:
                 data = False
         else:
@@ -326,7 +328,10 @@ def queryrule():
                     sql = "select username from user where id="+str(userid)+";"
                     cursor.execute(sql)
                     results = cursor.fetchall()
-                    username = results[0][0]
+                    if len(results) > 0:
+                        username = results[0][0]
+                    else:
+                        username = "空"
                     sql = "select date,department,serialnumber,manager from version where id="+str(versionid)+";"
                     cursor.execute(sql)
                     results = cursor.fetchall()
