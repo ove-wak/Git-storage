@@ -189,7 +189,7 @@ def begin():
                 if totalnumber <= results[0][7]:
                     data = {"flag":-1,"message":"本版此次输入的总张数小于已识别张数，不合法"}
                 else:
-                    data = {"flag":2,"message":"本版此次输入的总张数与上次("+results[0][6]+")不一致，确认继续么？"}
+                    data = {"flag":2,"message":"本版此次输入的总张数与上次("+str(results[0][6])+")不一致，确认继续么？"}
             else:
                 if totalnumber == results[0][7]:
                     data = {"flag":-1,"message":"本版已检测完成"}
