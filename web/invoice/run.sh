@@ -1,0 +1,1 @@
+nohup python3 flaskr.py 2>&1 &
