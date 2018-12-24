@@ -8,7 +8,7 @@ g_db = ""
 
 with open("config.json", 'r',encoding='UTF-8') as file_read:
     results = json.load(file_read)
-    g_host = results["host"]# 放到服务器上的最终版本记得修改为本地
+    g_host = results["host"]
     g_port = results["port"]
     g_user = results["user"]
     g_password = results["password"]
@@ -56,4 +56,24 @@ sql = """CREATE TABLE IF NOT EXISTS invoice(
          remarks VARCHAR(120),
          queuenumber INT NOT NULL) DEFAULT CHARSET=utf8;"""
 cursor.execute(sql)
+sql = "insert into user values(NULL,'admin','invoice_root',1);"
+flag = -1
+try:
+    cursor.execute(sql)
+    g.db.commit()
+    flag = 1 # 添加用户成功
+except:
+    g.db.rollback()
+    flag = -1
+print(flag)
+sql = "insert into rule values(NULL,1);"
+flag = -1
+try:
+    cursor.execute(sql)
+    g.db.commit()
+    flag = 1 # 添加规则成功
+except:
+    g.db.rollback()
+    flag = -1
+print(flag)
 db.close()

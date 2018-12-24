@@ -1,5 +1,5 @@
 {
-	"host":"120.78.190.36",
+	"host":"127.0.0.1",
 	"port":3306,
 	"user":"invoice_root",
 	"password":"invoice_root",
