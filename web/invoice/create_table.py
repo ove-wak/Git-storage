@@ -60,20 +60,20 @@ sql = "insert into user values(NULL,'admin','invoice_root',1);"
 flag = -1
 try:
     cursor.execute(sql)
-    g.db.commit()
+    db.commit()
     flag = 1 # 添加用户成功
 except:
-    g.db.rollback()
+    db.rollback()
     flag = -1
 print(flag)
 sql = "insert into rule values(NULL,1);"
 flag = -1
 try:
     cursor.execute(sql)
-    g.db.commit()
+    db.commit()
     flag = 1 # 添加规则成功
 except:
-    g.db.rollback()
+    db.rollback()
     flag = -1
 print(flag)
 db.close()
